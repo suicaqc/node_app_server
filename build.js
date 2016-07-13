@@ -15,7 +15,7 @@ var _f = function() {
 		exec("update-rc.d -f 'qalet_*' remove",
 			function(error, stdout, stderr){
 				// Start Build
-				var bufA = fs.readFileSync(cfg.APPLICATION_DIRECTORY+'/script_template/node_http' , "utf8");	
+				var bufA = fs.readFileSync(__dirname+'/script_template/node_http' , "utf8");	
 				
 				fs.writeFileSync('/etc/init.d/qalet_cache', 
 					bufA.replace(/{\$APPLICATION_DIRECTORY}/, __dirname).
