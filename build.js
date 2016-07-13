@@ -4,7 +4,7 @@ var fs    = require('fs');
 
 console.log('Start install npm ...');
 exec(
-	'sudo apt-get -y install npm && npm install forever -g '
+	'npm install forever -g '
 	, function(error, stdout, stderr) {
 		console.log(error);
 	_f();
