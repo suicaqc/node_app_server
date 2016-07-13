@@ -21,12 +21,12 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 	var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
 
 	_f['S1'] = function(cbk) {
-		db.cache.find({ source: req.params[0] }, function (err, docs) {
+		db.cache.find({ source: req.params[1] }, function (err, docs) {
 	    	if ((docs[0]) && (new Date() - docs[0].tm < _cachetime)) {
 	    		cbk(docs[0]);
 	    		CP.exit = true;
 	    	} else {	    		
-	    		db.cache.remove({ source: req.params[0] }, function (err, docs) {
+	    		db.cache.remove({ source: req.params[1] }, function (err, docs) {
 	    			cbk(false);
 	    		});	
 	    	}
@@ -47,7 +47,7 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 	    		cbk(false);
 	    	} else {
 		    	var rec = { 
-					source: req.params[0], 
+					source: req.params[1], 
 					cache: new Buffer(body).toString('base64'), 
 					tm: new Date(), 
 					content_type:response.headers['content-type']};
