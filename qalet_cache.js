@@ -11,7 +11,7 @@ db 			= {
 				auth	: new Nedb({ filename: 'db/auth.db', autoload: true })
 			},
 
-port 		= 8880;
+port 		= 80;
 
 
 
