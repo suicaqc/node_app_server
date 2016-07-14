@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
-app.post('/test-page', function(req, res) {
+app.post('/', function(req, res) {
    res.send(req.body);
     // ...
 });
