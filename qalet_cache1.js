@@ -1,8 +1,9 @@
 var 
 express = require('express'),  
-crowdProcess = require('crowdProcess'), Nedb = require('nedb'),
+crowdProcess = require('crowdProcess'), 
+Nedb = require('nedb'), 
+bodyParser = require('body-parser'),
 request = require('request'),
-
 app			= express(),
 expireTime	= 604800000,
 
@@ -13,6 +14,17 @@ db 			= {
 
 port 		= 8880;
 
+
+
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
+
+app.post('/test-page', function(req, res) {
+   res.send(req.body);
+    // ...
+});
 
 
 app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
