@@ -63,6 +63,11 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	    }
 
 	    request(options ,function(error, response, body) {
+			
+			console.log('==========1========');
+			console.log(error);
+			console.log(body);
+			
 	    	if (error) {
 	    		res.send(error.toString());
 	    		cbk(false);
