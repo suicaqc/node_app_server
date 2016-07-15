@@ -5,7 +5,7 @@ Nedb = require('./package/nedb/node_modules/nedb'),
 bodyParser = require('./package/body-parser/node_modules/body-parser'),
 request = require('./package/request/node_modules/request'),
 app			= express(),
-expireTime	= 604800000,
+expireTime	= 604800000;
 
 	    var options = {
 	        url: 'http://pingiping.com/micro_service/pageHub/',
