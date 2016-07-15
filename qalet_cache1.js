@@ -21,25 +21,13 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
-app.all('*', function(req, res, next) {
-       res.header("Access-Control-Allow-Origin", "*");
-       res.header("Access-Control-Allow-Headers", "X-Requested-With");
-       res.header('Access-Control-Allow-Headers', 'Content-Type');
-       next();
-});
-
 app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
-	
-	console.log('post--' + new Date());
-	
-	console.log(req.params[1]);
-	console.log(JSON.stringify(req.body));
-	console.log('===================');
-	
 	var CP = new crowdProcess();
 	var _f = {};
 	var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
 
+	req.body = {age: 32, gender: "F", country: "CHINA"};
+	
 	_f['S1'] = function(cbk) {
 		db.cache.find({ source: req.params[1], postdata:JSON.stringify(req.body) }, function (err, docs) {
 	    	if ((docs[0]) && (new Date() - docs[0].tm < _cachetime)) {
@@ -58,22 +46,15 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	    var options = {
 	        url: req.params[1],
 	        method:  'POST',
-			data: req.body //,
-	     //   encoding: null
+			form: req.body,
+	        encoding: null
 	    }
-		console.log(options);
-		
+
 	    request(options ,function(error, response, body) {
-			
-			console.log('==========1========');
-			console.log(error);
-			console.log(body);
-			
 	    	if (error) {
 	    		res.send(error.toString());
 	    		cbk(false);
 	    	} else {
-				console.log(body);
 		    	var rec = { 
 					source: req.params[1], 
 					postdata:JSON.stringify(req.body),
@@ -90,11 +71,9 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	CP.serial(
 		_f,
 		function(data) {
-			console.log('data.results===');
-			console.log(data.results);
 	    	var rec = (data.results.S1)?data.results.S1:data.results.S2;
 	    	if (rec !== false) {
-		 //   	res.writeHead(200, {'Content-Type': rec.content_type});
+		    	res.writeHead(200, {'Content-Type': rec.content_type});
 		    	res.write(new Buffer(rec.cache, 'base64'));
 		    	res.end();	    		
 	    	}
@@ -106,9 +85,6 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 
 
 app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
-	
-	console.log('get--' + new Date());
-	
 	var CP = new crowdProcess();
 	var _f = {};
 	var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
@@ -197,9 +173,6 @@ app.get(/api(\/|)$/i, function (req, res) {
 
 
 app.get('(*)$', function (req, res) {
-	
-	console.log('**--' + new Date());
-	
 	res.sendFile(__dirname + '/html'+req.params[0], function(err) {
 		
 		if (err) {
