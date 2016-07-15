@@ -44,7 +44,7 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	    var options = {
 	        url: req.params[1],
 	        method:  'POST',
-			data: req.body,
+			form: req.body,
 	        encoding: null
 	    }
 
