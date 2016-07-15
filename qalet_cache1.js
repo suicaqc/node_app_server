@@ -89,6 +89,8 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	CP.serial(
 		_f,
 		function(data) {
+			console.log('data.results===');
+			console.log(data.results);
 	    	var rec = (data.results.S1)?data.results.S1:data.results.S2;
 	    	if (rec !== false) {
 		 //   	res.writeHead(200, {'Content-Type': rec.content_type});
