@@ -1,6 +1,6 @@
 var 
 express = require('./package/express/node_modules/express'),  
-crowdProcess = require('crowdProcess'), 
+crowdProcess = require('./package/crowdProcess/crowdProcess'), 
 Nedb = require('nedb'), 
 bodyParser = require('body-parser'),
 request = require('request'),
