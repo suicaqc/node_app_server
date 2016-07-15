@@ -1,5 +1,5 @@
 var 
-express = require('package/express/express'),  
+express = require('./package/express/express'),  
 crowdProcess = require('crowdProcess'), 
 Nedb = require('nedb'), 
 bodyParser = require('body-parser'),
