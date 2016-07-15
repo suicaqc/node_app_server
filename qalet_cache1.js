@@ -80,7 +80,7 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 		function(data) {
 	    	var rec = (data.results.S1)?data.results.S1:data.results.S2;
 	    	if (rec !== false) {
-		    	res.writeHead(200, {'Content-Type': rec.content_type});
+		 //   	res.writeHead(200, {'Content-Type': rec.content_type});
 		    	res.write(new Buffer(rec.cache, 'base64'));
 		    	res.end();	    		
 	    	}
