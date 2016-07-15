@@ -9,7 +9,7 @@ expireTime	= 604800000;
 
 	    var options = {
 	      //  url: 'http://pingiping.com/micro_service/pageHub/',
-			url: 'http://cache1.qalet.com:8880/cache36000/http://pingiping.com/micro_service/pageHub/',
+			url: 'http://cache2.qalet.com:8880/cache36000/http://pingiping.com/micro_service/pageHub/',
 	        method:  'POST',
 			data: JSON.stringify({age: 32, gender: "F", country: "CHINA"}),
 	        encoding: null
