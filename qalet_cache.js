@@ -33,7 +33,7 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	var _f = {};
 	var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
 
-	req.body = {age: 32, gender: "F", country: "CHINA"};
+	//req.body = {age: 32, gender: "F", country: "CHINA"};
 	
 	_f['S1'] = function(cbk) {
 		db.cache.find({ source: req.params[1], postdata:JSON.stringify(req.body) }, function (err, docs) {
