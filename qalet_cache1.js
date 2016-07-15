@@ -58,8 +58,8 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	    var options = {
 	        url: req.params[1],
 	        method:  'POST',
-			data: req.body,
-	        encoding: null
+			data: req.body //,
+	     //   encoding: null
 	    }
 		console.log(options);
 		
