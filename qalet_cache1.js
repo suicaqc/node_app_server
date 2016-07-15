@@ -18,8 +18,7 @@ port 		= 8880;
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  //extended: true
-  extended: false
+  extended: true
 })); 
 
 app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
@@ -179,21 +178,6 @@ app.get(/api(\/|)$/i, function (req, res) {
 app.get('(*)$', function (req, res) {
 	
 	console.log('**--' + new Date());
-	
-	res.sendFile(__dirname + '/html'+req.params[0], function(err) {
-		
-		if (err) {
-			res.writeHead(404, {'Content-Type': 'text/html'});
-			res.write(req.params[0] + ' is not exist.');
-    		res.end();
-		}
-
-	});
-});
-
-app.post('/', function (req, res) {
-	
-	console.log('pp--' + new Date());
 	
 	res.sendFile(__dirname + '/html'+req.params[0], function(err) {
 		
