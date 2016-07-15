@@ -31,6 +31,11 @@ app.all('*', function(req, res, next) {
 app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	
 	console.log('post--' + new Date());
+	
+	console.log(req.params[1]);
+	console.log(req.body);
+	console.log('===================');
+	
 	var CP = new crowdProcess();
 	var _f = {};
 	var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
