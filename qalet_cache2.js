@@ -17,8 +17,9 @@ expireTime	= 604800000;
 		
 	    request(options ,function(error, response, body) {
 			
-			console.log('==========1========');
+			console.log('==========2========');
 			console.log(error);
+			console.log(response);
 			console.log(body);
 			
 	    });
