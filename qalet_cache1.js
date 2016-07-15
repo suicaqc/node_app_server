@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	
-	console.log(new Date());
+	console.log('post--' + new Date());
 	var CP = new crowdProcess();
 	var _f = {};
 	var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
@@ -85,6 +85,9 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 
 
 app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
+	
+	console.log('get--' + new Date());
+	
 	var CP = new crowdProcess();
 	var _f = {};
 	var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
@@ -173,6 +176,9 @@ app.get(/api(\/|)$/i, function (req, res) {
 
 
 app.get('(*)$', function (req, res) {
+	
+	console.log('**--' + new Date());
+	
 	res.sendFile(__dirname + '/html'+req.params[0], function(err) {
 		
 		if (err) {
