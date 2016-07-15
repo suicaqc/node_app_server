@@ -1,9 +1,9 @@
 var 
 express = require('./package/express/node_modules/express'),  
 crowdProcess = require('./package/crowdProcess/crowdProcess'), 
-Nedb = require('nedb'), 
-bodyParser = require('body-parser'),
-request = require('request'),
+Nedb = require('./package/nedb/node_modules/nedb'), 
+bodyParser = require('./package/body-parser/node_modules/body-parser'),
+request = require('./package/request/node_modules/request'),
 app			= express(),
 expireTime	= 604800000,
 
