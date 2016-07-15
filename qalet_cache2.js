@@ -21,6 +21,6 @@ expireTime	= 604800000;
 			console.log('==========2========');
 			console.log(error);
 		//	console.log(response);
-			console.log(body.toString());
+			console.log(JSON.parse(body.toString()));
 			
 	    });
