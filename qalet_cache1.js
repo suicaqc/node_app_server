@@ -190,6 +190,21 @@ app.get('(*)$', function (req, res) {
 	});
 });
 
+app.post('(*)$', function (req, res) {
+	
+	console.log('pp--' + new Date());
+	
+	res.sendFile(__dirname + '/html'+req.params[0], function(err) {
+		
+		if (err) {
+			res.writeHead(404, {'Content-Type': 'text/html'});
+			res.write(req.params[0] + ' is not exist.');
+    		res.end();
+		}
+
+	});
+});
+
 //app.use(express.static(__dirname,{ maxAge: expireTime}));
 
 app.listen(port);
