@@ -10,7 +10,7 @@ expireTime	= 604800000;
 	    var options = {
 	        url: 'http://pingiping.com/micro_service/pageHub/',
 	        method:  'POST',
-			data: querystring.stringify({age: 32, gender: "F", country: "CHINA"}),
+			data: JSON.stringify({age: 32, gender: "F", country: "CHINA"}),
 	        encoding: null
 	    }
 		console.log(options);
