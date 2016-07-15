@@ -51,6 +51,7 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	    }
 
 	    request(options ,function(error, response, body) {
+			console.log(body.toString());
 	    	if (error) {
 	    		res.send(error.toString());
 	    		cbk(false);
