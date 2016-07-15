@@ -61,7 +61,8 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 			data: req.body,
 	        encoding: null
 	    }
-
+		console.log(options);
+		
 	    request(options ,function(error, response, body) {
 			
 			console.log('==========1========');
