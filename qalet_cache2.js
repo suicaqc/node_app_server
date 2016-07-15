@@ -11,7 +11,7 @@ expireTime	= 604800000;
 	      //  url: 'http://pingiping.com/micro_service/pageHub/',
 			url: 'http://cache2.qalet.com:8880/cache36000/http://pingiping.com/micro_service/pageHub/',
 	        method:  'POST',
-			body: '{age: 32, gender: "F", country: "CHINA"}',
+			form: '{age: 32, gender: "F", country: "CHINA"}',
 	        encoding: null
 	    }
 		console.log(options);
