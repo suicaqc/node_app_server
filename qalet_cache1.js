@@ -33,7 +33,7 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	console.log('post--' + new Date());
 	
 	console.log(req.params[1]);
-	console.log(req.body);
+	console.log(JSON.stringify(req.body));
 	console.log('===================');
 	
 	var CP = new crowdProcess();
