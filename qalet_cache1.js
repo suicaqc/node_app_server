@@ -18,7 +18,8 @@ port 		= 8880;
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
+  //extended: true
+  extended: false
 })); 
 
 app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
