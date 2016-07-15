@@ -62,6 +62,7 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	    		res.send(error.toString());
 	    		cbk(false);
 	    	} else {
+				console.log(body);
 		    	var rec = { 
 					source: req.params[1], 
 					postdata:JSON.stringify(req.body),
