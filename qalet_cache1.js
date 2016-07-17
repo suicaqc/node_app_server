@@ -185,6 +185,13 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 
 
 app.get(/_cmd(\/|)$/i, function (req, res) {
+	
+	var exec = require('child_process').exec;
+	exec('ls -l', function(err, out, code) {
+		console.log(out);
+		console.log('------');
+		console.log(code);
+	})	
 	var CP = new crowdProcess();
 	res.writeHead(200, {'Content-Type': 'text/html'});
 	res.write('command is not exist.');
