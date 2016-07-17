@@ -11,7 +11,6 @@ db 			= {
 				cache 	: new Nedb({ filename: 'db/cache.db', autoload: true }),
 				auth	: new Nedb({ filename: 'db/auth.db', autoload: true })
 			},
-
 port 		= 8880;
 
 
@@ -33,7 +32,24 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	var _f = {};
 	var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
 
-	//req.body = {age: 32, gender: "F", country: "CHINA"};
+	_f['S0'] = function(cbk) {
+		console.log(req.body);
+		cbk(true);
+     };		
+	
+	_f['S1'] = function(cbk) {
+		db.cache.find({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
+	    	if ((docs[0]) && (new Date() - docs[0].tm < _cachetime)) {
+	    		cbk(docs[0]);
+	    		CP.exit = true;
+	    	} else {	    		
+	    		db.cache.remove({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
+	    			cbk(false);
+	    		});	
+	    	}
+	    	
+	      });
+     };		
 	
 	_f['S1'] = function(cbk) {
 		db.cache.find({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
