@@ -184,10 +184,10 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 });
 
 
-app.get(/api(\/|)$/i, function (req, res) {
+app.get(/_cmd(\/|)$/i, function (req, res) {
 	var CP = new crowdProcess();
 	res.writeHead(200, {'Content-Type': 'text/html'});
-	res.write(req.params[0] + ' is not exist.');
+	res.write('commans is not exist.');
 	res.end();
 });
 
