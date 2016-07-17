@@ -108,7 +108,11 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 		    	res.writeHead(200, {'Content-Type': rec.content_type});
 		    	res.write(new Buffer(rec.cache, 'base64'));
 		    	res.end();	    		
-	    	}
+	    	} else {
+		    	res.writeHead(500, {'Content-Type': 'text/html'});
+		    	res.write('No result');
+		    	res.end();					
+			}
 
 		},
 		3000
