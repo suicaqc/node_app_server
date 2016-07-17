@@ -186,29 +186,9 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 
 app.get(/api(\/|)$/i, function (req, res) {
 	var CP = new crowdProcess();
-	var _f = {};
-
-	_f['S1'] = function(cbk) {
-      	db.auth.find({ user: 'root' }, function (err, docs) {
-      		console.log(err);
-        	cbk(docs);
-      	}); 
-     };
-
-	_f['S2'] = function(cbk) {
-      	db.auth.find({ user: 'root' }, function (err, docs) {
-        	cbk(docs);
-      	}); 
-     };
-
-	CP.serial(
-		_f,
-		function(data) {
-			//res.writeHead(200, {'Content-Type': 'text/html'});
-			res.sendFile(__dirname + '/html/index.html');
-		},
-		3000
-	);
+	res.writeHead(200, {'Content-Type': 'text/html'});
+	res.write(req.params[0] + ' is not exist.');
+	res.end();
 });
 
 
