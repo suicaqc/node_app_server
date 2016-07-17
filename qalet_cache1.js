@@ -99,10 +99,6 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 		_f,
 		function(data) {
 			
-			console.log(req.body);
-			console.log('--------------');
-			console.log(data.results);
-			
 			if (!data.results.S0) {
 				res.writeHead(500, {'Content-Type': 'text/html'});
 				res.write('Data format error');
