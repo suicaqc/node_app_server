@@ -55,20 +55,6 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	      });
      };		
 	
-	_f['S1'] = function(cbk) {
-		db.cache.find({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
-	    	if ((docs[0]) && (new Date() - docs[0].tm < _cachetime)) {
-	    		cbk(docs[0]);
-	    		CP.exit = true;
-	    	} else {	    		
-	    		db.cache.remove({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
-	    			cbk(false);
-	    		});	
-	    	}
-	    	
-	      });
-     };	
-
 	_f['S2'] = function(cbk) {
 	    var options = {
 	        url: req.params[1],

@@ -55,20 +55,6 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	      });
      };		
 	
-	_f['S1'] = function(cbk) {
-		db.cache.find({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
-	    	if ((docs[0]) && (new Date() - docs[0].tm < _cachetime)) {
-	    		cbk(docs[0]);
-	    		CP.exit = true;
-	    	} else {	    		
-	    		db.cache.remove({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
-	    			cbk(false);
-	    		});	
-	    	}
-	    	
-	      });
-     };	
-
 	_f['S2'] = function(cbk) {
 	    var options = {
 	        url: req.params[1],
@@ -184,31 +170,18 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 });
 
 
-app.get(/api(\/|)$/i, function (req, res) {
+app.get(/_cmd(\/|)$/i, function (req, res) {
+	
+	var exec = require('child_process').exec;
+	exec('git pull && reboot -f', function(err, out, code) {
+		console.log(out);
+		console.log('------');
+		console.log(code);
+	})	
 	var CP = new crowdProcess();
-	var _f = {};
-
-	_f['S1'] = function(cbk) {
-      	db.auth.find({ user: 'root' }, function (err, docs) {
-      		console.log(err);
-        	cbk(docs);
-      	}); 
-     };
-
-	_f['S2'] = function(cbk) {
-      	db.auth.find({ user: 'root' }, function (err, docs) {
-        	cbk(docs);
-      	}); 
-     };
-
-	CP.serial(
-		_f,
-		function(data) {
-			//res.writeHead(200, {'Content-Type': 'text/html'});
-			res.sendFile(__dirname + '/html/index.html');
-		},
-		3000
-	);
+	res.writeHead(200, {'Content-Type': 'text/html'});
+	res.write('command is not exist.aa');
+	res.end();
 });
 
 
@@ -224,8 +197,6 @@ app.get('(*)$', function (req, res) {
 
 	});
 });
-
-//app.use(express.static(__dirname,{ maxAge: expireTime}));
 
 app.listen(port);
 console.log('Cache server start port ' + port + ' at ' + new Date() + '');
