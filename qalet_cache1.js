@@ -103,16 +103,25 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 			console.log('--------------');
 			console.log(data.results);
 			
-	    	var rec = (data.results.S1)?data.results.S1:data.results.S2;
-	    	if (rec !== false) {
-		    	res.writeHead(200, {'Content-Type': rec.content_type});
-		    	res.write(new Buffer(rec.cache, 'base64'));
-		    	res.end();	    		
-	    	} else {
-		    	res.writeHead(500, {'Content-Type': 'text/html'});
-		    	res.write('No result');
-		    	res.end();					
+			if (!data.results.S0) {
+				res.writeHead(500, {'Content-Type': 'text/html'});
+				res.write('Data format error');
+				res.end();					
+				
+			} else {
+				var rec = (data.results.S1)?data.results.S1:data.results.S2;
+				if (rec !== false) {
+					res.writeHead(200, {'Content-Type': rec.content_type});
+					res.write(new Buffer(rec.cache, 'base64'));
+					res.end();	    		
+				} else {
+					res.writeHead(500, {'Content-Type': 'text/html'});
+					res.write('No result');
+					res.end();					
+				}				
 			}
+			
+
 
 		},
 		3000
