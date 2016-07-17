@@ -33,15 +33,19 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
 
 	_f['S0'] = function(cbk) {
-		console.log(req.body);
-		cbk(true);
+		if (!req.body.postData) {
+			CP.exit = true;
+			cbk(false);
+		} else {
+			cbk(true);
+		}
      };		
 	
 	_f['S1'] = function(cbk) {
 		db.cache.find({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
 	    	if ((docs[0]) && (new Date() - docs[0].tm < _cachetime)) {
-	    		cbk(docs[0]);
 	    		CP.exit = true;
+				cbk(docs[0]);
 	    	} else {	    		
 	    		db.cache.remove({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
 	    			cbk(false);
@@ -94,6 +98,11 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	CP.serial(
 		_f,
 		function(data) {
+			
+			console.log(req.body);
+			console.log('--------------');
+			console.log(data.results);
+			
 	    	var rec = (data.results.S1)?data.results.S1:data.results.S2;
 	    	if (rec !== false) {
 		    	res.writeHead(200, {'Content-Type': rec.content_type});
@@ -115,8 +124,8 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 	_f['S1'] = function(cbk) {
 		db.cache.find({ source: req.params[1] }, function (err, docs) {
 	    	if ((docs[0]) && (new Date() - docs[0].tm < _cachetime)) {
-	    		cbk(docs[0]);
 	    		CP.exit = true;
+				cbk(docs[0]);
 	    	} else {	    		
 	    		db.cache.remove({ source: req.params[1] }, function (err, docs) {
 	    			cbk(false);
