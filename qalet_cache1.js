@@ -38,12 +38,12 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	console.log('============>');
 	
 	_f['S1'] = function(cbk) {
-		db.cache.find({ source: req.params[1], postdata:JSON.stringify(req.body) }, function (err, docs) {
+		db.cache.find({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
 	    	if ((docs[0]) && (new Date() - docs[0].tm < _cachetime)) {
 	    		cbk(docs[0]);
 	    	//	CP.exit = true;
 	    	} else {	    		
-	    		db.cache.remove({ source: req.params[1], postdata:JSON.stringify(req.body) }, function (err, docs) {
+	    		db.cache.remove({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
 	    			cbk(false);
 	    		});	
 	    	}
@@ -67,7 +67,7 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	    	} else {
 		    	var rec = { 
 					source: req.params[1], 
-					postdata:JSON.stringify(req.body),
+					postdata:JSON.stringify(req.body.postData),
 					cache: new Buffer(body).toString('base64'), 
 					tm: new Date(), 
 					content_type:response.headers['content-type']};
