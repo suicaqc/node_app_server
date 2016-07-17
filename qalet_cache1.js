@@ -33,15 +33,13 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	var _f = {};
 	var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
 
-	req.body = {age: 32, gender: "F", country: "CHINA"};
-	
-	console.log('============>');
+	//req.body = {age: 32, gender: "F", country: "CHINA"};
 	
 	_f['S1'] = function(cbk) {
 		db.cache.find({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
 	    	if ((docs[0]) && (new Date() - docs[0].tm < _cachetime)) {
 	    		cbk(docs[0]);
-	    	//	CP.exit = true;
+	    		CP.exit = true;
 	    	} else {	    		
 	    		db.cache.remove({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
 	    			cbk(false);
@@ -60,7 +58,6 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	    }
 
 	    request(options ,function(error, response, body) {
-			console.log(body.toString());
 	    	if (error) {
 	    		res.send(error.toString());
 	    		cbk(false);
