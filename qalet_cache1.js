@@ -187,7 +187,7 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 app.get(/_cmd(\/|)$/i, function (req, res) {
 	var CP = new crowdProcess();
 	res.writeHead(200, {'Content-Type': 'text/html'});
-	res.write('commans is not exist.');
+	res.write('command is not exist.');
 	res.end();
 });
 
@@ -204,8 +204,6 @@ app.get('(*)$', function (req, res) {
 
 	});
 });
-
-//app.use(express.static(__dirname,{ maxAge: expireTime}));
 
 app.listen(port);
 console.log('Cache server start port ' + port + ' at ' + new Date() + '');
