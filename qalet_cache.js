@@ -27,7 +27,7 @@ app.all('*', function(req, res, next) {
 });
 
 app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
-	delete require.cache[__dirname + '/modules/cacheModule/cacheModule.js'];
+//	delete require.cache[__dirname + '/modules/cacheModule/cacheModule.js'];
 	var postCache  = require(__dirname + '/modules/cacheModule/cacheModule.js');
 	var pc = new postCache(pkg, req, res);
 	pc.post();	
@@ -35,7 +35,7 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 
 });
 app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
-	delete require.cache[__dirname + '/modules/cacheModule/cacheModule.js'];
+//	delete require.cache[__dirname + '/modules/cacheModule/cacheModule.js'];
 	var getCache  = require(__dirname + '/modules/cacheModule/cacheModule.js');
 	var gc = new getCache(pkg, req, res);
 	gc.get();	
