@@ -1,6 +1,6 @@
 (function () { 
-		var obj =  function (req, res) {
-			this.callIn = function() {
+		var obj =  function () {
+			this.callIn = function(req, res) {
 				res.writeHead(500, {'Content-Type': 'text/html'});
 				res.write('Nice work A');
 				res.end()
