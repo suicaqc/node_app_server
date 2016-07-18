@@ -1,5 +1,5 @@
 (function () { 
-		var obj =  function (req, res, CP) {
+		var obj =  function (req, res, CP, db) {
 			this.callIn = function() {
 				
 				var _f = {};
