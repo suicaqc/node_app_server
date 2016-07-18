@@ -186,6 +186,7 @@ app.get(/_cmd(\/|)$/i, function (req, res) {
 
 app.get(/_microservice(\/|)$/i, function (req, res) {
 	delete require.cache[__dirname + '/modules/niceWork/niceWork'];
+	console.log(require.cache)
 	var niceWork  = require(__dirname + '/modules/niceWork/niceWork');		
 	var nw = new niceWork(req, res);
 	nw.callIn();	
