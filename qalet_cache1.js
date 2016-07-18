@@ -187,7 +187,7 @@ app.get(/_cmd(\/|)$/i, function (req, res) {
 app.get(/_microservice(\/|)$/i, function (req, res) {
 	var niceWork  = require('./modules/niceWork/niceWork');		
 	var nw = new niceWork();
-	nw();
+	nw.callIn();
 			res.writeHead(500, {'Content-Type': 'text/html'});
 			res.write('Nice work');
 			res.end();	
