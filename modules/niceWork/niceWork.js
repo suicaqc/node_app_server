@@ -1,4 +1,4 @@
-(function () { 
+(function (req, res) { 
 		var obj =  function () {
 			res.writeHead(500, {'Content-Type': 'text/html'});
 			res.write('Nice work');
