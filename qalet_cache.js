@@ -6,14 +6,13 @@ bodyParser = require('./package/body-parser/node_modules/body-parser'),
 request = require('./package/request/node_modules/request'),
 app			= express(),
 expireTime	= 604800000,
-
-db 			= {
-				cache 	: new Nedb({ filename: 'db/cache.db', autoload: true }),
-				auth	: new Nedb({ filename: 'db/auth.db', autoload: true })
-			},
 port 		= 80;
 
-
+var pkg = {
+	crowdProcess:crowdProcess,
+	Nedb:Nedb,
+	request:request
+}
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -28,153 +27,30 @@ app.all('*', function(req, res, next) {
 });
 
 app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
-	var CP = new crowdProcess();
-	var _f = {};
-	var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
+	delete require.cache[__dirname + '/modules/cacheModule/cacheModule.js'];
+	var postCache  = require(__dirname + '/modules/cacheModule/cacheModule.js');
+	var pc = new postCache(pkg, req, res);
+	pc.post();	
+	return true;
 
-	_f['S0'] = function(cbk) {
-		if (!req.body.postData) {
-			CP.exit = true;
-			cbk(false);
-		} else {
-			cbk(true);
-		}
-     };		
-	
-	_f['S1'] = function(cbk) {
-		db.cache.find({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
-	    	if ((docs[0]) && (new Date() - docs[0].tm < _cachetime)) {
-	    		CP.exit = true;
-				cbk(docs[0]);
-	    	} else {	    		
-	    		db.cache.remove({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
-	    			cbk(false);
-	    		});	
-	    	}
-	    	
-	      });
-     };		
-	
-	_f['S2'] = function(cbk) {
-	    var options = {
-	        url: req.params[1],
-	        method:  'POST',
-			form: req.body.postData,
-	        encoding: null
-	    }
-
-	    request(options ,function(error, response, body) {
-	    	if (error) {
-	    		res.send(error.toString());
-	    		cbk(false);
-	    	} else {
-		    	var rec = { 
-					source: req.params[1], 
-					postdata:JSON.stringify(req.body.postData),
-					cache: new Buffer(body).toString('base64'), 
-					tm: new Date(), 
-					content_type:response.headers['content-type']};
-				db.cache.insert(rec, function (err) {
-					cbk(rec);
-				  });
-	    	}
-	    });
-     };	
-
-	CP.serial(
-		_f,
-		function(data) {
-			
-			if (!data.results.S0) {
-				res.writeHead(500, {'Content-Type': 'text/html'});
-				res.write('Data format error');
-				res.end();					
-				
-			} else {
-				var rec = (data.results.S1)?data.results.S1:data.results.S2;
-				if (rec !== false) {
-					res.writeHead(200, {'Content-Type': rec.content_type});
-					res.write(new Buffer(rec.cache, 'base64'));
-					res.end();	    		
-				} else {
-					res.writeHead(500, {'Content-Type': 'text/html'});
-					res.write('No result');
-					res.end();					
-				}				
-			}
-			
-
-
-		},
-		3000
-	);
 });
-
-
 app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
-	var CP = new crowdProcess();
-	var _f = {};
-	var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
+	delete require.cache[__dirname + '/modules/cacheModule/cacheModule.js'];
+	var getCache  = require(__dirname + '/modules/cacheModule/cacheModule.js');
+	var gc = new getCache(pkg, req, res);
+	gc.get();	
+	return true;
 
-	_f['S1'] = function(cbk) {
-		db.cache.find({ source: req.params[1] }, function (err, docs) {
-	    	if ((docs[0]) && (new Date() - docs[0].tm < _cachetime)) {
-	    		CP.exit = true;
-				cbk(docs[0]);
-	    	} else {	    		
-	    		db.cache.remove({ source: req.params[1] }, function (err, docs) {
-	    			cbk(false);
-	    		});	
-	    	}
-	    	
-	      });
-     };	
-
-	_f['S2'] = function(cbk) {
-	    var options = {
-	        url: req.params[1],
-	        method:  'GET',
-	        encoding: null
-	    }
-
-	    request(options ,function(error, response, body) {
-	    	if (error) {
-	    		res.send(error.toString());
-	    		cbk(false);
-	    	} else {
-		    	var rec = { 
-					source: req.params[1], 
-					cache: new Buffer(body).toString('base64'), 
-					tm: new Date(), 
-					content_type:response.headers['content-type']};
-				db.cache.insert(rec, function (err) {
-					cbk(rec);
-				  });
-	    	}
-	    });
-     };	
-
-	CP.serial(
-		_f,
-		function(data) {
-	    	var rec = (data.results.S1)?data.results.S1:data.results.S2;
-	    	if (rec !== false) {
-		    	res.writeHead(200, {'Content-Type': rec.content_type});
-		    	res.write(new Buffer(rec.cache, 'base64'));
-		    	res.end();	    		
-	    	}
-
-		},
-		3000
-	);
 });
 
 
 app.get(/_cmd(\/|)$/i, function (req, res) {
 	
 	var exec = require('child_process').exec;
-	exec('git pull', function(err, out, code) {
-
+	exec('git pull && reboot -f', function(err, out, code) {
+		console.log(out);
+		console.log('------');
+		console.log(code);
 	})	
 	var CP = new crowdProcess();
 	res.writeHead(200, {'Content-Type': 'text/html'});
@@ -203,3 +79,4 @@ app.get('(*)$', function (req, res) {
 });
 
 app.listen(port);
+console.log('Cache server start port ' + port + ' at ' + new Date() + '');
