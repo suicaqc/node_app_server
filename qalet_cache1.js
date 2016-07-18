@@ -186,8 +186,8 @@ app.get(/_cmd(\/|)$/i, function (req, res) {
 
 app.get(/_microservice(\/|)$/i, function (req, res) {
 	var niceWork  = require('./modules/niceWork/niceWork');		
-	var CP = new niceWork();
-	CP(req, res);
+	var nw = new niceWork();
+	nw(req, res);
 });
 
 app.get('(*)$', function (req, res) {
