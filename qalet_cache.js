@@ -1,17 +1,14 @@
 var 
-express = require('./package/express/node_modules/express'),  
-crowdProcess = require('./package/crowdProcess/crowdProcess'), 
-Nedb = require('./package/nedb/node_modules/nedb'), 
-bodyParser = require('./package/body-parser/node_modules/body-parser'),
-request = require('./package/request/node_modules/request'),
+express = require('./package/express/node_modules/express'),   
+bodyParser = require('./package/body-parser/node_modules/body-parser'),,
 app			= express(),
 expireTime	= 604800000,
 port 		= 80;
 
 var pkg = {
-	crowdProcess:crowdProcess,
-	Nedb:Nedb,
-	request:request
+	crowdProcess:require('./package/crowdProcess/crowdProcess'),
+	Nedb:require('./package/nedb/node_modules/nedb'),
+	request:require('./package/request/node_modules/request')
 }
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
@@ -52,7 +49,6 @@ app.get(/_cmd(\/|)$/i, function (req, res) {
 		console.log('------');
 		console.log(code);
 	})	
-	var CP = new crowdProcess();
 	res.writeHead(200, {'Content-Type': 'text/html'});
 	res.write('command is not exist.aa');
 	res.end();
