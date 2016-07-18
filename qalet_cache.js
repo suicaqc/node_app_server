@@ -173,10 +173,8 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 app.get(/_cmd(\/|)$/i, function (req, res) {
 	
 	var exec = require('child_process').exec;
-	exec('git pull && reboot -f', function(err, out, code) {
-		console.log(out);
-		console.log('------');
-		console.log(code);
+	exec('git pull', function(err, out, code) {
+
 	})	
 	var CP = new crowdProcess();
 	res.writeHead(200, {'Content-Type': 'text/html'});
@@ -185,11 +183,11 @@ app.get(/_cmd(\/|)$/i, function (req, res) {
 });
 
 app.get(/_microservice(\/|)$/i, function (req, res) {
-		
-	var CP = new crowdProcess();
-	res.writeHead(200, {'Content-Type': 'text/html'});
-	res.write('microservice');
-	res.end();
+	delete require.cache[__dirname + '/modules/niceWork/niceWork.js'];
+
+	var niceWork  = require(__dirname + '/modules/niceWork/niceWork.js');
+	var nw = new niceWork(req, res);
+	nw.callIn();	
 });
 
 app.get('(*)$', function (req, res) {
@@ -205,4 +203,3 @@ app.get('(*)$', function (req, res) {
 });
 
 app.listen(port);
-console.log('Cache server start port ' + port + ' at ' + new Date() + '');
