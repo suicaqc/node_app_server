@@ -30,7 +30,7 @@ app.all('*', function(req, res, next) {
 app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	delete require.cache[__dirname + '/modules/postCache/postCache.js'];
 	var postCache  = require(__dirname + '/modules/postCache/postCache.js');
-	var pc = new postCache({CP:new crowdProcess(), db:db}, req, res, );
+	var pc = new postCache({CP:new crowdProcess(), db:db}, req, res);
 	pc.callIn();	
 	return false;
 
