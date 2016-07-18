@@ -184,7 +184,13 @@ app.get(/_cmd(\/|)$/i, function (req, res) {
 	res.end();
 });
 
-
+app.get(/_microservice(\/|)$/i, function (req, res) {
+		
+	var CP = new crowdProcess();
+	res.writeHead(200, {'Content-Type': 'text/html'});
+	res.write('microservice');
+	res.end();
+});
 
 app.get('(*)$', function (req, res) {
 	res.sendFile(__dirname + '/html'+req.params[0], function(err) {
