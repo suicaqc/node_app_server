@@ -2,7 +2,7 @@
 		var obj =  function (req, res) {
 			this.callIn = function() {
 				res.writeHead(500, {'Content-Type': 'text/html'});
-				res.write('Nice work B');
+				res.write('Nice work C');
 				res.end()
 			}
 		};
