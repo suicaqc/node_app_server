@@ -1,14 +1,10 @@
 (function () { 
-		var obj =  function () {
+		var obj =  function (req, res) {
 			this.callIn = function() {
-				console.log(223);	
+				res.writeHead(500, {'Content-Type': 'text/html'});
+				res.write('Nice work A');
+				res.end()
 			}
-				
-			/*
-			res.writeHead(500, {'Content-Type': 'text/html'});
-			res.write('Nice work');
-			res.end();	
-			*/
 		};
 
 	if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
