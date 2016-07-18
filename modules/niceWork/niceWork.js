@@ -1,8 +1,8 @@
 (function () { 
-		var obj =  function () {
-			this.callIn = function(req, res) {
+		var obj =  function (req, res) {
+			this.callIn = function() {
 				res.writeHead(500, {'Content-Type': 'text/html'});
-				res.write('Nice work A');
+				res.write('Nice work B');
 				res.end()
 			}
 		};
