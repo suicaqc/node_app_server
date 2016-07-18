@@ -1,8 +1,11 @@
-(function (req, res) { 
-		var obj =  function () {
+(function () { 
+		var obj =  function (req, res) {
+			console.log(223);		
+			/*
 			res.writeHead(500, {'Content-Type': 'text/html'});
 			res.write('Nice work');
 			res.end();	
+			*/
 		};
 
 	if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
@@ -12,4 +15,4 @@
 			return obj; 
 		}
 	}
-})(req, res);
+})();
