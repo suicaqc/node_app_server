@@ -35,7 +35,7 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	delete require.cache[__dirname + '/modules/postCache/postCache.js'];
 	var postCache  = require(__dirname + '/modules/postCache/postCache.js');
 	var pc = new postCache(pkg, req, res);
-	pc.callIn();	
+	pc.load();	
 	return false;
 
 });
