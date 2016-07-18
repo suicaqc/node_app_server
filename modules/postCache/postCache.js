@@ -35,8 +35,7 @@
 						form: req.body.postData,
 						encoding: null
 					}
-					console.log('req.params[1]');
-					console.log(req.params[1]);
+
 
 					pkg.request(options ,function(error, response, body) {
 						if (error) {
@@ -67,7 +66,7 @@
 							
 						} else {
 							var rec = (data.results.S1)?data.results.S1:data.results.S2;
-							if (rec !== false) {
+							if (rec) {
 								res.writeHead(200, {'Content-Type': rec.content_type});
 								res.write(new Buffer(rec.cache, 'base64'));
 								res.end();	    		
