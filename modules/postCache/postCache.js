@@ -35,6 +35,8 @@
 						form: req.body.postData,
 						encoding: null
 					}
+					console.log('req.params[1]');
+					console.log(req.params[1]);
 
 					pkg.request(options ,function(error, response, body) {
 						if (error) {
