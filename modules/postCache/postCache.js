@@ -36,7 +36,7 @@
 						encoding: null
 					}
 
-					request(options ,function(error, response, body) {
+					pkg.request(options ,function(error, response, body) {
 						if (error) {
 							res.send(error.toString());
 							cbk(false);
