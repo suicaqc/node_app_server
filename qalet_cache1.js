@@ -7,10 +7,10 @@ request = require('./package/request/node_modules/request'),
 app			= express(),
 expireTime	= 604800000,
 
-db 			= {
-				cache 	: new Nedb({ filename: 'db/cache.db', autoload: true }),
-				auth	: new Nedb({ filename: 'db/auth.db', autoload: true })
-			},
+db 	= {
+		cache 	: new Nedb({ filename: 'db/cache.db', autoload: true }),
+		auth	: new Nedb({ filename: 'db/auth.db', autoload: true })
+	},
 port 		= 8880;
 
 
@@ -28,11 +28,9 @@ app.all('*', function(req, res, next) {
 });
 
 app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
-	var CP = new crowdProcess();
 	delete require.cache[__dirname + '/modules/postCache/postCache.js'];
-
 	var postCache  = require(__dirname + '/modules/postCache/postCache.js');
-	var pc = new postCache(req, res, CP, db);
+	var pc = new postCache({CP:new crowdProcess(), db:db}, req, res, );
 	pc.callIn();	
 	return false;
 

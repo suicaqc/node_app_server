@@ -1,5 +1,5 @@
 (function () { 
-		var obj =  function (req, res, CP, db) {
+		var obj =  function (pkg, req, res) {
 			this.callIn = function() {
 				
 				var _f = {};
@@ -7,7 +7,7 @@
 
 				_f['S0'] = function(cbk) {
 					if (!req.body.postData) {
-						CP.exit = true;
+						pkg.CP.exit = true;
 						cbk(false);
 					} else {
 						cbk(true);
@@ -15,12 +15,12 @@
 				 };		
 				
 				_f['S1'] = function(cbk) {
-					db.cache.find({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
+					pkg.db.cache.find({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
 						if ((docs[0]) && (new Date() - docs[0].tm < _cachetime)) {
-							CP.exit = true;
+							pkg.CP.exit = true;
 							cbk(docs[0]);
 						} else {	    		
-							db.cache.remove({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
+							pkg.db.cache.remove({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
 								cbk(false);
 							});	
 						}
@@ -47,14 +47,14 @@
 								cache: new Buffer(body).toString('base64'), 
 								tm: new Date(), 
 								content_type:response.headers['content-type']};
-							db.cache.insert(rec, function (err) {
+							pkg.db.cache.insert(rec, function (err) {
 								cbk(rec);
 							  });
 						}
 					});
 				 };	
 
-				CP.serial(
+				pkg.CP.serial(
 					_f,
 					function(data) {
 						
