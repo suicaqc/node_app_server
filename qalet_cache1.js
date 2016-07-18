@@ -1,6 +1,6 @@
 var 
 express = require('./package/express/node_modules/express'),   
-bodyParser = require('./package/body-parser/node_modules/body-parser'),,
+bodyParser = require('./package/body-parser/node_modules/body-parser'),
 app			= express(),
 expireTime	= 604800000,
 port 		= 8880;
