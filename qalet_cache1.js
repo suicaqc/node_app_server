@@ -32,10 +32,10 @@ app.all('*', function(req, res, next) {
 });
 
 app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
-	delete require.cache[__dirname + '/modules/postCache/postCache.js'];
-	var postCache  = require(__dirname + '/modules/postCache/postCache.js');
+	delete require.cache[__dirname + '/modules/cacheModule/cacheModule.js'];
+	var postCache  = require(__dirname + '/modules/cacheModule/cacheModule.js');
 	var pc = new postCache(pkg, req, res);
-	pc.load();	
+	pc.post();	
 	return false;
 
 });

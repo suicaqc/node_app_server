@@ -1,6 +1,6 @@
 (function () { 
 		var obj =  function (pkg, req, res) {
-			this.load = function() {
+			this.post = function() {
 				var CP = new pkg.crowdProcess();
 				var db 	= {
 					cache 	: new pkg.Nedb({ filename: 'db/cache.db', autoload: true }),
