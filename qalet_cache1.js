@@ -28,7 +28,7 @@ app.all('*', function(req, res, next) {
 });
 
 app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
-	var CP = new crowdProcess();
+	
 	delete require.cache[__dirname + '/modules/postCache/postCache.js'];
 
 	var postCache  = require(__dirname + '/modules/postCache/postCache.js');

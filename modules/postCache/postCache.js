@@ -1,7 +1,7 @@
 (function () { 
 		var obj =  function (req, res) {
 			this.callIn = function() {
-	
+				var CP = new crowdProcess();
 				var _f = {};
 				var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
 
