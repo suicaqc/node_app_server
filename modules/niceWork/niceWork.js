@@ -1,5 +1,5 @@
 (function () { 
-		var obj =  function (req, res) {
+		var obj =  function () {
 			console.log(223);		
 			/*
 			res.writeHead(500, {'Content-Type': 'text/html'});
