@@ -92,7 +92,7 @@
 	if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 		module.exports = obj;
 	} else {
-		window.postCache = function() {
+		window.cacheModule = function() {
 			return obj; 
 		}
 	}
