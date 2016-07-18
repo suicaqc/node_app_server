@@ -185,7 +185,7 @@ app.get(/_cmd(\/|)$/i, function (req, res) {
 });
 
 app.get(/_microservice(\/|)$/i, function (req, res) {
-	var niceWork  = require('./package/niceWork/niceWork'),		
+	var niceWork  = require('./package/niceWork/niceWork');		
 	var CP = new niceWork
 	CP(req, res);
 });
