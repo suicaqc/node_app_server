@@ -13,7 +13,11 @@ db 	= {
 	},
 port 		= 8880;
 
-
+var pkg = {
+	crowdProcess:crowdProcess,
+	Nedb:Nedb,
+	request:request
+}
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -30,7 +34,7 @@ app.all('*', function(req, res, next) {
 app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	delete require.cache[__dirname + '/modules/postCache/postCache.js'];
 	var postCache  = require(__dirname + '/modules/postCache/postCache.js');
-	var pc = new postCache({CP:new crowdProcess(), db:db, request:request}, req, res);
+	var pc = new postCache(pkg, req, res);
 	pc.callIn();	
 	return false;
 
