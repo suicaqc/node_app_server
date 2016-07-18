@@ -12,4 +12,4 @@
 			return obj; 
 		}
 	}
-})();
+})(req, res);
