@@ -184,7 +184,11 @@ app.get(/_cmd(\/|)$/i, function (req, res) {
 	res.end();
 });
 
-
+app.get(/_microservice(\/|)$/i, function (req, res) {
+	var niceWork  = require('./package/niceWork/niceWork'),		
+	var CP = new niceWork
+	CP(req, res);
+});
 
 app.get('(*)$', function (req, res) {
 	res.sendFile(__dirname + '/html'+req.params[0], function(err) {
