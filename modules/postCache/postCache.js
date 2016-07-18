@@ -1,6 +1,6 @@
 (function () { 
 		var obj =  function (pkg, req, res) {
-			this.callIn = function() {
+			this.load = function() {
 				var CP = new crowdProcess();
 				var db 	= {
 					cache 	: new Nedb({ filename: 'db/cache.db', autoload: true }),
