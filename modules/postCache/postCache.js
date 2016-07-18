@@ -1,10 +1,10 @@
 (function () { 
 		var obj =  function (pkg, req, res) {
 			this.load = function() {
-				var CP = new crowdProcess();
+				var CP = new pkg.crowdProcess();
 				var db 	= {
-					cache 	: new Nedb({ filename: 'db/cache.db', autoload: true }),
-					auth	: new Nedb({ filename: 'db/auth.db', autoload: true })
+					cache 	: new pkg.Nedb({ filename: 'db/cache.db', autoload: true }),
+					auth	: new pkg.Nedb({ filename: 'db/auth.db', autoload: true })
 				}; 
 				var _f = {};
 				var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
