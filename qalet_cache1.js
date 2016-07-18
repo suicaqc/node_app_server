@@ -34,7 +34,7 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	var postCache  = require(__dirname + '/modules/postCache/postCache.js');
 	var pc = new postCache(req, res);
 	pc.callIn();	
-	
+	return false;
 	
 	var _f = {};
 	var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
