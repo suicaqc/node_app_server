@@ -8,7 +8,8 @@ port 		= 8880;
 var pkg = {
 	crowdProcess:require('./package/crowdProcess/crowdProcess'),
 	Nedb:require('./package/nedb/node_modules/nedb'),
-	request:require('./package/request/node_modules/request')
+	request:require('./package/request/node_modules/request'),
+	dir: __dirname
 }
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
