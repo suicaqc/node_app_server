@@ -86,7 +86,7 @@
 					},
 					3000
 				);
-			},
+			};
 			this.get = function() {
 				var CP = new pkg.crowdProcess();
 				var db 	= {
