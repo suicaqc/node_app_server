@@ -90,7 +90,7 @@
 			this.get = function() {
 				var CP = new pkg.crowdProcess();
 				var db 	= {
-					cache 	: new pkg.Nedb({ filename: pkg.dir + '/_db/get_cache.db', autoload: true })
+					cache 	: new pkg.Nedb({ filename: pkg.dir + '/_db/post_cache.db', autoload: true }),
 				}; 
 
 				var _f = {};
