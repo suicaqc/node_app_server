@@ -2,10 +2,6 @@
 		var obj =  function (pkg, req, res) {
 			this.post = function() {
 				var CP = new pkg.crowdProcess();
-				var db 	= {
-					cache 	: new pkg.Nedb({ filename: pkg.dir + '/_db/post_cache.db', autoload: true }),
-					auth	: new pkg.Nedb({ filename: pkg.dir + '/_db/auth.db', autoload: true })
-				}; 
 				var _f = {};
 				var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
 
@@ -19,12 +15,12 @@
 				 };		
 				
 				_f['S1'] = function(cbk) {
-					db.cache.find({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
+					pkg.db.cache.find({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
 						if ((docs[0]) && (new Date() - docs[0].tm < _cachetime)) {
 							CP.exit = true;
 							cbk(docs[0]);
 						} else {	    		
-							db.cache.remove({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
+							pkg.db.cache.remove({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
 								cbk(false);
 							});	
 						}
@@ -52,7 +48,7 @@
 								cache: new Buffer(body).toString('base64'), 
 								tm: new Date(), 
 								content_type:response.headers['content-type']};
-							db.cache.insert(rec, function (err) {
+							pkg.db.cache.insert(rec, function (err) {
 								cbk(rec);
 							  });
 						}
@@ -89,20 +85,17 @@
 			};
 			this.get = function() {
 				var CP = new pkg.crowdProcess();
-				var db 	= {
-					cache 	: new pkg.Nedb({ filename: pkg.dir + '/_db/post_cache.db', autoload: true }),
-				}; 
 
 				var _f = {};
 				var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
 
 				_f['S1'] = function(cbk) {
-					db.cache.find({ source: req.params[1] }, function (err, docs) {
+					pkg.db.cache.find({ source: req.params[1] }, function (err, docs) {
 						if ((docs[0]) && (new Date() - docs[0].tm < _cachetime)) {
 							CP.exit = true;
 							cbk(docs[0]);
 						} else {	    		
-							db.cache.remove({ source: req.params[1] }, function (err, docs) {
+							pkg.db.cache.remove({ source: req.params[1] }, function (err, docs) {
 								cbk(false);
 							});	
 						}
@@ -127,7 +120,7 @@
 								cache: new Buffer(body).toString('base64'), 
 								tm: new Date(), 
 								content_type:response.headers['content-type']};
-							db.cache.insert(rec, function (err) {
+							pkg.db.cache.insert(rec, function (err) {
 								cbk(rec);
 							  });
 						}

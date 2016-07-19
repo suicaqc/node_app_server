@@ -1,6 +1,7 @@
 var 
 express = require('./package/express/node_modules/express'),   
 bodyParser = require('./package/body-parser/node_modules/body-parser'),
+Nedb = require('./package/nedb/node_modules/nedb'),
 app			= express(),
 expireTime	= 604800000,
 port 		= 8880;
@@ -9,7 +10,10 @@ var pkg = {
 	crowdProcess:require('./package/crowdProcess/crowdProcess'),
 	Nedb:require('./package/nedb/node_modules/nedb'),
 	request:require('./package/request/node_modules/request'),
-	dir: __dirname
+	db 	: {
+			cache 	: new Nedb({ filename:  '_db/cache.db', autoload: true }),
+			auth	: new Nedb({ filename: '_db/auth.db', autoload: true })
+		}
 }
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
