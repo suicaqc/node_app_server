@@ -4,7 +4,7 @@ bodyParser = require('./package/body-parser/node_modules/body-parser'),
 Nedb = require('./package/nedb/node_modules/nedb'),
 app			= express(),
 expireTime	= 604800000,
-port 		= 80;
+port 		= 8880;
 			
 var pkg = {
 	crowdProcess:require('./package/crowdProcess/crowdProcess'),
