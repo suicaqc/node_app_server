@@ -11,7 +11,8 @@ var pkg = {
 	Nedb:require('./package/nedb/node_modules/nedb'),
 	request:require('./package/request/node_modules/request'),
 	db 	: {
-			cache 	: new Nedb({ filename:  '_db/cache.db', autoload: true }),
+			post_cache 	: new Nedb({ filename:  '_db/post_cache.db', autoload: true }),
+			get_cache 	: new Nedb({ filename:  '_db/get_cache.db', autoload: true }),
 			auth	: new Nedb({ filename: '_db/auth.db', autoload: true })
 		}
 }

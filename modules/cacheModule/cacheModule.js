@@ -15,12 +15,12 @@
 				 };		
 				
 				_f['S1'] = function(cbk) {
-					pkg.db.cache.find({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
+					pkg.db.post_cache.find({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
 						if ((docs[0]) && (new Date() - docs[0].tm < _cachetime)) {
 							CP.exit = true;
 							cbk(docs[0]);
 						} else {	    		
-							pkg.db.cache.remove({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
+							pkg.db.post_cache.remove({ source: req.params[1], postdata:JSON.stringify(req.body.postData) }, function (err, docs) {
 								cbk(false);
 							});	
 						}
@@ -48,7 +48,7 @@
 								cache: new Buffer(body).toString('base64'), 
 								tm: new Date(), 
 								content_type:response.headers['content-type']};
-							pkg.db.cache.insert(rec, function (err) {
+							pkg.db.post_cache.insert(rec, function (err) {
 								cbk(rec);
 							  });
 						}
@@ -90,12 +90,12 @@
 				var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
 
 				_f['S1'] = function(cbk) {
-					pkg.db.cache.find({ source: req.params[1] }, function (err, docs) {
+					pkg.db.get_cache.find({ source: req.params[1] }, function (err, docs) {
 						if ((docs[0]) && (new Date() - docs[0].tm < _cachetime)) {
 							CP.exit = true;
 							cbk(docs[0]);
 						} else {	    		
-							pkg.db.cache.remove({ source: req.params[1] }, function (err, docs) {
+							pkg.db.get_cache.remove({ source: req.params[1] }, function (err, docs) {
 								cbk(false);
 							});	
 						}
@@ -120,7 +120,7 @@
 								cache: new Buffer(body).toString('base64'), 
 								tm: new Date(), 
 								content_type:response.headers['content-type']};
-							pkg.db.cache.insert(rec, function (err) {
+							pkg.db.get_cache.insert(rec, function (err) {
 								cbk(rec);
 							  });
 						}
