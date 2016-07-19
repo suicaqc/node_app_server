@@ -1,18 +1,19 @@
 var 
-express = require('./package/express/node_modules/express'),  
-crowdProcess = require('./package/crowdProcess/crowdProcess'), 
-Nedb = require('./package/nedb/node_modules/nedb'), 
+express = require('./package/express/node_modules/express'),   
 bodyParser = require('./package/body-parser/node_modules/body-parser'),
-request = require('./package/request/node_modules/request'),
+Nedb = require('./package/nedb/node_modules/nedb'),
 app			= express(),
 expireTime	= 604800000,
-port 		= 80;
-
+port 		= 8880;
+			
 var pkg = {
-	crowdProcess:crowdProcess,
-	Nedb:Nedb,
-	request:request,
-	dir: __dirname
+	crowdProcess:require('./package/crowdProcess/crowdProcess'),
+	request:require('./package/request/node_modules/request'),
+	db 	: {
+			post_cache 	: new Nedb({ filename:  '_db/post_cache.db', autoload: true }),
+			get_cache 	: new Nedb({ filename:  '_db/get_cache.db', autoload: true }),
+			auth	: new Nedb({ filename: '_db/auth.db', autoload: true })
+		}
 }
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
@@ -28,7 +29,7 @@ app.all('*', function(req, res, next) {
 });
 
 app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
-	delete require.cache[__dirname + '/modules/cacheModule/cacheModule.js'];
+//	delete require.cache[__dirname + '/modules/cacheModule/cacheModule.js'];
 	var postCache  = require(__dirname + '/modules/cacheModule/cacheModule.js');
 	var pc = new postCache(pkg, req, res);
 	pc.post();	
@@ -36,7 +37,7 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 
 });
 app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
-	delete require.cache[__dirname + '/modules/cacheModule/cacheModule.js'];
+//	delete require.cache[__dirname + '/modules/cacheModule/cacheModule.js'];
 	var getCache  = require(__dirname + '/modules/cacheModule/cacheModule.js');
 	var gc = new getCache(pkg, req, res);
 	gc.get();	
@@ -53,7 +54,6 @@ app.get(/_cmd(\/|)$/i, function (req, res) {
 		console.log('------');
 		console.log(code);
 	})	
-	var CP = new crowdProcess();
 	res.writeHead(200, {'Content-Type': 'text/html'});
 	res.write('command is not exist.aa');
 	res.end();

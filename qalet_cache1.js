@@ -8,7 +8,6 @@ port 		= 8880;
 			
 var pkg = {
 	crowdProcess:require('./package/crowdProcess/crowdProcess'),
-	Nedb:require('./package/nedb/node_modules/nedb'),
 	request:require('./package/request/node_modules/request'),
 	db 	: {
 			post_cache 	: new Nedb({ filename:  '_db/post_cache.db', autoload: true }),
