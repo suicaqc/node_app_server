@@ -60,13 +60,14 @@ app.get(/_git(\/|)$/i, function (req, res) {
 	res.end();
 });
 
-app.get(/_microservice\/(*)$/i, function (req, res) {
+app.get(/_microservice\/([0-9a-z]+)(\/|)$/i, function (req, res) {
 	delete require.cache[__dirname + '/modules/niceWork/niceWork.js'];
 
 	var niceWork  = require(__dirname + '/modules/niceWork/niceWork.js');
 	var nw = new niceWork(req, res);
 	nw.callIn();	
 });
+
 
 app.get('(*)$', function (req, res) {
 	res.sendFile(__dirname + '/html'+req.params[0], function(err) {
