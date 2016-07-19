@@ -3,8 +3,8 @@
 			this.post = function() {
 				var CP = new pkg.crowdProcess();
 				var db 	= {
-					cache 	: new pkg.Nedb({ filename: '_db/post_cache.db', autoload: true }),
-					auth	: new pkg.Nedb({ filename: '_db/auth.db', autoload: true })
+					cache 	: new pkg.Nedb({ filename: '../_db/post_cache.db', autoload: true }),
+					auth	: new pkg.Nedb({ filename: '../_db/auth.db', autoload: true })
 				}; 
 				var _f = {};
 				var _cachetime = 1000 * ((req.params[0])?req.params[0]:3600);
@@ -90,7 +90,7 @@
 			this.get = function() {
 				var CP = new pkg.crowdProcess();
 				var db 	= {
-					cache 	: new pkg.Nedb({ filename: '_db/get_cache.db', autoload: true })
+					cache 	: new pkg.Nedb({ filename: '../_db/get_cache.db', autoload: true })
 				}; 
 
 				var _f = {};
