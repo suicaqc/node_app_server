@@ -48,6 +48,8 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 
 
 app.get(/_git(\/|)$/i, function (req, res) {
+	var exec = require('child_process').exec;
+	
 	try {
 		var vhost =  require('./microservice.config.json');
 	} catch(err) {
@@ -81,15 +83,7 @@ app.get(/_git(\/|)$/i, function (req, res) {
 			});
 		}
 	});
-		
-	var exec = require('child_process').exec;
-	exec('git pull', function(err, out, code) {
-		res.writeHead(200, {'Content-Type': 'text/html'});
-		res.write(out);
-		res.end();
-		//exec('reboot -f', function(err, out, code) {
-		//});	
-	});	
+			
 });
 
 app.get(/_microservice\/([0-9a-z]+)(\/|)$/i, function (req, res) {
