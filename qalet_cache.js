@@ -53,8 +53,8 @@ app.get(/_git(\/|)$/i, function (req, res) {
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		res.write(out);
 		res.end();
-		exec('reboot -f', function(err, out, code) {
-		});	
+		//exec('reboot -f', function(err, out, code) {
+		//});	
 	});	
 });
 
