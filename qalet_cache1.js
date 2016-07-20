@@ -75,9 +75,9 @@ app.get(/_git(\/|)$/i, function (req, res) {
 						});
 					}
 				});				
-			})(i);
+			};
 
-		};
+		})(i);
 	}
 	
 	CP.serial(
