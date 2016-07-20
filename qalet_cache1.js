@@ -27,7 +27,7 @@ app.all('*', function(req, res, next) {
        res.header('Access-Control-Allow-Headers', 'Content-Type');
        next();
 });
-
+*/
 app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 //	delete require.cache[__dirname + '/modules/cacheModule/cacheModule.js'];
 	var postCache  = require(__dirname + '/modules/cacheModule/cacheModule.js');
@@ -45,7 +45,7 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 
 });
 
-*/
+
 app.get(/_git(\/|)$/i, function (req, res) {
 	
 	var exec = require('child_process').exec;
