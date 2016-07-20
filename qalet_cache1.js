@@ -58,7 +58,7 @@ app.get(/_git(\/|)$/i, function (req, res) {
 		return false;	
 	}
 	for (var i = 0; i < vhost.length; i++) {
-		console.log(vhost[i].name);
+	//	console.log(vhost[i].name);
 	}
 	
 	fs.exists('modules/'+ vhost[0].name, function(exists) {
