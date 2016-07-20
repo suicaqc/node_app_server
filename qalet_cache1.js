@@ -67,7 +67,7 @@ app.get(/_microservice\/([0-9a-z]+)(\/|)$/i, function (req, res) {
 	var nw = new niceWork(req, res);
 	nw.callIn();	
 });
-
+/*
 app.get('(*)$', function (req, res) {
 	res.sendFile(__dirname + '/html'+req.params[0], function(err) {
 		
@@ -79,6 +79,6 @@ app.get('(*)$', function (req, res) {
 
 	});
 });
-
+*/
 app.listen(port);
 console.log('Cache server start port ' + port + ' at ' + new Date() + '');
