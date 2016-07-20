@@ -47,7 +47,15 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 
 
 app.get(/_git(\/|)$/i, function (req, res) {
-	var vhost =  require('./microservice.config.json');
+	try {
+		var vhost =  require('./microservice.config.json');
+	} catch(err) {
+		res.writeHead(200, {'Content-Type': 'text/html'});
+		res.write(err.message);
+		res.end();
+		return false;	
+	}
+	
 	console.log(vhost);
 	fs.exists(path, function(exists) {
 		if (exists) {
