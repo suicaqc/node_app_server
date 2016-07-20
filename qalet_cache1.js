@@ -5,7 +5,7 @@ Nedb = require('./package/nedb/node_modules/nedb'),
 app			= express(),
 expireTime	= 604800000,
 port 		= 8880;
-			
+/*			
 var pkg = {
 	crowdProcess:require('./package/crowdProcess/crowdProcess'),
 	request:require('./package/request/node_modules/request'),
@@ -59,7 +59,7 @@ app.get(/_git(\/|)$/i, function (req, res) {
 	res.write('command is not exist.aa');
 	res.end();
 });
-
+*/
 app.get(/_microservice\/([0-9a-z]+)(\/|)$/i, function (req, res) {
 	delete require.cache[__dirname + '/modules/niceWork/niceWork.js'];
 
