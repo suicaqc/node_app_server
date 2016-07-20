@@ -62,18 +62,21 @@ app.get(/_git(\/|)$/i, function (req, res) {
 	
 	var _f = {};
 	for (var i = 0; i < vhost.length; i++) {
-		_f['S' + i] = function(cbk) {
-			fs.exists('modules/'+ vhost[i].name, function(exists) {
-				if (exists) {
-					exec('cd ' + 'modules/'+ vhost[i].name + '&& git pull', function(err, out, code) {
-						cbk('updated ' + vhost[i].name + ' repository.');	
-					});
-				} else {
-					exec('git clone ' + vhost[i].repository + ' ' + 'modules/'+ vhost[i].name + '', function(err, out, code) {
-						cbk('cloned ' +  vhost[i].name + 'repository.');
-					});
-				}
-			});
+		_f['S' + i] = (function(i) {
+			return function(cbk) {
+				fs.exists('modules/'+ vhost[i].name, function(exists) {
+					if (exists) {
+						exec('cd ' + 'modules/'+ vhost[i].name + '&& git pull', function(err, out, code) {
+							cbk('updated ' + vhost[i].name + ' repository.');	
+						});
+					} else {
+						exec('git clone ' + vhost[i].repository + ' ' + 'modules/'+ vhost[i].name + '', function(err, out, code) {
+							cbk('cloned ' +  vhost[i].name + 'repository.');
+						});
+					}
+				});				
+			})(i);
+
 		};
 	}
 	
