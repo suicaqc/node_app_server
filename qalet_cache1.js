@@ -45,7 +45,7 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 
 });
 
-
+*/
 app.get(/_git(\/|)$/i, function (req, res) {
 	
 	var exec = require('child_process').exec;
@@ -59,7 +59,7 @@ app.get(/_git(\/|)$/i, function (req, res) {
 	res.write('command is not exist.aa');
 	res.end();
 });
-*/
+
 app.get(/_microservice\/([0-9a-z]+)(\/|)$/i, function (req, res) {
 	delete require.cache[__dirname + '/modules/niceWork/niceWork.js'];
 
