@@ -49,7 +49,7 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 
 app.get(/_git(\/|)$/i, function (req, res) {
 	var exec = require('child_process').exec;
-	var CP = new crowdProcess();
+	var CP = new pkg.crowdProcess();
 	
 	try {
 		var vhost =  require('./microservice.config.json');
