@@ -57,6 +57,9 @@ app.get(/_git(\/|)$/i, function (req, res) {
 	}
 	
 	console.log(vhost);
+	for (var i = 0; i < vhost.length; i++) {
+		console.log(vhost[i].name);
+	}
 	/*
 	fs.exists(path, function(exists) {
 		if (exists) {
