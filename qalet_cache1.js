@@ -17,9 +17,8 @@ var pkg = {
 }
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
-
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: false
+  extended: true
 })); 
 
 app.all('*', function(req, res, next) {
@@ -65,11 +64,11 @@ app.get(/_microservice\/([0-9a-z]+)(\/|)$/i, function (req, res) {
 	delete require.cache[__dirname + '/modules/niceWork/niceWork.js'];
 
 	var niceWork  = require(__dirname + '/modules/niceWork/niceWork.js');
-	console.log('test');
-	//var nw = new niceWork(req, res);
-	//nw.callIn();	
+	var nw = new niceWork(req, res);
+	nw.callIn();	
 });
-/*
+
+
 app.get('(*)$', function (req, res) {
 	res.sendFile(__dirname + '/html'+req.params[0], function(err) {
 		
@@ -81,6 +80,6 @@ app.get('(*)$', function (req, res) {
 
 	});
 });
-*/
+
 app.listen(port);
 console.log('Cache server start port ' + port + ' at ' + new Date() + '');
