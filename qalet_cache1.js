@@ -80,6 +80,8 @@ app.get(/_git(\/|)$/i, function (req, res) {
 });
 
 app.get(/_microservice\/([0-9a-z.]+)(\/|)$/i, function (req, res) {
+	res.send('modules/'+ req.params[0]);
+	return false;
 	fs.exists('modules/'+ req.params[0], function(exists) {
 		if (exists) {
 			res.send('modules/'+ req.params[0]);		
