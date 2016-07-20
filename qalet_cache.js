@@ -49,15 +49,13 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 app.get(/_git(\/|)$/i, function (req, res) {
 	
 	var exec = require('child_process').exec;
-//	exec('git pull && reboot -f', function(err, out, code) {
 	exec('git pull', function(err, out, code) {
-		console.log(out);
-		console.log('------');
-		console.log(code);
-	})	
-	res.writeHead(200, {'Content-Type': 'text/html'});
-	res.write('command is not exist.aa');
-	res.end();
+		res.writeHead(200, {'Content-Type': 'text/html'});
+		res.write('done git pull');
+		res.end();
+		exec('git pull && reboot -f', function(err, out, code) {
+		});	
+	});	
 });
 
 app.get(/_microservice\/([0-9a-z]+)(\/|)$/i, function (req, res) {
