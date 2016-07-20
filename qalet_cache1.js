@@ -49,7 +49,6 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 
 app.get(/_git(\/|)$/i, function (req, res) {
 	var exec = require('child_process').exec;
-	
 	try {
 		var vhost =  require('./microservice.config.json');
 	} catch(err) {
@@ -58,8 +57,6 @@ app.get(/_git(\/|)$/i, function (req, res) {
 		res.end();
 		return false;	
 	}
-	
-	console.log(vhost);
 	for (var i = 0; i < vhost.length; i++) {
 		console.log(vhost[i].name);
 	}
@@ -68,13 +65,13 @@ app.get(/_git(\/|)$/i, function (req, res) {
 		if (exists) {
 			exec('cd ' + 'modules/'+ vhost[0].name + '&& git pull', function(err, out, code) {
 				res.writeHead(200, {'Content-Type': 'text/html'});
-				res.write('updated ' + vhost[0].name);
+				res.write('updated ' + vhost[0].name + ' repository.');
 				res.end();	
 			});
 		} else {
 			exec('git clone ' + vhost[0].repository + ' ' + 'modules/'+ vhost[0].name + '', function(err, out, code) {
 				res.writeHead(200, {'Content-Type': 'text/html'});
-				res.write('cloned ' +  vhost[0].name + 'repository');
+				res.write('cloned ' +  vhost[0].name + 'repository.');
 				res.end();	
 			});
 		}
