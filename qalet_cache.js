@@ -2,6 +2,7 @@ var
 express = require('./package/express/node_modules/express'),   
 bodyParser = require('./package/body-parser/node_modules/body-parser'),
 Nedb = require('./package/nedb/node_modules/nedb'),
+fs = require('fs'), 
 app			= express(),
 expireTime	= 604800000,
 port 		= 80;
@@ -47,23 +48,59 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 
 
 app.get(/_git(\/|)$/i, function (req, res) {
-	
 	var exec = require('child_process').exec;
-	exec('git pull', function(err, out, code) {
+	var CP = new pkg.crowdProcess();
+	
+	try {
+		var vhost =  require('./microservice.config.json');
+	} catch(err) {
 		res.writeHead(200, {'Content-Type': 'text/html'});
-		res.write(out);
+		res.write(err.message);
 		res.end();
-		//exec('reboot -f', function(err, out, code) {
-		//});	
-	});	
+		return false;	
+	}
+	
+	var _f = {};
+	for (var i = 0; i < vhost.length; i++) {
+		_f['S' + i] = (function(i) {
+			return function(cbk) {
+				fs.exists('modules/'+ vhost[i].name, function(exists) {
+					if (exists) {
+						exec('cd ' + 'modules/'+ vhost[i].name + '&& git pull', function(err, out, code) {
+							cbk('updated ' + vhost[i].name + ' repository.');	
+						});
+					} else {
+						exec('git clone ' + vhost[i].repository + ' ' + 'modules/'+ vhost[i].name + '', function(err, out, code) {
+							cbk('cloned ' +  vhost[i].name + 'repository.');
+						});
+					}
+				});				
+			};
+
+		})(i);
+	}
+	
+	CP.serial(
+		_f,
+		function(data) {
+			res.writeHead(200, {'Content-Type': 'text/html'});
+			res.write(data.results.S0);
+			res.end();
+		},
+		3000
+	);	
 });
 
-app.get(/_microservice\/([0-9a-z]+)(\/|)$/i, function (req, res) {
-	delete require.cache[__dirname + '/modules/niceWork/niceWork.js'];
-
-	var niceWork  = require(__dirname + '/modules/niceWork/niceWork.js');
-	var nw = new niceWork(req, res);
-	nw.callIn();	
+app.get(/_microservice\/([0-9a-z\/\.]+)(\/|)$/i, function (req, res) {
+	fs.exists('modules/'+ req.params[0], function(exists) {
+		if (exists) {
+			res.sendFile(__dirname + '/modules/'+ req.params[0]);		
+		} else {
+			res.writeHead(200, {'Content-Type': 'text/html'});
+			res.write(req.params[0] + ' does not exist');
+			res.end();			
+		}
+	})		
 });
 
 
