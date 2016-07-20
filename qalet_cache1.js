@@ -66,7 +66,7 @@ app.get(/_git(\/|)$/i, function (req, res) {
 	
 	fs.exists('modules/'+ vhost[0].name, function(exists) {
 		if (exists) {
-			exec('git pull', function(err, out, code) {
+			exec('cd ' + 'modules/'+ vhost[0].name + '&& git pull', function(err, out, code) {
 				res.writeHead(200, {'Content-Type': 'text/html'});
 				res.write(out);
 				res.end();
