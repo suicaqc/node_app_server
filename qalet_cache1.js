@@ -64,9 +64,21 @@ app.get(/_git(\/|)$/i, function (req, res) {
 	
 	fs.exists('modules/'+ vhost[0].name, function(exists) {
 		if (exists) {
-			console.log('exist');
+			exec('git pull', function(err, out, code) {
+				res.writeHead(200, {'Content-Type': 'text/html'});
+				res.write(out);
+				res.end();
+				//exec('reboot -f', function(err, out, code) {
+				//});	
+			});
 		} else {
-			console.log('not');
+			exec('git clone ' + vhost[0].repository + ' ' + 'modules/'+ vhost[0].name + '', function(err, out, code) {
+				res.writeHead(200, {'Content-Type': 'text/html'});
+				res.write(out);
+				res.end();
+				//exec('reboot -f', function(err, out, code) {
+				//});	
+			});
 		}
 	});
 		
