@@ -82,7 +82,7 @@ app.get(/_git(\/|)$/i, function (req, res) {
 app.get(/_microservice\/([0-9a-z\/\.]+)(\/|)$/i, function (req, res) {
 	fs.exists('modules/'+ req.params[0], function(exists) {
 		if (exists) {
-			res.sendFile('modules/'+ req.params[0]);		
+			res.sendFile(__dirname + '/modules/'+ req.params[0]);		
 		} else {
 			res.writeHead(200, {'Content-Type': 'text/html'});
 			res.write(req.params[0] + ' does not exist');
