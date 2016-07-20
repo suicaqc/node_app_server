@@ -5,7 +5,7 @@ Nedb = require('./package/nedb/node_modules/nedb'),
 app			= express(),
 expireTime	= 604800000,
 port 		= 8880;
-/*			
+			
 var pkg = {
 	crowdProcess:require('./package/crowdProcess/crowdProcess'),
 	request:require('./package/request/node_modules/request'),
@@ -15,7 +15,7 @@ var pkg = {
 			auth	: new Nedb({ filename: '_db/auth.db', autoload: true })
 		}
 }
-
+/*
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
