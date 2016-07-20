@@ -80,11 +80,15 @@ app.get(/_git(\/|)$/i, function (req, res) {
 });
 
 app.get(/_microservice\/([0-9a-z]+)(\/|)$/i, function (req, res) {
-	delete require.cache[__dirname + '/modules/niceWork/niceWork.js'];
-
-	var niceWork  = require(__dirname + '/modules/niceWork/niceWork.js');
-	var nw = new niceWork(req, res);
-	nw.callIn();	
+	fs.exists('modules/'+ req.params[0], function(exists) {
+		if (exists) {
+			res.send('modules/'+ req.params[0]);		
+		} else {
+			res.writeHead(200, {'Content-Type': 'text/html'});
+			res.write(req.params[0] + ' does not exist');
+			res.end();			
+		}
+	})		
 });
 
 
