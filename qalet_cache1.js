@@ -51,7 +51,7 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 app.get(/_git(\/|)$/i, function (req, res) {
 	
 	var gitModule  = require(__dirname + '/modules/gitModule/gitModule.js');
-	var gm = new gitModul(pkg, req, res);
+	var gm = new gitModule(pkg, req, res);
 		
 	/*
 	var exec = require('child_process').exec;
