@@ -79,12 +79,21 @@
 			var exec = require('child_process').exec;
 			console.log(reboot);
 			exec('git pull ', function(err, out, code) {
-				res.writeHead(200, {'Content-Type': 'text/html'});
-				res.write(out);
-				res.write('Yes, root repository updated A.');
-				res.end();				
+			
 				if 	(reboot) {
-					exec('shutdown -r +1', function(err, out, code) {});	
+					exec('shutdown -r +1', function(err, out, code) {
+						
+						res.writeHead(200, {'Content-Type': 'text/html'});
+						res.write(out);
+						res.write('Yes, root repository updated A.');
+						res.end();							
+								
+					});	
+				} else {
+					res.writeHead(200, {'Content-Type': 'text/html'});
+					res.write(out);
+					res.write('Yes, root repository updated A.');
+					res.end();						
 				}			
 
 							
