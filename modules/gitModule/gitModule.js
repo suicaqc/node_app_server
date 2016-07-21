@@ -81,6 +81,10 @@
 			exec('git pull ', function(err, out, code) {
 				if 	(reboot) {
 					exec('sudo reboot -f &&', function(err, out, code) {
+						console.log(err);
+						console.log(out);
+						console.log(code);
+						
 						res.writeHead(200, {'Content-Type': 'text/html'});
 						res.write(out);
 						res.write('Yes, root repository updated E.' + reboot + '===');
