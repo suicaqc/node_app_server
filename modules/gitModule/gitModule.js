@@ -45,7 +45,7 @@
 									});
 								} else {
 									exec('git clone ' + vhost[i].repository + ' ' + '_microservice/'+ vhost[i].name + '', function(err, out, code) {
-										cbk('cloned ' +  vhost[i].name + ' repository.');
+										cbk('clone ' +  vhost[i].name + ' repository.=>' + out);
 									});
 								}
 							});				
