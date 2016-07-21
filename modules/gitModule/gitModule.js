@@ -5,7 +5,7 @@
 				case 'root':
 				case 'root/':
 					console.log(req.params[0] + '===')
-					this.microService();
+					this.root();
 					break;
 				case '':
 					console.log(req.params[0] + '===kkk')
@@ -16,7 +16,7 @@
 					this.microService();
 			}			
 
-		};		
+		};	
 		this.microService = function() {
 			var exec = require('child_process').exec;
 			var CP = new pkg.crowdProcess();
@@ -53,12 +53,26 @@
 			CP.serial(
 				_f,
 				function(data) {
+					var s = '';
+					for (var i = 0; i < vhost.length; i++) {
+						s += data.results['S'+i]+';';
+					}	
 					res.writeHead(200, {'Content-Type': 'text/html'});
-					res.write(data.results.S0);
+					res.write(s);
 					res.end();
 				},
 				3000
 			);
+		}
+		
+		this.root = function() {
+			var exec = require('child_process').exec;
+			exec('cd ' + 'modules/'+ vhost[i].name + '&& git pull', function(err, out, code) {
+				res.writeHead(200, {'Content-Type': 'text/html'});
+				res.write(out);
+				cbk('updated root repository.');
+				res.end();				
+			});				
 		}
 	};
 
