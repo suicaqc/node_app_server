@@ -7,6 +7,10 @@ app			= express(),
 expireTime	= 604800000,
 port 		= 8880;
 			
+var env = {
+	root_path:__dirname
+	
+};			
 var pkg = {
 	crowdProcess:require('./package/crowdProcess/crowdProcess'),
 	request		:require('./package/request/node_modules/request'),
@@ -16,6 +20,7 @@ var pkg = {
 					get_cache 	: new Nedb({ filename:  '_db/get_cache.db', autoload: true }),
 					auth	: new Nedb({ filename: '_db/auth.db', autoload: true })
 				}
+				
 }
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
@@ -51,7 +56,7 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 app.get(/_git(\/|)$/i, function (req, res) {
 	
 	var gitModule  = require(__dirname + '/modules/gitModule/gitModule.js');
-	var gm = new gitModule(pkg, req, res);
+	var gm = new gitModule(pkg, env, req, res);
 		
 	/*
 	var exec = require('child_process').exec;

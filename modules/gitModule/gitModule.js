@@ -1,10 +1,10 @@
 (function () { 
-	var obj =  function (pkg, req, res) {
+	var obj =  function (pkg, env, req, res) {
 		var exec = require('child_process').exec;
 		var CP = new pkg.crowdProcess();
 		
 		try {
-			var vhost =  require('../microservice.config.json');
+			var vhost =  require(env.root_path + '/microservice.config.json');
 		} catch(err) {
 			res.writeHead(200, {'Content-Type': 'text/html'});
 			res.write(err.message);
