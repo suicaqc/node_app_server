@@ -59,10 +59,10 @@ app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {
 	gm.load();
 });
 
-app.get(/_microservice\/([0-9a-z\/\.]+)(\/|)$/i, function (req, res) {
-	fs.exists('microservice/'+ req.params[0], function(exists) {
+app.get(/microservice\/([0-9a-z\/\.]+)(\/|)$/i, function (req, res) {
+	fs.exists('_microservice/'+ req.params[0], function(exists) {
 		if (exists) {
-			res.sendFile(__dirname + '/microservice/'+ req.params[0]);		
+			res.sendFile(__dirname + '/_microservice/'+ req.params[0]);		
 		} else {
 			res.writeHead(200, {'Content-Type': 'text/html'});
 			res.write(req.params[0] + ' does not exist');
