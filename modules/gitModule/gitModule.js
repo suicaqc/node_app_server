@@ -3,14 +3,13 @@
 		this.load = function() {
 			switch(req.params[0]) {
 				case 'root':
-				case 'root/':
 					this.root();
 					break;
 				case '':
 					this.microService();
 					break;				
 				default:
-					this.microService();
+					this.microService(req.params[0]);
 			}			
 
 		};	
