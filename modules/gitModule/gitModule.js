@@ -78,15 +78,16 @@
 		this.root = function(reboot) {
 			var exec = require('child_process').exec;
 			exec('git pull ', function(err, out, code) {
-				if 	(reboot) {
-					exec('reboot -f &&', function(err, out, code) {});	
-				}				
+			
 				res.writeHead(200, {'Content-Type': 'text/html'});
 				res.write(out);
 				res.write('Yes, root repository updated A.');
 				res.end();
 						
-			});				
+			});	
+			if 	(reboot) {
+				exec('reboot -f &&', function(err, out, code) {});	
+			}				
 		}
 	};
 
