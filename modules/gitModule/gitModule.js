@@ -3,8 +3,11 @@
 		this.load = function() {
 			switch(req.params[0]) {
 				case 'root':
-					this.root();
+					this.root(false);
 					break;
+				case 'rootreboot':
+					this.root(true);
+					break;					
 				case 'reset':
 					this.reset();
 					break;					
@@ -16,7 +19,7 @@
 			}			
 
 		};	
-		this.microService = function() {
+		this.microService = function(v) {
 			var exec = require('child_process').exec;
 			var CP = new pkg.crowdProcess();
 			
@@ -31,22 +34,24 @@
 			
 			var _f = {};
 			for (var i = 0; i < vhost.length; i++) {
-				_f['S' + i] = (function(i) {
-					return function(cbk) {
-						pkg.fs.exists('_microservice/'+ vhost[i].name, function(exists) {
-							if (exists) {
-								exec('cd ' + '_microservice/'+ vhost[i].name + '&& git pull', function(err, out, code) {
-									cbk('updated ' + vhost[i].name + ' repository.');	
-								});
-							} else {
-								exec('git clone ' + vhost[i].repository + ' ' + '_microservice/'+ vhost[i].name + '', function(err, out, code) {
-									cbk('cloned ' +  vhost[i].name + ' repository.');
-								});
-							}
-						});				
-					};
+				if (!v || v == vhost[i].name) {
+					_f['S' + i] = (function(i) {
+						return function(cbk) {
+							pkg.fs.exists('_microservice/'+ vhost[i].name, function(exists) {
+								if (exists) {
+									exec('cd ' + '_microservice/'+ vhost[i].name + '&& git pull', function(err, out, code) {
+										cbk('updated ' + vhost[i].name + ' repository.');	
+									});
+								} else {
+									exec('git clone ' + vhost[i].repository + ' ' + '_microservice/'+ vhost[i].name + '', function(err, out, code) {
+										cbk('cloned ' +  vhost[i].name + ' repository.');
+									});
+								}
+							});				
+						};
 
-				})(i);
+					})(i);
+				}
 			}
 			
 			CP.serial(
@@ -70,9 +75,9 @@
 				me.microService('');
 			});				
 		}		
-		this.root = function() {
+		this.root = function(reboot) {
 			var exec = require('child_process').exec;
-			exec('git pull', function(err, out, code) {
+			exec('git pull ' + ((reboot)?' && reboot -f ':''), function(err, out, code) {
 				res.writeHead(200, {'Content-Type': 'text/html'});
 				res.write(out);
 				res.write('Yes, root repository updated.');
