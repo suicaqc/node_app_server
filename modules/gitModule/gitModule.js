@@ -67,7 +67,7 @@
 		
 		this.root = function() {
 			var exec = require('child_process').exec;
-			exec('cd ' + 'modules/'+ vhost[i].name + '&& git pull', function(err, out, code) {
+			exec('git pull', function(err, out, code) {
 				res.writeHead(200, {'Content-Type': 'text/html'});
 				res.write(out);
 				cbk('updated root repository.');
