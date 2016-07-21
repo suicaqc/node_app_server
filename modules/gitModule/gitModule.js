@@ -81,10 +81,15 @@
 			exec('git pull ', function(err, out, code) {
 				res.writeHead(200, {'Content-Type': 'text/html'});
 				res.write(out);
-				res.write('Yes, root repository updated.');
+				res.write('Yes, root repository updated A.');
 				res.end();				
 				if 	(reboot) {
-					exec('reboot -f', function(err, out, code) {});	
+					setTimeout(
+						function() {
+							exec('reboot -f', function(err, out, code) {});	
+						}, 1000
+					)
+					
 				}			
 
 							
