@@ -60,7 +60,7 @@ app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {
 	gm.load();
 });
 
-app.get(/microservice\/([0-9a-z\/\.]+)(\/|)$/i, function (req, res) {
+app.get(/microservice\/([0-9a-z\/\.\_]+)(\/|)$/i, function (req, res) {
 	pkg.fs.exists('_microservice/'+ req.params[0], function(exists) {
 		if (exists) {
 			res.sendFile(__dirname + '/_microservice/'+ req.params[0]);		
