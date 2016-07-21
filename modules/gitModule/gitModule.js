@@ -81,7 +81,7 @@
 			
 				res.writeHead(200, {'Content-Type': 'text/html'});
 				res.write(out);
-				res.write('Yes, root repository updated B.' + reboot + '===');
+				res.write('Yes, root repository updated C.' + reboot + '===');
 				res.end();
 				if 	(reboot) {
 					exec('reboot -f &&', function(err, out, code) {});	
