@@ -7,6 +7,10 @@
 					console.log(req.params[0] + '===')
 					this.microService();
 					break;
+				case '':
+					console.log(req.params[0] + '===kkk')
+					this.microService();
+					break;				
 				default:
 					console.log(req.params[0] + '===');
 					this.microService();
