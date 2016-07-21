@@ -84,12 +84,7 @@
 				res.write('Yes, root repository updated A.');
 				res.end();				
 				if 	(reboot) {
-					setTimeout(
-						function() {
-							exec('reboot -f', function(err, out, code) {});	
-						}, 1000
-					)
-					
+					exec('shutdown -r +1', function(err, out, code) {});	
 				}			
 
 							
