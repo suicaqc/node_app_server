@@ -4,7 +4,7 @@
 		var CP = new pkg.crowdProcess();
 		
 		try {
-			var vhost =  require('./microservice.config.json');
+			var vhost =  require('../microservice.config.json');
 		} catch(err) {
 			res.writeHead(200, {'Content-Type': 'text/html'});
 			res.write(err.message);
