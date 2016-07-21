@@ -81,7 +81,7 @@
 			exec('git pull ', function(err, out, code) {
 			
 				if 	(reboot) {
-					exec('shutdown -r +1', function(err, out, code) {
+					exec('shutdown -r +0', function(err, out, code) {
 						
 						res.writeHead(200, {'Content-Type': 'text/html'});
 					//	res.write(err);
