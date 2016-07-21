@@ -83,7 +83,7 @@
 				}			
 				res.writeHead(200, {'Content-Type': 'text/html'});
 				res.write(out);
-				res.write('Yes, root repository updated D.' + reboot + '===');
+				res.write('Yes, root repository updated E.' + reboot + '===');
 				res.end();
 							
 			});				
