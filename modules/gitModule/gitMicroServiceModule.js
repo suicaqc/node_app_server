@@ -19,7 +19,7 @@
 					pkg.fs.exists('modules/'+ vhost[i].name, function(exists) {
 						if (exists) {
 							exec('cd ' + 'modules/'+ vhost[i].name + '&& git pull', function(err, out, code) {
-								cbk('updated ' + vhost[i].name + ' repositoryA.');	
+								cbk('updated ' + vhost[i].name + ' repository.');	
 							});
 						} else {
 							exec('git clone ' + vhost[i].repository + ' ' + 'modules/'+ vhost[i].name + '', function(err, out, code) {
