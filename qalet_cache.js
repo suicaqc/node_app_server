@@ -2,19 +2,25 @@ var
 express = require('./package/express/node_modules/express'),   
 bodyParser = require('./package/body-parser/node_modules/body-parser'),
 Nedb = require('./package/nedb/node_modules/nedb'),
-fs = require('fs'), 
+ 
 app			= express(),
 expireTime	= 604800000,
 port 		= 80;
 			
+var env = {
+	root_path:__dirname
+	
+};			
 var pkg = {
 	crowdProcess:require('./package/crowdProcess/crowdProcess'),
-	request:require('./package/request/node_modules/request'),
-	db 	: {
-			post_cache 	: new Nedb({ filename:  '_db/post_cache.db', autoload: true }),
-			get_cache 	: new Nedb({ filename:  '_db/get_cache.db', autoload: true }),
-			auth	: new Nedb({ filename: '_db/auth.db', autoload: true })
-		}
+	request		:require('./package/request/node_modules/request'),
+	fs 			: require('fs'),
+	db 			: {
+					post_cache 	: new Nedb({ filename:  '_db/post_cache.db', autoload: true }),
+					get_cache 	: new Nedb({ filename:  '_db/get_cache.db', autoload: true }),
+					auth	: new Nedb({ filename: '_db/auth.db', autoload: true })
+				}
+				
 }
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
@@ -48,47 +54,8 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 
 
 app.get(/_git(\/|)$/i, function (req, res) {
-	var exec = require('child_process').exec;
-	var CP = new pkg.crowdProcess();
-	
-	try {
-		var vhost =  require('./microservice.config.json');
-	} catch(err) {
-		res.writeHead(200, {'Content-Type': 'text/html'});
-		res.write(err.message);
-		res.end();
-		return false;	
-	}
-	
-	var _f = {};
-	for (var i = 0; i < vhost.length; i++) {
-		_f['S' + i] = (function(i) {
-			return function(cbk) {
-				fs.exists('modules/'+ vhost[i].name, function(exists) {
-					if (exists) {
-						exec('cd ' + 'modules/'+ vhost[i].name + '&& git pull', function(err, out, code) {
-							cbk('updated ' + vhost[i].name + ' repository.');	
-						});
-					} else {
-						exec('git clone ' + vhost[i].repository + ' ' + 'modules/'+ vhost[i].name + '', function(err, out, code) {
-							cbk('cloned ' +  vhost[i].name + 'repository.');
-						});
-					}
-				});				
-			};
-
-		})(i);
-	}
-	
-	CP.serial(
-		_f,
-		function(data) {
-			res.writeHead(200, {'Content-Type': 'text/html'});
-			res.write(data.results.S0);
-			res.end();
-		},
-		3000
-	);	
+	var gitModule  = require(__dirname + '/modules/gitModule/gitModule.js');
+	var gm = new gitModule(pkg, env, req, res);
 });
 
 app.get(/_microservice\/([0-9a-z\/\.]+)(\/|)$/i, function (req, res) {

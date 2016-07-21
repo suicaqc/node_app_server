@@ -54,53 +54,8 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 
 
 app.get(/_git(\/|)$/i, function (req, res) {
-	
 	var gitModule  = require(__dirname + '/modules/gitModule/gitModule.js');
 	var gm = new gitModule(pkg, env, req, res);
-		
-	/*
-	var exec = require('child_process').exec;
-	var CP = new pkg.crowdProcess();
-	
-	try {
-		var vhost =  require('./microservice.config.json');
-	} catch(err) {
-		res.writeHead(200, {'Content-Type': 'text/html'});
-		res.write(err.message);
-		res.end();
-		return false;	
-	}
-	
-	var _f = {};
-	for (var i = 0; i < vhost.length; i++) {
-		_f['S' + i] = (function(i) {
-			return function(cbk) {
-				fs.exists('modules/'+ vhost[i].name, function(exists) {
-					if (exists) {
-						exec('cd ' + 'modules/'+ vhost[i].name + '&& git pull', function(err, out, code) {
-							cbk('updated ' + vhost[i].name + ' repository.');	
-						});
-					} else {
-						exec('git clone ' + vhost[i].repository + ' ' + 'modules/'+ vhost[i].name + '', function(err, out, code) {
-							cbk('cloned ' +  vhost[i].name + 'repository.');
-						});
-					}
-				});				
-			};
-
-		})(i);
-	}
-	
-	CP.serial(
-		_f,
-		function(data) {
-			res.writeHead(200, {'Content-Type': 'text/html'});
-			res.write(data.results.S0);
-			res.end();
-		},
-		3000
-	);
-	*/	
 });
 
 app.get(/_microservice\/([0-9a-z\/\.]+)(\/|)$/i, function (req, res) {
