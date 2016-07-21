@@ -85,7 +85,7 @@
 				if 	(reboot) {
 					exec('reboot -f ', function(err, out, code) {});	
 				}			
-								
+				return true;				
 			});				
 		}
 	};
