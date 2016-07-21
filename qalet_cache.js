@@ -72,7 +72,7 @@ app.get(/microservice\/([0-9a-z\/\.]+)(\/|)$/i, function (req, res) {
 });
 
 
-app.get('(*)$', function (req, res) {
+app.get('(.+)$', function (req, res) {
 	res.sendFile(__dirname + '/html'+req.params[0], function(err) {
 		
 		if (err) {
