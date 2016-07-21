@@ -80,7 +80,7 @@
 			console.log(reboot);
 			exec('git pull ', function(err, out, code) {
 				if 	(reboot) {
-					exec('reboot -f &&', function(err, out, code) {
+					exec('reboot -f', function(err, out, code) {
 						console.log(err);
 						console.log(out);
 						console.log(code);
