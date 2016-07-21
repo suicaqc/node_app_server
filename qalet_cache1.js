@@ -53,9 +53,9 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 });
 
 
-app.get(/_git(\/|)$/i, function (req, res) {
-	var gitModule  = require(__dirname + '/modules/gitModule/gitModule.js');
-	var gm = new gitModule(pkg, env, req, res);
+app.get(/_git(\/|)$/i, function (req, res) {	
+	var gitMicroServiceModule  = require(__dirname + '/modules/gitModules/gitMicroServiceModule.js');
+	var gm = new gitMicroServiceModule(pkg, env, req, res);
 });
 
 app.get(/_microservice\/([0-9a-z\/\.]+)(\/|)$/i, function (req, res) {

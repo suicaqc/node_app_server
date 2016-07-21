@@ -46,7 +46,7 @@
 	if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 		module.exports = obj;
 	} else {
-		window.gitModule = function() {
+		window.gitMicroServiceModule = function() {
 			return obj; 
 		}
 	}
