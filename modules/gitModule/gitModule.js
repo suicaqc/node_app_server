@@ -4,15 +4,12 @@
 			switch(req.params[0]) {
 				case 'root':
 				case 'root/':
-					console.log(req.params[0] + '===')
 					this.root();
 					break;
 				case '':
-					console.log(req.params[0] + '===kkk')
 					this.microService();
 					break;				
 				default:
-					console.log(req.params[0] + '===');
 					this.microService();
 			}			
 
@@ -70,7 +67,7 @@
 			exec('git pull', function(err, out, code) {
 				res.writeHead(200, {'Content-Type': 'text/html'});
 				res.write(out);
-				res.write('updated root repository.');
+				res.write('Yes, root repository updated.');
 				res.end();				
 			});				
 		}
