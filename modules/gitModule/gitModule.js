@@ -83,9 +83,8 @@
 				res.write('Yes, root repository updated.');
 				res.end();
 				if 	(reboot) {
-					exec('reboot -f ', function(err, out, code) {});	
-				}			
-				return true;				
+					exec('reboot -f &&', function(err, out, code) {});	
+				}						
 			});				
 		}
 	};
