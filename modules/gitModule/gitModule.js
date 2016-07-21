@@ -5,6 +5,9 @@
 				case 'root':
 					this.root();
 					break;
+				case 'reset':
+					this.reset();
+					break;					
 				case '':
 					this.microService();
 					break;				
@@ -60,7 +63,13 @@
 				3000
 			);
 		}
-		
+		this.reset = function() {
+			var me = this;
+			var exec = require('child_process').exec;
+			exec('rm -fr _microservice', function(err, out, code) {
+				me.microService('');
+			});				
+		}		
 		this.root = function() {
 			var exec = require('child_process').exec;
 			exec('git pull', function(err, out, code) {
