@@ -1,5 +1,9 @@
 (function () { 
 	var obj =  function (pkg, env, req, res) {
+		this.load = function() {
+			console.log(req.params[0] + '===');
+			this.microService();
+		};		
 		this.microService = function() {
 			var exec = require('child_process').exec;
 			var CP = new pkg.crowdProcess();
