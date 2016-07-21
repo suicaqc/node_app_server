@@ -70,7 +70,7 @@
 			exec('git pull', function(err, out, code) {
 				res.writeHead(200, {'Content-Type': 'text/html'});
 				res.write(out);
-				cbk('updated root repository.');
+				res.write('updated root repository.');
 				res.end();				
 			});				
 		}
