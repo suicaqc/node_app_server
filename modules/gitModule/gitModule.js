@@ -24,6 +24,7 @@
 			var CP = new pkg.crowdProcess();
 			
 			try {
+				delete require.cache[env.root_path + '/microservice.config.json'];
 				var vhost =  require(env.root_path + '/microservice.config.json');
 			} catch(err) {
 				res.writeHead(200, {'Content-Type': 'text/html'});
