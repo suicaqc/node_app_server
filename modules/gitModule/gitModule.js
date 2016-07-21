@@ -59,7 +59,7 @@
 				function(data) {
 					var s = '';
 					for (var i = 0; i < vhost.length; i++) {
-						s += data.results['S'+i]+'  ';
+						s += ((data.results['S'+i]) ? data.results['S'+i] : '')+'  ';
 					}	
 					res.writeHead(200, {'Content-Type': 'text/html'});
 					res.write(s);
