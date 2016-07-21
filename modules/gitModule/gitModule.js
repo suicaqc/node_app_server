@@ -12,7 +12,7 @@
 					this.reset();
 					break;					
 				case '':
-					this.microService();
+					this.microService('');
 					break;				
 				default:
 					this.microService(req.params[0]);

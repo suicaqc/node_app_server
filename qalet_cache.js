@@ -53,16 +53,16 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 });
 
 
-app.get(/_git(\/|)$/i, function (req, res) {	
+app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {	
 	var gitModule  = require(__dirname + '/modules/gitModule/gitModule.js');
 	var gm = new gitModule(pkg, env, req, res);
-	gm.microService();
+	gm.load();
 });
 
-app.get(/_microservice\/([0-9a-z\/\.]+)(\/|)$/i, function (req, res) {
-	fs.exists('modules/'+ req.params[0], function(exists) {
+app.get(/microservice\/([0-9a-z\/\.]+)(\/|)$/i, function (req, res) {
+	fs.exists('_microservice/'+ req.params[0], function(exists) {
 		if (exists) {
-			res.sendFile(__dirname + '/modules/'+ req.params[0]);		
+			res.sendFile(__dirname + '/_microservice/'+ req.params[0]);		
 		} else {
 			res.writeHead(200, {'Content-Type': 'text/html'});
 			res.write(req.params[0] + ' does not exist');
