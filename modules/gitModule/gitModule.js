@@ -84,9 +84,9 @@
 					exec('shutdown -r +1', function(err, out, code) {
 						
 						res.writeHead(200, {'Content-Type': 'text/html'});
-						res.write(err);
+					//	res.write(err);
 						res.write(code);
-						res.write(out);
+					//	res.write(out);
 						res.write('Yes, root repository updated AB.');
 						res.end();							
 								
