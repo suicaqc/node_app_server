@@ -1,25 +1,13 @@
 (function () { 
 	var obj =  function (pkg, env, req, res) {
 		this.load = function() {
-			res.send('microRoutermicroRouter');
-			return false;
+			var cfg = {controller:'http://microservicce.qalet.com/microservice/traveling/controller/travelinglist.js',
+			template:'http://microservicce.qalet.com/microservice/traveling/tpl/traveling_tpl.html',
+			dictionary:'http://cache1.qalet.com/microservice/traveling/dictionary.json'};
 			
-			switch(req.params[0]) {
-				case 'root':
-					this.root(false);
-					break;
-				case 'rootreboot':
-					this.root(true);
-					break;					
-				case 'reset':
-					this.reset();
-					break;					
-				case '':
-					this.microService('');
-					break;				
-				default:
-					this.microService(req.params[0]);
-			}			
+			res.send(cfg);
+			return false;
+					
 
 		};	
 		this.microService = function(v) {
