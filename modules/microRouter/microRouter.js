@@ -26,7 +26,7 @@
 								res.send(error.toString());
 								cbk(false);
 							} else {
-								cbk( body);
+								cbk( new Buffer(body).toString('base64'));
 							}
 						});						
 					};
