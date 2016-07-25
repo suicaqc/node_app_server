@@ -62,7 +62,7 @@ app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {
 
 
 app.get(/microrouter(\/|)$/i, function (req, res) {
-	res(microrouter)
+	res('microrouter')
 });
 
 
