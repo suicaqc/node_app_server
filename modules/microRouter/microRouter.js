@@ -37,7 +37,7 @@
 				CP.serial(
 					_f,
 					function(data) {
-						res.send(data.results);
+						res.send(decodeURIComponent(data.results.dictionary));
 					},
 					3000
 				);
