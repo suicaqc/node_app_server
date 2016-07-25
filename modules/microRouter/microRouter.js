@@ -13,23 +13,24 @@
 				var _f = {};
 	
 				for (o in cfg) {
-					_f[o] =  function(cbk) {
-						
-						var options = {
-							url: cfg[o],
-							method:  'GET',
-							form: req.body.postData,
-							encoding: null
-						}						
-						pkg.request(options ,function(error, response, body) {
-							if (error) {
-								res.send(error.toString());
-								cbk(false);
-							} else {
-								cbk( new Buffer(body).toString());
-							}
-						});						
-					};
+					_f[o] =  (function(url) {						
+						return function(cbk) {		
+							var options = {
+								url: url,
+								method:  'GET',
+								form: req.body.postData,
+								encoding: null
+							}						
+							pkg.request(options ,function(error, response, body) {
+								if (error) {
+									res.send(error.toString());
+									cbk(false);
+								} else {
+									cbk( new Buffer(body).toString());
+								}
+							});						
+						};	
+					})(cfg[o]);
 					
 				}
 
