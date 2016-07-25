@@ -1,96 +1,73 @@
 (function () { 
 	var obj =  function (pkg, env, req, res) {
 		this.load = function() {
-			var cfg = {controller:'http://microservicce.qalet.com/microservice/traveling/controller/travelinglist.js',
-			template:'http://microservicce.qalet.com/microservice/traveling/tpl/traveling_tpl.html',
-			dictionary:'http://cache1.qalet.com/microservice/traveling/dictionary.json'};
-			
+			var cfg = {
+					controller:'http://microservicce.qalet.com/microservice/traveling/controller/travelinglist.js',
+					template:'http://microservicce.qalet.com/microservice/traveling/tpl/traveling_tpl.html',
+					dictionary:'http://cache1.qalet.com/microservice/traveling/dictionary.json'
+				};
+
 			res.send(cfg);
 			return false;
-					
+			
+				var CP = new pkg.crowdProcess();
+				var _f = {};
+	
+				_f['S2'] = function(cbk) {
+					var options = {
+						url: req.params[1],
+						method:  'POST',
+						form: req.body.postData,
+						encoding: null
+					}
 
-		};	
-		this.microService = function(v) {
-			var exec = require('child_process').exec;
-			var CP = new pkg.crowdProcess();
-			
-			try {
-				delete require.cache[env.root_path + '/microservice.config.json'];
-				var vhost =  require(env.root_path + '/microservice.config.json');
-			} catch(err) {
-				res.writeHead(200, {'Content-Type': 'text/html'});
-				res.write(err.message);
-				res.end();
-				return false;	
-			}
-			
-			var _f = {};
-			for (var i = 0; i < vhost.length; i++) {
-				if (!v || v == vhost[i].name) {
-					_f['S' + i] = (function(i) {
-						return function(cbk) {
-							pkg.fs.exists('_microservice/'+ vhost[i].name, function(exists) {
-								if (exists) {
-									exec('cd ' + '_microservice/'+ vhost[i].name + '&& git pull', function(err, out, code) {
-										cbk('updated ' + vhost[i].name + ' repository.');	
-									});
-								} else {
-									exec('git clone ' + vhost[i].repository + ' ' + '_microservice/'+ vhost[i].name + '', function(err, out, code) {
-										cbk('clone ' +  vhost[i].name + ' repository.=>' + out);
-									});
-								}
-							});				
-						};
 
-					})(i);
-				}
-			}
-			
-			CP.serial(
-				_f,
-				function(data) {
-					var s = '';
-					for (var i = 0; i < vhost.length; i++) {
-						s += ((data.results['S'+i]) ? data.results['S'+i] : '')+'  ';
-					}	
-					res.writeHead(200, {'Content-Type': 'text/html'});
-					res.write(s);
-					res.end();
-				},
-				3000
-			);
-		}
-		this.reset = function() {
-			var me = this;
-			var exec = require('child_process').exec;
-			exec('rm -fr _microservice', function(err, out, code) {
-				me.microService('');
-			});				
-		}		
-		this.root = function(reboot) {
-			var exec = require('child_process').exec;
-			console.log(reboot);
-			exec('git pull ', function(err, out, code) {
-			
-				if 	(reboot) {
-					exec('shutdown -r +0', function(err, out, code) {
-						res.writeHead(200, {'Content-Type': 'text/html'});
-						res.write(out);
-						res.write('Root repository updated. Reboot... ');
-						res.end();							
-								
-					});	
-				} else {
-					res.writeHead(200, {'Content-Type': 'text/html'});
-					res.write(out);
-					res.write('Yes, root repository updated.');
-					res.end();						
-				}			
+					pkg.request(options ,function(error, response, body) {
+						if (error) {
+							res.send(error.toString());
+							cbk(false);
+						} else {
+							var rec = { 
+								source: req.params[1], 
+								postdata:JSON.stringify(req.body.postData),
+								cache: new Buffer(body).toString('base64'), 
+								tm: new Date(), 
+								content_type:response.headers['content-type']};
+							pkg.db.post_cache.insert(rec, function (err) {
+								cbk(rec);
+							  });
+						}
+					});
+				 };	
 
+				CP.serial(
+					_f,
+					function(data) {
+						
+						if (!data.results.S0) {
+							res.writeHead(500, {'Content-Type': 'text/html'});
+							res.write('Data format error');
+							res.end();					
 							
-			});				
-		}
-	};
+						} else {
+							var rec = (data.results.S1)?data.results.S1:data.results.S2;
+							if (rec) {
+								res.writeHead(200, {'Content-Type': rec.content_type});
+								res.write(new Buffer(rec.cache, 'base64'));
+								res.end();	    		
+							} else {
+								res.writeHead(500, {'Content-Type': 'text/html'});
+								res.write('No result');
+								res.end();					
+							}				
+						}
+						
+
+
+					},
+					3000
+				);
+		};	
 
 	if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 		module.exports = obj;
