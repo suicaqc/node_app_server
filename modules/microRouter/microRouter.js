@@ -35,7 +35,7 @@
 				CP.serial(
 					_f,
 					function(data) {
-						res.send(data.results.controller);
+						res.send(data.results);
 					},
 					3000
 				);
