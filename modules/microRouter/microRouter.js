@@ -26,7 +26,7 @@
 									res.send(error.toString());
 									cbk(false);
 								} else {
-									cbk(decodeURIComponent( new Buffer(body).toString()));
+									cbk( new Buffer(body).toString());
 								}
 							});						
 						};	
@@ -37,7 +37,7 @@
 				CP.serial(
 					_f,
 					function(data) {
-						res.send(data.results);
+						res.send(decodeURIComponent(data.results.dictionary));
 					},
 					3000
 				);
