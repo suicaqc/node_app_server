@@ -7,8 +7,6 @@
 					dictionary:'http://cache1.qalet.com/microservice/traveling/dictionary.json'
 				};
 
-
-			
 				var CP = new pkg.crowdProcess();
 				var _f = {};
 	
