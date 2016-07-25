@@ -13,7 +13,11 @@
 				var _f = {};
 	
 				for (o in cfg) {
-					_f[o] = 12;
+					_f[o] =  function(cbk) {
+						
+						
+						
+					};
 					
 				}
 			res.send(_f);
