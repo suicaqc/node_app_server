@@ -60,6 +60,12 @@ app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {
 	gm.load();
 });
 
+
+app.get(/microrouter(\/|)$/i, function (req, res) {
+	res(microrouter)
+});
+
+
 app.get(/microservice\/([0-9a-z\/\.\_]+)(\/|)$/i, function (req, res) {
 	pkg.fs.exists('_microservice/'+ req.params[0], function(exists) {
 		if (exists) {
