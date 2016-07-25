@@ -61,7 +61,7 @@ app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {
 });
 
 
-app.get(/microrouter(\/|)$/i, function (req, res) {
+app.get(/microRouter(\/|)$/i, function (req, res) {
 	delete require.cache[__dirname + '/modules/microRouter/microRouter.js'];
 	var microrouter  = require(__dirname + '/modules/microRouter/microRouter.js');
 	var mc = new microrouter(pkg, req, res);
