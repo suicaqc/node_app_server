@@ -7,7 +7,7 @@
 					dictionary:'http://cache1.qalet.com/microservice/traveling/dictionary.json'
 				};
 
-				cfg = req.body;
+			//	cfg = req.body;
 				
 				var CP = new pkg.crowdProcess();
 				var _f = {};
@@ -34,7 +34,7 @@
 					
 				}
 
-				CP.serial(
+				CP.parallel(
 					_f,
 					function(data) {
 						res.send(data.results);
