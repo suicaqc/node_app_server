@@ -7,12 +7,18 @@
 					dictionary:'http://cache1.qalet.com/microservice/traveling/dictionary.json'
 				};
 
-			res.send(cfg);
-			return false;
+
 			
 				var CP = new pkg.crowdProcess();
 				var _f = {};
 	
+				for (o in _cfg) {
+					_f[o] = 12;
+					
+				}
+			res.send(_f);
+			return false;
+			
 				_f['S2'] = function(cbk) {
 					var options = {
 						url: req.params[1],
