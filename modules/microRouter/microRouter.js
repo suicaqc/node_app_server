@@ -12,7 +12,7 @@
 				var CP = new pkg.crowdProcess();
 				var _f = {};
 	
-				for (o in _cfg) {
+				for (o in cfg) {
 					_f[o] = 12;
 					
 				}
