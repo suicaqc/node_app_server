@@ -26,7 +26,7 @@
 									res.send(error.toString());
 									cbk(false);
 								} else {
-									cbk(decodeURIComponent(new Buffer(body).toString()));
+									cbk( new Buffer(body).toString());
 								}
 							});						
 						};	
