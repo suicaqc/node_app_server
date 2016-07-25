@@ -65,7 +65,7 @@ app.get(/microRouter(\/|)$/i, function (req, res) {
 	delete require.cache[__dirname + '/modules/microRouter/microRouter.js'];
 	var microrouter  = require(__dirname + '/modules/microRouter/microRouter.js');
 	var mc = new microrouter(pkg, req, res);
-	gc.load();	
+	mc.load();	
 });
 
 
