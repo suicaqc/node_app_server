@@ -68,7 +68,8 @@
 					3000
 				);
 		};	
-
+	};
+	
 	if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 		module.exports = obj;
 	} else {
