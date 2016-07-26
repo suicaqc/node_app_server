@@ -37,6 +37,7 @@
 				CP.parallel(
 					_f,
 					function(data) {
+						data.results.dictionary = JSON.parse(data.results.dictionary);
 						res.send(data.results);
 					},
 					3000
