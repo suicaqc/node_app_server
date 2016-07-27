@@ -39,12 +39,13 @@
 						if (data.results.dictionary) {
 							try {
 								data.results.dictionary = JSON.parse(data.results.dictionary);
-							} 
+							}  catch {};
+    
 						}  
 						if (data.results.style) { 
 							try {
 								data.results.style = JSON.parse(data.results.style);
-							}	
+							} catch {};	
 						} 
 						res.send(data.results);
 					},
