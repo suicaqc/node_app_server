@@ -36,17 +36,16 @@
 				CP.parallel(
 					_f,
 					function(data) {
-						if (data.results.dictionary) {
-							try {
-								data.results.dictionary = JSON.parse(data.results.dictionary);
-							}  catch(err)  {};
-    
-						}  
-						if (data.results.style) { 
-							try {
-								data.results.style = JSON.parse(data.results.style);
-							} catch(err)  {};	
-						} 
+						for (o in cfg) {
+							if (o == 'template' || o == 'controller') {
+								continue;
+							}
+							if (data.results[o]) {
+								try {
+									data.results[o] = JSON.parse(data.results[o]);
+								}  catch(err)  {};
+							}							
+						}	 
 						res.send(data.results);
 					},
 					3000
