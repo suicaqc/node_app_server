@@ -1,12 +1,6 @@
 (function () { 
 	var obj =  function (pkg, env, req, res) {
 		this.load = function() {
-			/*var cfg = {
-					controller:'http://microservicce.qalet.com/microservice/traveling/controller/travelinglist.js',
-					template:'http://microservicce.qalet.com/microservice/traveling/tpl/traveling_tpl.html',
-					dictionary:'http://cache1.qalet.com/microservice/traveling/dictionary.json'
-				};
-			*/
 				var cfg = req.body;
 				
 				var CP = new pkg.crowdProcess();
