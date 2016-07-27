@@ -23,7 +23,6 @@
 							}						
 							pkg.request(options ,function(error, response, body) {
 								if (error) {
-								//	res.send(error.toString());
 									cbk(false);
 								} else {
 									cbk( new Buffer(body).toString());
