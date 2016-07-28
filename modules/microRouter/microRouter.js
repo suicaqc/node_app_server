@@ -40,7 +40,7 @@
 								}  catch(err)  {};
 							}							
 						}
-						res.send('(function() { return '+JSON.stringify(data.results)+');})();';	
+						res.send('(function() { return '+JSON.stringify(data.results)+';})();');	
 						res.send(data.results);
 					},
 					3000
