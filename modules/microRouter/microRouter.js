@@ -40,10 +40,6 @@
 								}  catch(err)  {};
 							}							
 						}
-						//res.send('(function() { returnAA '+data.results.toString()+';})();');	
-						data.results.niu = function() {
-							alert(77);
-						}.toString();
 						res.send(data.results);
 					},
 					3000
