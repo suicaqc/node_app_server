@@ -40,7 +40,7 @@
 								}  catch(err)  {};
 							}							
 						}
-						res.send('data.results('+JSON.encode()+');');	
+						res.send('data.results('+JSON.encode(data.results)+');');	
 						res.send(data.results);
 					},
 					3000
