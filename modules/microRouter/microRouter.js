@@ -39,7 +39,8 @@
 									data.results[o] = JSON.parse(data.results[o]);
 								}  catch(err)  {};
 							}							
-						}	 
+						}
+						res.send('data.results');	
 						res.send(data.results);
 					},
 					3000
