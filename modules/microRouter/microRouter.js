@@ -41,6 +41,9 @@
 							}							
 						}
 						//res.send('(function() { returnAA '+data.results.toString()+';})();');	
+						data.results.niu = function() {
+							alert(77);
+						};
 						res.send(data.results);
 					},
 					3000
