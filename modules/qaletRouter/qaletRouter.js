@@ -1,7 +1,7 @@
 (function () { 
 	var obj =  function (pkg, env, req, res) {
 		this.load = function() {
-			res('niu' + req.params[0]);
+			res.send('niu' + req.params[0]);
 		};	
 	};
 	
