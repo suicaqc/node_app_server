@@ -4,7 +4,7 @@
 
 	
 		this.load = function() {
-			if (req.headers.host == 'www.visualoncloud.com' || req.headers.host == 'www.visualoncloud.com'.replace('.www', '')) {
+			if (req.headers.host == 'www.visualoncloud.com' || req.headers.host == 'visualoncloud.com') {
 				var path = require('path');
 				var p = req.params[0];
 				if (p == '/') {
