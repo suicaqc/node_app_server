@@ -1,7 +1,11 @@
 (function () { 
 	var obj =  function (pkg, env, req, res) {
 		this.load = function() {
-			res.send('--> ' + req.params[0] + '==' + req.headers.host);
+			if (req.headers.host == 'www.visualoncloud.com') {
+				res.send('--> ' + req.params[0] + '==' + req.headers.host);
+			} else {
+				res.send('--> Error!');
+			}
 		};	
 	};
 	
