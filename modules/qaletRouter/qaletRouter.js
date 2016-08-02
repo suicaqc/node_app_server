@@ -7,10 +7,6 @@
 	
 	if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 		module.exports = obj;
-	} else {
-		window.qaletRouter = function() {
-			return obj; 
-		}
-	}
+	} 
 	
 })();
