@@ -5,10 +5,12 @@
 	
 		this.load = function() {
 			if (req.headers.host == 'www.visualoncloud.com') {
+				var path = require('path');
 				var p = req.params[0];
 				if (p == '/') {
 					p='index.html';
 				}
+				res.send(env);
 				pkg.fs.exists('_microservice/visualoncloud'+ p, function(exists) {
 					if (exists) {
 						res.sendFile(__dirname + '/_microservice/visualoncloud'+ p);		
