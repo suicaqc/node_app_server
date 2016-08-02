@@ -10,10 +10,10 @@
 				if (p == '/') {
 					p='index.html';
 				}
-				res.send(env);
-				pkg.fs.exists('_microservice/visualoncloud'+ p, function(exists) {
+		
+				pkg.fs.exists(env.root_path + '/_microservice/visualoncloud'+ p, function(exists) {
 					if (exists) {
-						res.sendFile(__dirname + '/_microservice/visualoncloud'+ p);		
+						res.sendFile(env.root_path + '/_microservice/visualoncloud'+ p);		
 					} else {
 						res.writeHead(200, {'Content-Type': 'text/html'});
 						res.write(req.params[0] + ' does not exist');
