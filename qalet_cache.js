@@ -90,6 +90,15 @@ app.get(/(.+)$/i, function (req, res) {
 	R.load();
 });
 
+app.post(/(.+)$/i, function (req, res) {
+
+	delete require.cache[__dirname + '/modules/qaletRouter/qaletRouter.js'];
+	var router  = require(__dirname + '/modules/qaletRouter/qaletRouter.js');
+	var R = new router(pkg, env, req, res);
+	R.load();
+});
+
+
 app.listen(port);
 console.log('Cache server start port ' + port + ' at ' + new Date() + '');
 
