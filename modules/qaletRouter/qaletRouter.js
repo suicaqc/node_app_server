@@ -1,7 +1,7 @@
 (function () { 
 	var obj =  function (pkg, env, req, res) {
 		this.load = function() {
-			res.send('niu1' + req.params[0]);
+			res.send('--> ' + req.params[0] + '==' + req.headers.host);
 		};	
 	};
 	
