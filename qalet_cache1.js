@@ -5,7 +5,7 @@ Nedb = require('./package/nedb/node_modules/nedb'),
  
 app			= express(),
 expireTime	= 604800000,
-port 		= 8880;
+port 		= 680;
 			
 var env = {
 	root_path:__dirname
@@ -60,7 +60,16 @@ app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {
 	gm.load();
 });
 
-app.get(/microservice\/([0-9a-z\/\.]+)(\/|)$/i, function (req, res) {
+
+app.post(/microRouter(\/|)$/i, function (req, res) {
+	delete require.cache[__dirname + '/modules/microRouter/microRouter.js'];
+	var microrouter  = require(__dirname + '/modules/microRouter/microRouter.js');
+	var mc = new microrouter(pkg, env, req, res);
+	mc.load();	
+});
+
+
+app.get(/microservice\/([0-9a-z\/\.\_]+)(\/|)$/i, function (req, res) {
 	pkg.fs.exists('_microservice/'+ req.params[0], function(exists) {
 		if (exists) {
 			res.sendFile(__dirname + '/_microservice/'+ req.params[0]);		
@@ -87,3 +96,6 @@ app.get('(.+)$', function (req, res) {
 
 app.listen(port);
 console.log('Cache server start port ' + port + ' at ' + new Date() + '');
+
+app.listen(880);
+console.log('Cache server start port ' + 880 + ' at ' + new Date() + '');
