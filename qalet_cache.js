@@ -84,19 +84,10 @@ app.get(/microservice\/([0-9a-z\/\.\_]+)(\/|)$/i, function (req, res) {
 
 app.get(/(.+)$/i, function (req, res) {
 
-	res.send('---'+req.params[0]);
-	return true;
-		
-	
-	res.sendFile(__dirname + '/html'+req.params[0], function(err) {
-		
-		if (err) {
-			res.writeHead(404, {'Content-Type': 'text/html'});
-			res.write(req.params[0] + ' is not exist.');
-    		res.end();
-		}
-
-	});
+	delete require.cache[__dirname + '/modules/qaletRouter/qaletRouter.js'];
+	var router  = require(__dirname + '/modules/qaletRouter/qaletRouter.js');
+	var r = new router(pkg, env, req, res);
+	mc.load();
 });
 
 app.listen(port);
