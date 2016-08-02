@@ -82,10 +82,9 @@ app.get(/microservice\/([0-9a-z\/\.\_]+)(\/|)$/i, function (req, res) {
 });
 
 
-app.get('/', function (req, res) {
-	res.writeHead(200, {'Content-Type': 'text/html'});
-	res.write(req.params[0] + ' does not exist');
-	res.end();	
+app.get(/(.+)$/i, function (req, res) {
+
+	res.send('---'+req.params[0]);
 	return true;
 		
 	
