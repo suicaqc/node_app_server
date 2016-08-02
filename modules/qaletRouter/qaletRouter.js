@@ -8,7 +8,7 @@
 				var path = require('path');
 				var p = req.params[0];
 				if (p == '/') {
-					p='index.html';
+					p='/index.html';
 				}
 		
 				pkg.fs.exists(env.root_path + '/_microservice/visualoncloud'+ p, function(exists) {
