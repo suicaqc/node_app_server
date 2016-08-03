@@ -3,5 +3,5 @@
 	{"name":"traveling", "repository":"https://github.com/b2blosangeles/microservice_traveling.git"},
 	{"name":"auto", "repository":"https://github.com/b2blosangeles/microservice_auto.git"},
 	{"name":"jiaoyou", "repository":"https://github.com/b2blosangeles/microservice_jiaoyou.git"},
-	{"name":"visualoncloud", "domain":"visualoncloud.com", repository":"https://visualoncloud:Montreal107#@bitbucket.org/visualoncloud/visualoncloud.git"}
+	{"name":"visualoncloud", "domain":"visualoncloud.com", "repository":"https://visualoncloud:Montreal107#@bitbucket.org/visualoncloud/visualoncloud.git"}
 ]
