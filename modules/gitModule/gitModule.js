@@ -86,14 +86,14 @@
 				if 	(reboot) {
 					exec('shutdown -r +0', function(err, out, code) {
 						res.writeHead(200, {'Content-Type': 'text/html'});
-						res.write(out);
+						res.write(out.replace("\n", '<br>'));
 						res.write('Root repository updated. Reboot... ');
 						res.end();							
 								
 					});	
 				} else {
 					res.writeHead(200, {'Content-Type': 'text/html'});
-					res.write(out);
+					res.write(out.replace("\n", '<br>'));
 					res.write('Yes, root repository updated.');
 					res.end();						
 				}			
