@@ -8,7 +8,9 @@
 			} catch(err) {
 			}
 			for (var i=0; i < vhost.length; i++) {
-				if (req.headers.host == vhost[i].domain) {
+				
+				var patt = new RegExp("visualoncloud.com.com");
+				if (patt.test(req.headers.host)) {
 					return vhost[i].name;
 				}
 			}
