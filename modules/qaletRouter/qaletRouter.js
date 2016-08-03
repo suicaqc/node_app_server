@@ -1,9 +1,15 @@
 (function () { 
 	var obj =  function (pkg, env, req, res) {
-	
 
-	
 		this.load = function() {
+			var vhost = []
+			try {
+				delete require.cache[env.root_path + '/microservice.config.json'];
+				vhost =  require(env.root_path + '/microservice.config.json');
+			} catch(err) {
+			}
+			res.send(vhost);
+			
 			if (req.headers.host == 'www.visualoncloud.com' || req.headers.host == 'visualoncloud.com') {
 				var path = require('path');
 				var p = req.params[0];
