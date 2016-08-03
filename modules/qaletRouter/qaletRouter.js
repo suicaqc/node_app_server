@@ -36,7 +36,25 @@
 					}
 				});	
 			} else {
-				res.send('Virtual service does not exist!');
+				var patt = new RegExp('\/amicroservice\/([0-9a-z\/\.\_]+)(\/|)$', 'i');
+				if (patt.test(req.params[0])) {
+					res,send(req.params[0]);
+					return true;
+					pkg.fs.exists('_microservice/'+ req.params[0], function(exists) {
+						if (exists) {
+							res.sendFile(__dirname + '/_microservice/'+ req.params[0]);		
+						} else {
+							res.writeHead(200, {'Content-Type': 'text/html'});
+							res.write(req.params[0] + ' does not exist');
+							res.end();			
+						}
+					})		
+				} else {
+					res.send('Virtual service does not exist!');
+				}
+				
+				
+				
 			}
 		};	
 	};

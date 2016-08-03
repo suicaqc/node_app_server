@@ -86,11 +86,6 @@ app.get(/microservice\/([0-9a-z\/\.\_]+)(\/|)$/i, function (req, res) {
 
 
 
-
-app.get(/http\:\/\/microservice\.qalet\.com/i, function (req, res) {
-	res.send('1234');	
-});
-
 app.get(/(.+)$/i, function (req, res) {
 
 	delete require.cache[__dirname + '/modules/qaletRouter/qaletRouter.js'];
