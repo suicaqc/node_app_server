@@ -87,7 +87,7 @@ app.get(/microservice\/([0-9a-z\/\.\_]+)(\/|)$/i, function (req, res) {
 
 
 
-app.get(/http:\/\/microservice.qalet.com\/([0-9a-z\/\.\_]+)(\/|)$/i, function (req, res) {
+app.get(/http\:\/\/microservice\.qalet\.com/i, function (req, res) {
 	res.send('1234');	
 });
 
