@@ -42,11 +42,12 @@
 								if (exists) {
 									exec('cd ' + '_microservice/'+ vhost[i].name + '&& git pull', function(err, out, code) {
 										var msg = '<hr>updated ' + vhost[i].name + ' repository:' + out;
-										cbk(msg.replace("\n", '<hr>'));
+										cbk(msg.replace("\n", '<br>'));
 									});
 								} else {
 									exec('git clone ' + vhost[i].repository + ' ' + '_microservice/'+ vhost[i].name + '', function(err, out, code) {
-										cbk('clone ' +  vhost[i].name + ' repository.=>' + out);
+										var msg = '<hr>clone ' +  vhost[i].name + ' repository:' + out;
+										cbk(msg.replace("\n", '<br>'));
 									});
 								}
 							});				
