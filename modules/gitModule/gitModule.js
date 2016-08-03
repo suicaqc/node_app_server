@@ -68,7 +68,7 @@
 					res.write(s);
 					res.end();
 				},
-				30000
+				60000
 			);
 		}
 		this.reset = function() {
