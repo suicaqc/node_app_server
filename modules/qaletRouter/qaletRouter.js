@@ -1,16 +1,22 @@
 (function () { 
 	var obj =  function (pkg, env, req, res) {
-
-		this.load = function() {
-			var vhost = []
+		this.getHostName = function() {
+			var vhost = [];
 			try {
 				delete require.cache[env.root_path + '/microservice.config.json'];
 				vhost =  require(env.root_path + '/microservice.config.json');
 			} catch(err) {
 			}
-		//	res.send(vhost);
-			
-			if (req.headers.host == 'www.visualoncloud.com' || req.headers.host == 'visualoncloud.com') {
+			for (var i=0; i < vhost.length; i++) {
+				if (req.headers.host == vhost[i].domain) {
+					return vhost[i].name;
+				}
+			}
+			return false;	
+		}
+		this.load = function() {
+			var hostname = this.getHostName();
+			if (hostname) {
 				var path = require('path');
 				var p = req.params[0];
 				if (p == '/') {
@@ -27,7 +33,7 @@
 					}
 				});	
 			} else {
-				res.send('--> Error!');
+				res.send('Virtual service does not exist!');
 			}
 		};	
 	};
