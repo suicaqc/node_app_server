@@ -28,7 +28,7 @@
 				var vhost =  require(env.root_path + '/microservice.config.json');
 			} catch(err) {
 				res.writeHead(200, {'Content-Type': 'text/html'});
-				res.write(err.message);
+				res.write('err.message');
 				res.end();
 				return false;	
 			}
