@@ -66,7 +66,7 @@
 					}	
 					res.writeHead(200, {'Content-Type': 'text/html'});
 					res.write(s);
-					res.write'<hr>Done!');
+					res.write('<hr>Done!');
 					res.end();
 				},
 				3000000
