@@ -8,10 +8,11 @@
 			} catch(err) {
 			}
 			for (var i=0; i < vhost.length; i++) {
-				
-				var patt = new RegExp("visualoncloud.com.com");
-				if (patt.test(req.headers.host)) {
-					return vhost[i].name;
+				if (vhost[i].domain){
+					var patt = new RegExp(vhost[i].domain, 'i');
+					if (patt.test(req.headers.host)) {
+						return vhost[i].name;
+					}					
 				}
 			}
 			return false;	
