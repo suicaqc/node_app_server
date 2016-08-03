@@ -1,0 +1,6 @@
+[
+	{"domain":"microservice.qalet.com", "name":"travel", "repository":"https://github.com/b2blosangeles/microservice_traveling.git"},
+	{"domain":"microservice.qalet.com", "name":"auto", "repository":"https://github.com/b2blosangeles/microservice_auto.git"},
+	{"domain":"microservice.qalet.com", "name":"jiaoyou", "repository":"https://github.com/b2blosangeles/microservice_jiaoyou.git"},
+	{"domain":"visualoncloud.com", "name":"visualoncloud", "repository":"https://visualoncloud:Montreal107#@bitbucket.org/visualoncloud/visualoncloud.git"}
+]
