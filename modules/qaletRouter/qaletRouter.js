@@ -1,6 +1,6 @@
 (function () { 
 	var obj =  function (pkg, env, req, res) {
-		this.getHostName = function() {
+		this.getSpacename = function() {
 			var vhost = [];
 			try {
 				delete require.cache[env.root_path + '/microservice.config.json'];
@@ -15,17 +15,17 @@
 			return false;	
 		}
 		this.load = function() {
-			var hostname = this.getHostName();
-			if (hostname) {
+			var spacename = this.getSpacename();
+			if (spacename) {
 				var path = require('path');
 				var p = req.params[0];
 				if (p == '/') {
 					p='/index.html';
 				}
 		
-				pkg.fs.exists(env.root_path + '/_microservice/visualoncloud'+ p, function(exists) {
+				pkg.fs.exists(env.root_path + '/_microservice/' + spacename + p, function(exists) {
 					if (exists) {
-						res.sendFile(env.root_path + '/_microservice/visualoncloud'+ p);		
+						res.sendFile(env.root_path + '/_microservice/' + spacename + p);		
 					} else {
 						res.writeHead(200, {'Content-Type': 'text/html'});
 						res.write(req.params[0] + ' does not exist');
