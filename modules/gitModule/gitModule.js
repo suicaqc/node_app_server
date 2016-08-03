@@ -41,7 +41,8 @@
 							pkg.fs.exists('_microservice/'+ vhost[i].name, function(exists) {
 								if (exists) {
 									exec('cd ' + '_microservice/'+ vhost[i].name + '&& git pull', function(err, out, code) {
-										cbk('updated ' + vhost[i].name + ' repository.');	
+										cbk(out + 'updated ' + vhost[i].name + ' repository.');
+									//	cbk('updated ' + vhost[i].name + ' repository.');	
 									});
 								} else {
 									exec('git clone ' + vhost[i].repository + ' ' + '_microservice/'+ vhost[i].name + '', function(err, out, code) {
