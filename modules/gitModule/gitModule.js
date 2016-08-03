@@ -85,17 +85,20 @@
 			exec('git pull ', function(err, out, code) {
 			
 				if 	(reboot) {
-					exec('shutdown -r +0', function(err, out, code) {
+					exec('shutdown -r +1', function(err, out, code) {
 						res.writeHead(200, {'Content-Type': 'text/html'});
+						
+						res.write('Root repository updated:<br/>');
 						res.write(out.replace("\n", '<br>'));
-						res.write('Root repository updated. Reboot... ');
+						res.write('<br/>Reboot in 1 menute. ');
 						res.end();							
 								
 					});	
 				} else {
 					res.writeHead(200, {'Content-Type': 'text/html'});
+					res.write('Root repository updated:<br/>');
 					res.write(out.replace("\n", '<br>'));
-					res.write('Yes, root repository updated.');
+					
 					res.end();						
 				}			
 
