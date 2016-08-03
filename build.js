@@ -17,14 +17,14 @@ var _f = function() {
 				// Start Build
 				var bufA = fs.readFileSync(__dirname+'/script_template/node_http' , "utf8");	
 				
-				fs.writeFileSync('/etc/init.d/qalet_cache', 
+				fs.writeFileSync('/etc/init.d/qalet_node', 
 					bufA.replace(/{\$APPLICATION_DIRECTORY}/, __dirname).
-						replace(/{\$APPLICATION_START}/, 'qalet_cache.js').
-						replace(/{\$APPLICATION_NAME}/, 'qalet_cache').
-						replace(/{\$APPLICATION_CODE}/, 'qalet_cache')
+						replace(/{\$APPLICATION_START}/, 'qalet_node.js').
+						replace(/{\$APPLICATION_NAME}/, 'qalet_node').
+						replace(/{\$APPLICATION_CODE}/, 'qalet_node')
 					);	
-				exec('chmod +x /etc/init.d/qalet_cache');
-				exec('update-rc.d qalet_cache defaults');				
+				exec('chmod +x /etc/init.d/qalet_node');
+				exec('update-rc.d qalet_node defaults');				
 						
 				console.log('Build done. Need reboot ');
 			//	exec('reboot');
