@@ -8,7 +8,7 @@
 				vhost =  require(env.root_path + '/microservice.config.json');
 			} catch(err) {
 			}
-			res.send(vhost);
+		//	res.send(vhost);
 			
 			if (req.headers.host == 'www.visualoncloud.com' || req.headers.host == 'visualoncloud.com') {
 				var path = require('path');
