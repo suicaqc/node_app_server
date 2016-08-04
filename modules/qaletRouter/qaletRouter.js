@@ -27,9 +27,8 @@
 					res.send(v[1]);
 					return true;
 				} 
-			} else {
-				return false;
-			}
+			} 
+			return false;
 		}		
 		
 		this.load = function() {
