@@ -37,13 +37,14 @@
 		this.runApi = function(v) {
 			var me = this;
 			var spacename = this.getSpacename();
-			pkg.fs.exists(env.root_path + '/_microservice/' + spacename + '/api/' + v, function(exists) {
+			var p = env.root_path + '/_microservice/' + spacename + '/api/' + v;
+			pkg.fs.exists(p, function(exists) {
 				if (exists) {
-					pkg.fs.stat(env.root_path + '/_microservice/' + spacename + '/api/' + v, function(err, stats) {
+					pkg.fs.stat(p, function(err, stats) {
 						 if (stats.isFile()) {
 							try {
-								delete require.cache[env.root_path + '/_microservice/' + spacename + '/api/' + v];
-								var API =  require(env.root_path + '/_microservice/' + spacename + '/api/' + v);
+								delete require.cache[p];
+								var API =  require(p);
 								var api = new API(pkg, env, req, res);
 								api.load();	
 							} catch(err) {
