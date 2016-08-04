@@ -30,8 +30,25 @@
 			return false;
 		}
 		
-		this.runApi = function() {
-			res.send('exec_api');
+		this.runApi = function(v) {
+			var spacename = this.getSpacename();
+			pkg.fs.exists(env.root_path + '/_microservice/' + spacename + '/api/' + v, function(exists) {
+				if (exists) {
+					pkg.fs.stat(env.root_path + '/_microservice/' + spacename + '/api/' + v, function(err, stats) {
+						 if (stats.isFile()) { 
+							res.sendFile(env.root_path + '/_microservice/' + spacename + '/api/' + v); 	
+						 } else {
+							res.writeHead(404, {'Content-Type': 'text/html'});
+							res.write(req.params[0] + ' does not exist');
+							res.end();									 
+						 }
+					});									
+				} else {
+					res.writeHead(404, {'Content-Type': 'text/html'});
+					res.write(req.params[0] + ' does not exist');
+					res.end();						
+				} 
+			});	
 		}	
 		
 		this.load = function() {
