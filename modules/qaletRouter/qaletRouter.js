@@ -48,7 +48,7 @@
 								api.load();	
 							} catch(err) {
 								res.writeHead(500, {'Content-Type': 'text/html'});
-								res.write(err.message);
+								res.write('Error! ' + err.message);
 								res.end();							
 							}
 						 } else {
