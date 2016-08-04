@@ -23,7 +23,7 @@
 			
 			if (req.params[0]) {
 				var v = req.params[0].match(patt);
-				if (v[1]) {
+				if (v) {
 					res.send(v[1]);
 					return true;
 				} 
