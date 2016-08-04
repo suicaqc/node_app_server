@@ -23,8 +23,10 @@
 			
 			if (req.params[0]) {
 				var v = req.params[0].match(patt);
-				res.send(v);
-				return true;
+				if (v[1]) {
+					res.send(v[1]);
+					return true;
+				} 
 			} else {
 				return false;
 			}
