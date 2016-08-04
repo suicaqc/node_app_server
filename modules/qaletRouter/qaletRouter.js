@@ -49,8 +49,8 @@
 						 if (stats.isFile()) {
 							pkg.fs.readFile(p, 'utf8', function(err, code) {
 								if (!err) {
-									var codeBase = new Function('res', code);
-									codeBase(res);
+									var codeBase = new Function('pkg', 'env', 'req', 'res', code);
+									codeBase(pkg, env, req, res);
 								} else {
 									this.send500(err);										
 								}
