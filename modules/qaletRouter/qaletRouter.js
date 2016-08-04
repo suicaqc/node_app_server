@@ -37,6 +37,8 @@
 			if (this.requestType() !== false) {
 				return true;
 			}
+			res.send(spacename);
+			return true;
 			
 			if (spacename) {
 				var path = require('path');
