@@ -48,14 +48,16 @@
 		
 				pkg.fs.exists(env.root_path + '/_microservice/' + spacename + p, function(exists) {
 					if (exists) {
-						res.send(env.root_path + '/_microservice/' + spacename + p);
-						
-						// res.sendFile(env.root_path + '/_microservice/' + spacename + p);		
-					} else {
-						res.writeHead(200, {'Content-Type': 'text/html'});
-						res.write(req.params[0] + ' does not exist');
-						res.end();			
-					}
+						pkg.fs.stat(env.root_path + '/_microservice/' + spacename + p, function(err, stats) {
+							 if (stats.isFile()) { 
+								res.send(env.root_path + '/_microservice/' + spacename + p);  
+							 }
+						}									
+					} 
+					res.writeHead(200, {'Content-Type': 'text/html'});
+					res.write(req.params[0] + ' does not exist');
+					res.end();			
+					
 				});	
 			} else {
 				/*
