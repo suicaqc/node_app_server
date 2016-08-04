@@ -19,7 +19,7 @@
 		}
 		
 		this.requestType = function() {
-			var patt = new RegExp('^/api/(.+)', 'i');
+			var patt = new RegExp('^/api/(.+|)', 'i');
 			
 			if (req.params[0]) {
 				var v = req.params[0].match(patt);
