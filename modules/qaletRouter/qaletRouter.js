@@ -17,24 +17,25 @@
 			}
 			return false;	
 		}
-		/*
+		
 		this.requestType = function() {
 			var patt = new RegExp('^/api/(.+)', 'i');
 			
 			if (req.params[0]) {
 				var v = req.params[0].match(patt);
 				res.send(v);
+				return true;
 			} else {
 				return false;
 			}
 		}		
-		*/
+		
 		this.load = function() {
 			var spacename = this.getSpacename();
 			
-		//	if (this.requestType()) {
-				
-		//	}
+			if (this.requestType() !== false) {
+				return true;
+			}
 			
 			if (spacename) {
 				var path = require('path');
