@@ -50,9 +50,14 @@
 								api.load();	
 								*/
 						//	res.send('67');
-								var addr = new Function('a', "a.send('123');");
-								addr(res);
-								
+								try {
+									var addr = new Function('a', "a.send(123);");
+									addr(res);
+								} catch(err) {
+									res.writeHead(500, {'Content-Type': 'text/html'});
+									res.write('Error! ' + err.message);
+									res.end();							
+								}
 							} catch(err) {
 								res.writeHead(500, {'Content-Type': 'text/html'});
 								res.write('Error! ' + err.message);
