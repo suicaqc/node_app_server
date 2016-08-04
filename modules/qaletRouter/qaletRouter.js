@@ -41,7 +41,13 @@
 				if (exists) {
 					pkg.fs.stat(env.root_path + '/_microservice/' + spacename + '/api/' + v, function(err, stats) {
 						 if (stats.isFile()) { 
-							res.sendFile(env.root_path + '/_microservice/' + spacename + '/api/' + v); 	
+							pkg.fs.readFile(env.root_path + '/_microservice/' + spacename + '/api/' + v, 'utf8', function (err,data) {
+							  if (err) {
+								me.send404(req.params[0]);	
+							  } else {
+								  res.send(data+'niu');
+							  }
+							});	
 						 } else {
 							me.send404(req.params[0]);									 
 						 }
