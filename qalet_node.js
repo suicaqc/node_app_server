@@ -36,7 +36,7 @@ app.all('*', function(req, res, next) {
 });
 
 app.use(function(req, res, next){
-    res.setTimeout(30000, function(){
+    res.setTimeout(60000, function(){
         res.send('This request was timeout');
 	});
     next();
