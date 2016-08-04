@@ -33,7 +33,12 @@
 			res.writeHead(404, {'Content-Type': 'text/html'});
 			res.write(v + ' does not exist');
 			res.end();		
-		}		
+		}	
+		this.send500 = function(err) {
+			res.writeHead(500, {'Content-Type': 'text/html'});
+			res.write('Error! ' + err.message);
+			res.end();			
+		}			
 		this.runApi = function(v) {
 			var me = this;
 			var spacename = this.getSpacename();
@@ -48,30 +53,10 @@
 									var codeBase = new Function('res', code);
 									codeBase(res);
 								} else {
-									res.writeHead(500, {'Content-Type': 'text/html'});
-									res.write('Error! ' + err.message);
-									res.end();										
+									this.send500(err);										
 								}
-								
-							});							 
-							/* 
-							try {
-								delete require.cache[p];
-
-								try {
-									var addr = new Function('a', "a.send('456');");
-									addr(res);
-								} catch(err) {
-									res.writeHead(500, {'Content-Type': 'text/html'});
-									res.write('Error! ' + err.message);
-									res.end();							
-								}
-							} catch(err) {
-								res.writeHead(500, {'Content-Type': 'text/html'});
-								res.write('Error! ' + err.message);
-								res.end();							
-							}
-							*/
+							});
+							
 						 } else {
 							me.send404(req.params[0]);									 
 						 }
