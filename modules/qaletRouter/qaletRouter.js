@@ -48,7 +48,7 @@
 		
 				pkg.fs.exists(env.root_path + '/_microservice/' + spacename + p, function(exists) {
 					if (exists) {
-						res.send('aaa');
+						res.send(env.root_path + '/_microservice/' + spacename + p);
 						
 						// res.sendFile(env.root_path + '/_microservice/' + spacename + p);		
 					} else {
