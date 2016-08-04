@@ -43,7 +43,7 @@
 					pkg.fs.stat(p, function(err, stats) {
 						 if (stats.isFile()) {
 							 
-							pkg.fs.fs.readFile(p, 'utf8', function(err, code) {
+							pkg.fs.readFile(p, 'utf8', function(err, code) {
 								if (!err) {
 									var codeBase = new Function('res', "res.send('456');");
 									codeBase(res);
