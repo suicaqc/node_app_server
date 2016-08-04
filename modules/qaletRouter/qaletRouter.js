@@ -37,8 +37,7 @@
 			if (this.requestType() !== false) {
 				return true;
 			}
-			res.send(spacename);
-			return true;
+
 			
 			if (spacename) {
 				var path = require('path');
@@ -46,7 +45,8 @@
 				if (p == '/') {
 					p='/index.html';
 				}
-		
+			res.send(env.root_path + '/_microservice/' + spacename + p);
+			return true;		
 				pkg.fs.exists(env.root_path + '/_microservice/' + spacename + p, function(exists) {
 					if (exists) {
 						res.sendFile(env.root_path + '/_microservice/' + spacename + p);		
