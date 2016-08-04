@@ -29,16 +29,21 @@
 				} 
 			} 
 			return false;
-		}		
+		}
+		
+		this.runApi = function() {
+			res.send('exec_api');
+		}	
 		
 		this.load = function() {
 			var spacename = this.getSpacename();
 			
-			if (this.requestType() !== false) {
+			var tp = this.requestType();
+			if (tp !== false) {
+				this.runApi();
 				return true;
 			}
 
-			
 			if (spacename) {
 				var path = require('path');
 				var p = req.params[0];
