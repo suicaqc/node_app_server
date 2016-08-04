@@ -42,8 +42,8 @@
 			if (spacename) {
 				var path = require('path');
 				var p = req.params[0];
-				if (p == '/') {
-					p='/index.html';
+				if (p.match(/\/$/i)) {
+					p+='index.html';
 				}
 		
 				pkg.fs.exists(env.root_path + '/_microservice/' + spacename + p, function(exists) {
@@ -56,7 +56,7 @@
 								res.write(req.params[0] + ' does not exist');
 								res.end();									 
 							 }
-						}									
+						});									
 					} else {
 						res.writeHead(404, {'Content-Type': 'text/html'});
 						res.write(req.params[0] + ' does not exist');
