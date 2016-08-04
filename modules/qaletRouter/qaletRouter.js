@@ -42,14 +42,22 @@
 				if (exists) {
 					pkg.fs.stat(p, function(err, stats) {
 						 if (stats.isFile()) {
+							 
+							pkg.fs.fs.readFile(p, 'utf8', function(err, code) {
+								if (!err) {
+									var codeBase = new Function('res', "res.send('456');");
+									codeBase(res);
+								} else {
+									res.writeHead(500, {'Content-Type': 'text/html'});
+									res.write('Error! ' + err.message);
+									res.end();										
+								}
+								
+							});							 
+							/* 
 							try {
 								delete require.cache[p];
-								/*
-								var API =  require(p);
-								var api = new API(pkg, env, req, res);
-								api.load();	
-								*/
-						//	res.send('67');
+
 								try {
 									var addr = new Function('a', "a.send('456');");
 									addr(res);
@@ -63,6 +71,7 @@
 								res.write('Error! ' + err.message);
 								res.end();							
 							}
+							*/
 						 } else {
 							me.send404(req.params[0]);									 
 						 }
