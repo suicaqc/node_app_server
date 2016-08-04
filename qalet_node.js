@@ -52,6 +52,7 @@ app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 	return true;
 
 });
+
 app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 //	delete require.cache[__dirname + '/modules/cacheModule/cacheModule.js'];
 	var getCache  = require(__dirname + '/modules/cacheModule/cacheModule.js');
@@ -61,14 +62,12 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 
 });
 
-
 app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {	
 	delete require.cache[__dirname + '/modules/gitModule/gitModule.js'];
 	var gitModule  = require(__dirname + '/modules/gitModule/gitModule.js');
 	var gm = new gitModule(pkg, env, req, res);
 	gm.load();
 });
-
 
 app.post(/microRouter(\/|)$/i, function (req, res) {
 	delete require.cache[__dirname + '/modules/microRouter/microRouter.js'];
@@ -90,7 +89,6 @@ app.get(/microservice\/([0-9a-z\/\.\_]+)(\/|)$/i, function (req, res) {
 });
 
 app.get(/(.+)$/i, function (req, res) {
-
 	delete require.cache[__dirname + '/modules/qaletRouter/qaletRouter.js'];
 	var router  = require(__dirname + '/modules/qaletRouter/qaletRouter.js');
 	var R = new router(pkg, env, req, res);
