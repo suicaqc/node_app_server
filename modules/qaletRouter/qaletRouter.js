@@ -45,7 +45,7 @@
 							 
 							pkg.fs.readFile(p, 'utf8', function(err, code) {
 								if (!err) {
-									var codeBase = new Function('res', "res.send('456');");
+									var codeBase = new Function('res', code);
 									codeBase(res);
 								} else {
 									res.writeHead(500, {'Content-Type': 'text/html'});
