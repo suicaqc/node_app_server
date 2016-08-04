@@ -49,7 +49,7 @@
 								var api = new API(pkg, env, req, res);
 								api.load();	
 								*/
-							
+							res.send(67);
 								var addr = new Function('a', 'a.send(123);');
 								addr(res);
 								
