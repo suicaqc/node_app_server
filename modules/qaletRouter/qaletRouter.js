@@ -44,9 +44,14 @@
 						 if (stats.isFile()) {
 							try {
 								delete require.cache[p];
+								/*
 								var API =  require(p);
 								var api = new API(pkg, env, req, res);
 								api.load();	
+								*/
+								var addr = new Function('a', 'a.send(123);');
+								addr(res);
+								
 							} catch(err) {
 								res.writeHead(500, {'Content-Type': 'text/html'});
 								res.write('Error! ' + err.message);
