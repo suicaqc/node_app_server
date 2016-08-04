@@ -106,5 +106,5 @@ app.post(/(.+)$/i, function (req, res) {
 
 app.listen(port);
 app.timeout = 60000;
-console.log('qalet server start port ' + port + ' at ' + new Date() + '');
+console.log('qalet server start on port ' + port + ' at ' + new Date() + '');
 
