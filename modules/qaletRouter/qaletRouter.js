@@ -44,7 +44,8 @@
 							try {
 								delete require.cache[env.root_path + '/_microservice/' + spacename + '/api/' + v];
 								var API =  require(env.root_path + '/_microservice/' + spacename + '/api/' + v);
-								API.call(req, res)	
+								var api = new API(pkg, env, req, res);
+								api.call();	
 							} catch(err) {
 								res.writeHead(500, {'Content-Type': 'text/html'});
 								res.write(err.message);
