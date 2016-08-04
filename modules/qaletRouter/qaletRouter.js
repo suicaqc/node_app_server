@@ -55,6 +55,7 @@
 					}
 				});	
 			} else {
+				/*
 				var patt = new RegExp('\/amicroservice\/([0-9a-z\/\.\_]+)(\/|)$', 'i');
 				if (patt.test(req.params[0])) {
 					res,send(req.params[0]);
@@ -69,8 +70,9 @@
 						}
 					})		
 				} else {
+				*/	
 					res.send('Virtual service does not exist!');
-				}
+				//}
 				
 				
 				
