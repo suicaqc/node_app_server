@@ -24,7 +24,7 @@
 			if (req.params[0]) {
 				var v = req.params[0].match(patt);
 				if (v) {
-					return (v[1]);
+					return v[1];
 				} 
 			} 
 			return false;
