@@ -29,8 +29,13 @@
 			} 
 			return false;
 		}
-		
+		this.send404 = function(v) {
+			res.writeHead(404, {'Content-Type': 'text/html'});
+			res.write(v + ' does not exist');
+			res.end();		
+		}		
 		this.runApi = function(v) {
+			var me = this;
 			var spacename = this.getSpacename();
 			pkg.fs.exists(env.root_path + '/_microservice/' + spacename + '/api/' + v, function(exists) {
 				if (exists) {
@@ -38,20 +43,17 @@
 						 if (stats.isFile()) { 
 							res.sendFile(env.root_path + '/_microservice/' + spacename + '/api/' + v); 	
 						 } else {
-							res.writeHead(404, {'Content-Type': 'text/html'});
-							res.write(req.params[0] + ' does not exist');
-							res.end();									 
+							me.send404(req.params[0]);									 
 						 }
 					});									
 				} else {
-					res.writeHead(404, {'Content-Type': 'text/html'});
-					res.write(req.params[0] + ' does not exist');
-					res.end();						
+					me.send404(req.params[0]);						
 				} 
 			});	
 		}	
 		
 		this.load = function() {
+			var me = this;
 			var spacename = this.getSpacename();
 			
 			var tp = this.requestType();
@@ -73,15 +75,11 @@
 							 if (stats.isFile()) { 
 								res.sendFile(env.root_path + '/_microservice/' + spacename + p); 	
 							 } else {
-								res.writeHead(404, {'Content-Type': 'text/html'});
-								res.write(req.params[0] + ' does not exist');
-								res.end();									 
+								me.send404(req.params[0]);								 
 							 }
 						});									
 					} else {
-						res.writeHead(404, {'Content-Type': 'text/html'});
-						res.write(req.params[0] + ' does not exist');
-						res.end();						
+						me.send404(req.params[0]);						
 					} 
 				});	
 			} else {
