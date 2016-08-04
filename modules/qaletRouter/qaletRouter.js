@@ -45,7 +45,8 @@
 							  if (err) {
 								me.send404(req.params[0]);	
 							  } else {
-								  res.send(data+'niu');
+								  var foo = new Function (req, res, data);
+								  foo(req, res);
 							  }
 							});	
 						 } else {
