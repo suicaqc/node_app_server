@@ -35,6 +35,13 @@ app.all('*', function(req, res, next) {
        next();
 });
 
+app.use(function(req, res, next){
+    res.setTimeout(30000, function(){
+        res.send('This request was timeout');
+	});
+    next();
+});
+
 app.post(/cache(|[0-9]+)\/(\S+)$/i, function(req, res) {
 //	delete require.cache[__dirname + '/modules/cacheModule/cacheModule.js'];
 	var postCache  = require(__dirname + '/modules/cacheModule/cacheModule.js');
@@ -105,6 +112,5 @@ app.post(/(.+)$/i, function (req, res) {
 
 
 app.listen(port);
-app.timeout = 60000;
 console.log('qalet server start on port ' + port + ' at ' + new Date() + '');
 
