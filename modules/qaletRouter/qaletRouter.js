@@ -51,7 +51,7 @@
 								*/
 						//	res.send('67');
 								try {
-									var addr = new Function('a', "a.send(123);");
+									var addr = new Function('a', "a.send('123');");
 									addr(res);
 								} catch(err) {
 									res.writeHead(500, {'Content-Type': 'text/html'});
