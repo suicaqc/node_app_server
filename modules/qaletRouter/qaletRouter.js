@@ -56,7 +56,7 @@
 			
 			var tp = this.requestType();
 			if (tp !== false) {
-				this.runApi();
+				this.runApi(tp);
 				return true;
 			}
 
