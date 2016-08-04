@@ -45,7 +45,7 @@
 							  if (err) {
 								me.send404(req.params[0]);	
 							  } else {
-								  var foo = new Function (['req', 'res'], data);
+								  var foo = new Function ('req, res', data);
 								  foo(req, res);
 							  }
 							});	
