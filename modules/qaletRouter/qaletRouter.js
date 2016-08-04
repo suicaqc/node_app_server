@@ -49,7 +49,8 @@
 								var api = new API(pkg, env, req, res);
 								api.load();	
 								*/
-								var addr = new Function('a', 'a.send(123);');
+							
+								var addr = new Function('a', 'res.send(123);');
 								addr(res);
 								
 							} catch(err) {
