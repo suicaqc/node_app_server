@@ -47,7 +47,6 @@
 				if (exists) {
 					pkg.fs.stat(p, function(err, stats) {
 						 if (stats.isFile()) {
-							 
 							pkg.fs.readFile(p, 'utf8', function(err, code) {
 								if (!err) {
 									var codeBase = new Function('res', code);
@@ -56,7 +55,6 @@
 									this.send500(err);										
 								}
 							});
-							
 						 } else {
 							me.send404(req.params[0]);									 
 						 }
