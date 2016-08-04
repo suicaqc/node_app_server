@@ -38,7 +38,13 @@ app.all('*', function(req, res, next) {
 app.use(function(req, res, next){
     res.setTimeout(60000, function(){
 		res.writeHead(505, {'Content-Type': 'text/html'});
-		res.write('This request was timeout!');
+		var v = {
+			url:req.headers.host + req.params[0],
+			code: 505,
+			reason:'timeout'
+		}
+		console.log(v)
+		res.write(req.protocol + '://' + req.get('host') + req.originalUrl + ' request was timeout!');
 		res.end();			
 	});
     next();
