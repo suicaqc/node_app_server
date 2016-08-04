@@ -45,11 +45,12 @@
 				if (p == '/') {
 					p='/index.html';
 				}
-			res.send(env.root_path + '/_microservice/' + spacename + p);
-			return true;		
+		
 				pkg.fs.exists(env.root_path + '/_microservice/' + spacename + p, function(exists) {
 					if (exists) {
-						res.sendFile(env.root_path + '/_microservice/' + spacename + p);		
+						res.send('aaa');
+						
+						// res.sendFile(env.root_path + '/_microservice/' + spacename + p);		
 					} else {
 						res.writeHead(200, {'Content-Type': 'text/html'});
 						res.write(req.params[0] + ' does not exist');
