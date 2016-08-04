@@ -37,7 +37,9 @@ app.all('*', function(req, res, next) {
 
 app.use(function(req, res, next){
     res.setTimeout(60000, function(){
-        res.send('This request was timeout');
+		res.writeHead(505, {'Content-Type': 'text/html'});
+		res.write('This request was timeout!');
+		res.end();			
 	});
     next();
 });
