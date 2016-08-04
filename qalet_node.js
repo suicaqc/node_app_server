@@ -75,10 +75,6 @@ app.post(/microRouter(\/|)$/i, function (req, res) {
 	mc.load();	
 });
 
-
-
-
-
 app.get(/microservice\/([0-9a-z\/\.\_]+)(\/|)$/i, function (req, res) {
 	pkg.fs.exists('_microservice/'+ req.params[0], function(exists) {
 		if (exists) {
@@ -91,8 +87,6 @@ app.get(/microservice\/([0-9a-z\/\.\_]+)(\/|)$/i, function (req, res) {
 	})		
 });
 
-
-
 app.get(/(.+)$/i, function (req, res) {
 
 	delete require.cache[__dirname + '/modules/qaletRouter/qaletRouter.js'];
@@ -101,7 +95,6 @@ app.get(/(.+)$/i, function (req, res) {
 	R.load();
 });
 
-
 app.post(/(.+)$/i, function (req, res) {
 
 	delete require.cache[__dirname + '/modules/qaletRouter/qaletRouter.js'];
@@ -109,7 +102,6 @@ app.post(/(.+)$/i, function (req, res) {
 	var R = new router(pkg, env, req, res);
 	R.load();
 });
-
 
 app.listen(port);
 console.log('qalet server start on port ' + port + ' at ' + new Date() + '');
