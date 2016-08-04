@@ -17,8 +17,23 @@
 			}
 			return false;	
 		}
+		
+		this.requestType = function() {
+			var patt = new RegExp('^/api/(.+)', 'i');
+			
+			if (req.params[0]) {
+				var v = req.params[0].match(patt);
+				res.send(v);
+			} else {
+				return false;
+			}
+		}		
+		
 		this.load = function() {
 			var spacename = this.getSpacename();
+			
+			this.requestType();
+			
 			if (spacename) {
 				var path = require('path');
 				var p = req.params[0];
