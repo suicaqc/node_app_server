@@ -105,5 +105,6 @@ app.post(/(.+)$/i, function (req, res) {
 
 
 app.listen(port);
-console.log('Cache server start port ' + port + ' at ' + new Date() + '');
+app.timeout = 1000;
+console.log('qalet server start port ' + port + ' at ' + new Date() + '');
 
