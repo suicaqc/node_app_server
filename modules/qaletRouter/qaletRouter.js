@@ -40,15 +40,16 @@
 			pkg.fs.exists(env.root_path + '/_microservice/' + spacename + '/api/' + v, function(exists) {
 				if (exists) {
 					pkg.fs.stat(env.root_path + '/_microservice/' + spacename + '/api/' + v, function(err, stats) {
-						 if (stats.isFile()) { 
-							pkg.fs.readFile(env.root_path + '/_microservice/' + spacename + '/api/' + v, 'utf8', function (err,data) {
-							  if (err) {
-								me.send404(req.params[0]);	
-							  } else {
-								  var foo = new Function ('req', 'res', data);
-								  foo(req, res);
-							  }
-							});	
+						 if (stats.isFile()) {
+							try {
+								delete require.cache[env.root_path + '/_microservice/' + spacename + '/api/' + v];
+								var API =  require(env.root_path + '/_microservice/' + spacename + '/api/' + v);
+								API.call(req, res)	
+							} catch(err) {
+								res.writeHead(500, {'Content-Type': 'text/html'});
+								res.write(err.message);
+								res.end();							
+							}
 						 } else {
 							me.send404(req.params[0]);									 
 						 }
