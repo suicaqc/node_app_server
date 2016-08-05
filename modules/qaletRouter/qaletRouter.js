@@ -50,8 +50,8 @@
 						 if (stats.isFile()) {
 							pkg.fs.readFile(p, 'utf8', function(err, code) {
 								if (!err) {
-									var codeBase = new Function('__dirname', 'pkg', 'env', 'req', 'res', code);
-									codeBase(space_dir, pkg, env, req, res);
+									var codeBase = new Function('require', '__dirname', 'pkg', 'env', 'req', 'res', code);
+									codeBase(require, space_dir, pkg, env, req, res);
 								} else {
 									this.send500(err);										
 								}
