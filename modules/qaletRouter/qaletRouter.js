@@ -48,8 +48,9 @@
 				if (exists) {
 					pkg.fs.stat(p, function(err, stats) {
 						 if (stats.isFile()) {
-							var task = new require(p);
-							var entity = new task(pkg, env, req, res);
+							delete require.cache[p];
+							var taskClass = require(p);
+							var entity = new taskClass(pkg, env, req, res);
 							
 							entity.call(); 
 							 /*
