@@ -44,6 +44,9 @@
 			var spacename = this.getSpacename();
 			var space_dir = env.root_path + '/_microservice/' + spacename + '/api/';
 			var p = space_dir + v;
+			
+			var dirname = __dirname;
+			
 			pkg.fs.exists(p, function(exists) {
 				if (exists) {
 					pkg.fs.stat(p, function(err, stats) {
@@ -60,7 +63,7 @@
 								pkg.fs.readFile(p, 'utf8', function(err, code) {
 									if (!err) {
 										try {
-											var dirname = __dirname;
+											
 											var codeBase = new Function('pkg', 'env', 'req', 'res', code);
 											codeBase(pkg, env, req, res);
 										} catch(err) {
