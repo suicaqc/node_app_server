@@ -69,8 +69,8 @@
 												root_path:env.root_path,
 												space_path:space_dir
 											}
-											var codeBase = new Function('pkg', 'env', 'req', 'res', code);
-											codeBase( pkg, localenv, req, res);
+											var codeBase = new Function('require', 'pkg', 'env', 'req', 'res', code);
+											codeBase(require, pkg, localenv, req, res);
 										} catch(err) {
 											me.send500(err);
 										}
