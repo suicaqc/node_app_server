@@ -1,6 +1,6 @@
 
 (function () { 
-	 var dirname = "tttt";
+	
 	var obj =  function (pkg, env, req, res) {
 		this.getSpacename = function() {
 			var vhost = [];
@@ -62,6 +62,7 @@
 							
 								entity.call();
 							} catch(err) {
+								 var dirname = "tttt";
 								pkg.fs.readFile(p, 'utf8', function(err, code) {
 									if (!err) {
 										try {
