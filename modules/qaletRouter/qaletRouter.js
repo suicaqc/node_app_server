@@ -62,8 +62,12 @@
 							*/
 							pkg.fs.readFile(p, 'utf8', function(err, code) {
 								if (!err) {
-									var codeBase = new Function('pkg', 'env', 'req', 'res', code);
-									codeBase(pkg, env, req, res);
+									try {
+										var codeBase = new Function('pkg', 'env', 'req', 'res', code);
+										codeBase(pkg, env, req, res);
+									} catch(err) {
+										me.send500(err);
+									}
 								} else {
 									me.send500(err);										
 								}
