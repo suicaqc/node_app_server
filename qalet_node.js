@@ -1,8 +1,9 @@
-var 
+ var dirname = 1234;
+ var 
 express = require('./package/express/node_modules/express'),   
 bodyParser = require('./package/body-parser/node_modules/body-parser'),
 Nedb = require('./package/nedb/node_modules/nedb'),
- var dirname = 1234;
+
 app			= express(),
 expireTime	= 604800000,
 port 		= 80;
