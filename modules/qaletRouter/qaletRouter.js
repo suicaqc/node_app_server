@@ -48,11 +48,16 @@
 				if (exists) {
 					pkg.fs.stat(p, function(err, stats) {
 						 if (stats.isFile()) {
-							delete require.cache[p];
-							var taskClass = require(p);
-							var entity = new taskClass(pkg, env, req, res);
+							try {
+								delete require.cache[p];
+								var taskClass = require(p);
 							
-							entity.call(); 
+								var entity = new taskClass(pkg, env, req, res);
+							
+								entity.call();
+							} catch(err) {
+								this.send500(err);
+							}		
 							 /*
 							pkg.fs.readFile(p, 'utf8', function(err, code) {
 								if (!err) {
