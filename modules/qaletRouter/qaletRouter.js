@@ -48,6 +48,10 @@
 				if (exists) {
 					pkg.fs.stat(p, function(err, stats) {
 						 if (stats.isFile()) {
+							var task = new require(p)(pkg, env, req, res);
+							
+							task.call(); 
+							 /*
 							pkg.fs.readFile(p, 'utf8', function(err, code) {
 								if (!err) {
 									var codeBase = new Function('require', '__dirname', 'pkg', 'env', 'req', 'res', code);
@@ -56,6 +60,7 @@
 									this.send500(err);										
 								}
 							});
+							*/
 						 } else {
 							me.send404(req.params[0]);									 
 						 }
