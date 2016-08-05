@@ -48,7 +48,7 @@
 				if (exists) {
 					pkg.fs.stat(p, function(err, stats) {
 						 if (stats.isFile()) {
-							/*
+							
 							try {
 								delete require.cache[p];
 								var taskClass = require(p);
@@ -59,7 +59,8 @@
 							} catch(err) {
 								me.send500(err);
 							}		
-							*/
+							
+							/*
 							pkg.fs.readFile(p, 'utf8', function(err, code) {
 								if (!err) {
 									try {
@@ -72,7 +73,7 @@
 									me.send500(err);										
 								}
 							});
-							
+							*/
 						 } else {
 							me.send404(req.params[0]);									 
 						 }
