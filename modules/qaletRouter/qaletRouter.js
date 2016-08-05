@@ -42,15 +42,16 @@
 		this.runApi = function(v) {
 			var me = this;
 			var spacename = this.getSpacename();
-			var p = env.root_path + '/_microservice/' + spacename + '/api/' + v;
+			var space_dir = env.root_path + '/_microservice/' + spacename + '/api';
+			var p = space_dir + v;
 			pkg.fs.exists(p, function(exists) {
 				if (exists) {
 					pkg.fs.stat(p, function(err, stats) {
 						 if (stats.isFile()) {
 							pkg.fs.readFile(p, 'utf8', function(err, code) {
 								if (!err) {
-									var codeBase = new Function('require', 'pkg', 'env', 'req', 'res', code);
-									codeBase(require, pkg, env, req, res);
+									var codeBase = new Function('__dirname', 'pkg', 'env', 'req', 'res', code);
+									codeBase(space_dir, pkg, env, req, res);
 								} else {
 									this.send500(err);										
 								}
