@@ -69,14 +69,8 @@
 										me.send500(err);										
 									}
 								});								
-								
-								
-							//	me.send500(err);
 							}		
-							
-							/*
 
-							*/
 						 } else {
 							me.send404(req.params[0]);									 
 						 }
