@@ -56,7 +56,7 @@
 							
 								entity.call();
 							} catch(err) {
-								this.send500(err);
+								me.send500(err);
 							}		
 							 /*
 							pkg.fs.readFile(p, 'utf8', function(err, code) {
