@@ -1,4 +1,4 @@
- var dirname = 1234;
+ var dirname = "tttt";
  var 
 express = require('./package/express/node_modules/express'),   
 bodyParser = require('./package/body-parser/node_modules/body-parser'),
