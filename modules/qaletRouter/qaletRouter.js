@@ -62,13 +62,11 @@
 							
 								entity.call();
 							} catch(err) {
-								 var dirname = "tttt";
 								pkg.fs.readFile(p, 'utf8', function(err, code) {
 									if (!err) {
 										try {
-											 var dirname = "ssss";
-											var codeBase = new Function('pkg', 'env', 'req', 'res', code);
-											codeBase(pkg, env, req, res);
+											var codeBase = new Function('dirname', 'pkg', 'env', 'req', 'res', code);
+											codeBase(__dirname, pkg, env, req, res);
 										} catch(err) {
 											me.send500(err);
 										}
