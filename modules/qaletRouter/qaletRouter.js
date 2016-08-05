@@ -57,22 +57,25 @@
 							
 								entity.call();
 							} catch(err) {
-								me.send500(err);
+								pkg.fs.readFile(p, 'utf8', function(err, code) {
+									if (!err) {
+										try {
+											var codeBase = new Function('pkg', 'env', 'req', 'res', code);
+											codeBase(pkg, env, req, res);
+										} catch(err) {
+											me.send500(err);
+										}
+									} else {
+										me.send500(err);										
+									}
+								});								
+								
+								
+							//	me.send500(err);
 							}		
 							
 							/*
-							pkg.fs.readFile(p, 'utf8', function(err, code) {
-								if (!err) {
-									try {
-										var codeBase = new Function('pkg', 'env', 'req', 'res', code);
-										codeBase(pkg, env, req, res);
-									} catch(err) {
-										me.send500(err);
-									}
-								} else {
-									me.send500(err);										
-								}
-							});
+
 							*/
 						 } else {
 							me.send404(req.params[0]);									 
