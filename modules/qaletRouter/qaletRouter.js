@@ -1,4 +1,6 @@
+
 (function () { 
+	var dirname = 1234;
 	var obj =  function (pkg, env, req, res) {
 		this.getSpacename = function() {
 			var vhost = [];
@@ -45,7 +47,7 @@
 			var space_dir = env.root_path + '/_microservice/' + spacename + '/api/';
 			var p = space_dir + v;
 			
-			var dirname = __dirname;
+			
 			
 			pkg.fs.exists(p, function(exists) {
 				if (exists) {
