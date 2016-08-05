@@ -9,7 +9,6 @@ port 		= 80;
 			
 var env = {
 	root_path:__dirname
-	
 };			
 var pkg = {
 	crowdProcess:require('./package/crowdProcess/crowdProcess'),
