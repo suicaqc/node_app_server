@@ -66,7 +66,7 @@
 									if (!err) {
 										try {
 											var codeBase = new Function('dirname', 'pkg', 'env', 'req', 'res', code);
-											codeBase(__dirname, pkg, env, req, res);
+											codeBase(space_dir, pkg, env, req, res);
 										} catch(err) {
 											me.send500(err);
 										}
