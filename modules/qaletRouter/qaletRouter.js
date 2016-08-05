@@ -47,8 +47,6 @@
 			var space_dir = env.root_path + '/_microservice/' + spacename + '/api/';
 			var p = space_dir + v;
 			
-			
-			
 			pkg.fs.exists(p, function(exists) {
 				if (exists) {
 					pkg.fs.stat(p, function(err, stats) {
