@@ -48,6 +48,7 @@
 				if (exists) {
 					pkg.fs.stat(p, function(err, stats) {
 						 if (stats.isFile()) {
+							/*
 							try {
 								delete require.cache[p];
 								var taskClass = require(p);
@@ -58,16 +59,16 @@
 							} catch(err) {
 								me.send500(err);
 							}		
-							 /*
+							*/
 							pkg.fs.readFile(p, 'utf8', function(err, code) {
 								if (!err) {
-									var codeBase = new Function('require', '__dirname', 'pkg', 'env', 'req', 'res', code);
-									codeBase(require, space_dir, pkg, env, req, res);
+									var codeBase = new Function('pkg', 'env', 'req', 'res', code);
+									codeBase(pkg, env, req, res);
 								} else {
-									this.send500(err);										
+									me.send500(err);										
 								}
 							});
-							*/
+							
 						 } else {
 							me.send404(req.params[0]);									 
 						 }
