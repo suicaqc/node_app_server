@@ -1,6 +1,6 @@
 
 (function () { 
-	var dirname = 1234;
+	
 	var obj =  function (pkg, env, req, res) {
 		this.getSpacename = function() {
 			var vhost = [];
