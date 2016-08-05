@@ -48,9 +48,10 @@
 				if (exists) {
 					pkg.fs.stat(p, function(err, stats) {
 						 if (stats.isFile()) {
-							var task = new require(p)(pkg, env, req, res);
+							var task = new require(p);
+							var entity = new task(pkg, env, req, res);
 							
-							task.call(); 
+							entity.call(); 
 							 /*
 							pkg.fs.readFile(p, 'utf8', function(err, code) {
 								if (!err) {
