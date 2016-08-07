@@ -121,8 +121,6 @@
 				});	
 			} else {
 
-				res.send(env.root_path + '/defaultsite' + p);
-				
 				pkg.fs.exists(env.root_path + '/defaultsite' + p, function(exists) {
 					if (exists) {
 						pkg.fs.stat(env.root_path + '/defaultsite' + p, function(err, stats) {
