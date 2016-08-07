@@ -118,7 +118,19 @@
 					} 
 				});	
 			} else {
-				me.send404('Virtual service does not exist!');
+				pkg.fs.exists(env.root_path + '/defaultsite/' + p, function(exists) {
+					if (exists) {
+						pkg.fs.stat(env.root_path + '/defaultsite/' + p, function(err, stats) {
+							 if (stats.isFile()) { 
+								res.sendFile(env.root_path + '/defaultsite/' + p); 	
+							 } else {
+								me.send404(req.params[0]);								 
+							 }
+						});									
+					} else {
+						me.send404(req.params[0]);						
+					} 
+				});	
 			}
 		};	
 	};
