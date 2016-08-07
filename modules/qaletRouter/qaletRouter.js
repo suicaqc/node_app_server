@@ -121,13 +121,13 @@
 				});	
 			} else {
 
-				res.send(env.root_path + '/defaultsite/' + p);
+				res.send(env.root_path + '/defaultsite' + p);
 				
-				pkg.fs.exists(env.root_path + '/defaultsite/' + p, function(exists) {
+				pkg.fs.exists(env.root_path + '/defaultsite' + p, function(exists) {
 					if (exists) {
-						pkg.fs.stat(env.root_path + '/defaultsite/' + p, function(err, stats) {
+						pkg.fs.stat(env.root_path + '/defaultsite' + p, function(err, stats) {
 							 if (stats.isFile()) { 
-								res.sendFile(env.root_path + '/defaultsite/' + p); 	
+								res.sendFile(env.root_path + '/defaultsite' + p); 	
 							 } else {
 								me.send404(req.params[0]);								 
 							 }
