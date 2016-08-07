@@ -96,13 +96,15 @@
 				this.runApi(tp);
 				return true;
 			}
-
+			
+			var path = require('path');
+			var p = req.params[0];
+			if (p.match(/\/$/i)) {
+				p+='index.html';
+			}
+			
 			if (spacename) {
-				var path = require('path');
-				var p = req.params[0];
-				if (p.match(/\/$/i)) {
-					p+='index.html';
-				}
+
 		
 				pkg.fs.exists(env.root_path + '/_microservice/' + spacename + p, function(exists) {
 					if (exists) {
