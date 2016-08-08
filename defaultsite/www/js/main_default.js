@@ -7,7 +7,7 @@ app.controller('mainController', function($rootScope, $scope, $location, $http, 
 		$scope.progress_message = 'Apply git ...';
 		$('.qalet_loading_progress_bar').modal();
 		$http({
-		  method: 'POST',
+		  method: 'GET',
 		  url: '/_git/root',
 		  data: {opt:'signout'}
 		}).then(function successCallback(response) {
@@ -17,7 +17,7 @@ app.controller('mainController', function($rootScope, $scope, $location, $http, 
 				$('.qalet_loading_progress_bar').modal('hide');
 				$scope.popup('on', {
 					title:'Success done git update',
-					body: $sce.trustAsHtml('response')
+					body: $sce.trustAsHtml(response)
 				});						
 			});	
 		
