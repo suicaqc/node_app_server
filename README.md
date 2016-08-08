@@ -1,2 +1,2 @@
 # QALET
-## QALET microservices framework
+## A opensource cloud microservices framework project
