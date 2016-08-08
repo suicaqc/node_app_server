@@ -49,12 +49,12 @@
 							pkg.fs.exists('_microservice/'+ vhost[i].name, function(exists) {
 								if (exists) {
 									exec('cd ' + '_microservice/'+ vhost[i].name + '&& git pull', function(err, out, code) {
-										var msg = '<hr><b>Updated ' + vhost[i].name + ' repository</b>:<br>' + out;
+										var msg = '<b>Updated ' + vhost[i].name + ' repository</b>:<br>' + out;
 										cbk(msg.replace("\n", '<br>'));
 									});
 								} else {
 									exec('git clone ' + vhost[i].repository + ' ' + '_microservice/'+ vhost[i].name + '', function(err, out, code) {
-										var msg = '<hr><b>Clone ' +  vhost[i].name + ' repository</b>:<br>' + out;
+										var msg = '<b>Clone ' +  vhost[i].name + ' repository</b>:<br>' + out;
 										cbk(msg.replace("\n", '<br>'));
 									});
 								}
