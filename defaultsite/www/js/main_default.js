@@ -6,9 +6,17 @@ app.controller('mainController', function($rootScope, $scope, $location, $http, 
 	$scope.updateGit = function() {
 		$scope.progress_message = 'Apply git ...';
 		$('.qalet_loading_progress_bar').modal();
-		$timeout(function() {
+		$http({
+		  method: 'POST',
+		  url: '/api/auth.js',
+		  data: {opt:'signout'}
+		}).then(function successCallback(response) {
+			
 			$('.qalet_loading_progress_bar').modal('hide');
-		},3000);	
+		  }, function errorCallback(response) {
+				$('.qalet_loading_progress_bar').modal('hide');
+					
+			});	
 		
 	}
 	
