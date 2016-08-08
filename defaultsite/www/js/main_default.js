@@ -8,8 +8,7 @@ app.controller('mainController', function($rootScope, $scope, $location, $http, 
 		$('.qalet_loading_progress_bar').modal();
 		$http({
 		  method: 'GET',
-		  url: '/_git/root',
-		  data: {opt:'signout'}
+		  url: '/_git/root'
 		}).then(function successCallback(response) {
 			
 			$('.qalet_loading_progress_bar').modal('hide');
