@@ -2,7 +2,7 @@ var app = angular.module('qaletApp', [
 	'ngCookies',
 	'ngRoute'
 ]);
-app.controller('mainController', function($rootScope, $scope, $location, $http, $cookies, $timeout){ 
+app.controller('mainController', function($rootScope, $scope, $location, $http, $cookies, $timeout, $sce){ 
 	$scope.updateGit = function() {
 		$scope.progress_message = 'Apply git ...';
 		$('.qalet_loading_progress_bar').modal();
