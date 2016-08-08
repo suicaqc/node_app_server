@@ -13,12 +13,12 @@ body {
 
 }
 .footer {
-  /*position: absolute;*/
-  position:fixed;
+  position: absolute;
+ /* position:fixed;*/
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 80px;
+  /* Set the fixed height of the footer here 
+  height: 80px;*/
   background-color: #e0e0e0;
 }
 
