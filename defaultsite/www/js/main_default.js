@@ -12,12 +12,18 @@ app.controller('mainController', function($rootScope, $scope, $location, $http, 
 	}
 	
 	$scope.listServices = function() {
-		
+		$scope.popup('on', {
+			title:'Services',
+			body: 'Under construction'
+		});			
 		
 	}
 	
 	$scope.report = function() {
-		
+		$scope.popup('on', {
+			title:'Report',
+			body: 'Under construction'
+		});			
 		
 	}
 
