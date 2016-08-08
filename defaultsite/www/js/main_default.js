@@ -4,10 +4,11 @@ var app = angular.module('qaletApp', [
 ]);
 app.controller('mainController', function($rootScope, $scope, $location, $http, $cookies, $timeout){ 
 	$scope.updateGit = function() {
-		$scope.popup('on', {
-			title:'API Error',
-			body: 'response.data'
-		});		
+		$scope.progress_message = 'Apply git ...';
+		$('.qalet_loading_progress_bar').modal();
+		$timeout(function() {
+			$('.qalet_loading_progress_bar').modal('hide');
+		},3000);	
 		
 	}
 	
