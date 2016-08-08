@@ -14,7 +14,7 @@ app.controller('mainController', function($rootScope, $scope, $location, $http, 
 	$scope.listServices = function() {
 		$scope.popup('on', {
 			title:'Services',
-			body: 'Under construction'
+			body: 'Under construction<img src="/images/Under-Construction.gif">'
 		});			
 		
 	}
