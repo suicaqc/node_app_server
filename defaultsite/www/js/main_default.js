@@ -14,7 +14,7 @@ app.controller('mainController', function($rootScope, $scope, $location, $http, 
 			$('.qalet_loading_progress_bar').modal('hide');
 			$scope.popup('on', {
 				title:'Success done git update',
-				body: $sce.trustAsHtml(response.replace("\n", "=="))
+				body: $sce.trustAsHtml(response.replace(/\n/g, "<br />"))
 			});				
 		  }, function errorCallback(response) {
 				$('.qalet_loading_progress_bar').modal('hide');
