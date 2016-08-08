@@ -10,7 +10,7 @@ app.controller('mainController', function($rootScope, $scope, $location, $http, 
 		  method: 'GET',
 		  url: '/_git/root'
 		}).then(function successCallback(response) {
-			
+			console.log(response);
 			$('.qalet_loading_progress_bar').modal('hide');
 			$scope.popup('on', {
 				title:'Success done git update',
