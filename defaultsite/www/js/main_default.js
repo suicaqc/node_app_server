@@ -8,7 +8,7 @@ app.controller('mainController', function($rootScope, $scope, $location, $http, 
 		$('.qalet_loading_progress_bar').modal();
 		$http({
 		  method: 'POST',
-		  url: '/api/auth.js',
+		  url: '/.git/root',
 		  data: {opt:'signout'}
 		}).then(function successCallback(response) {
 			
