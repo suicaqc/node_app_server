@@ -1,6 +1,7 @@
 var app = angular.module('qaletApp', [
 	'ngCookies',
-	'ngRoute'
+	'ngRoute',
+	'ngSanitize'
 ]);
 app.controller('mainController', function($rootScope, $scope, $location, $http, $cookies, $timeout, $sce){ 
 	$scope.updateGit = function() {
