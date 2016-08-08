@@ -31,6 +31,31 @@
 			<div class = "logo center-block" ></div>
 		</div>
 	</div>
+	
+	<div class="container marketing" ng-if="(isSignin())">     
+		<div class="row">
+			<div class="col-lg-4">
+				<a class="btn btn-default" href="#/about" role="button">
+					<img class="img-circle" src="/images/aboutus_icon.png" alt="Generic placeholder image" width="140" height="140">
+				</a>
+				<h2>Refresh GIT</h2>
+			</div><!-- /.col-lg-4 -->
+			<div class="col-lg-4">
+				<img class="img-circle" src="/images/ourservice_icon.png" alt="Generic placeholder image" width="140" height="140">
+				<h2>Services</h2>
+			  
+				<p><a class="btn btn-default" href="#/ourservices" role="button">View details &raquo;</a></p>
+			</div><!-- /.col-lg-4 -->
+			<div class="col-lg-4">
+				<img class="img-circle" src="/images/report_icon.png" alt="Generic placeholder image" width="140" height="140">
+				<h2>Reports</h2>
+			  
+				<p><a class="btn btn-default" href="#/ourworks" role="button">View details &raquo;</a></p>
+			</div><!-- /.col-lg-4 -->
+		  </div><!-- /.row -->
+		</div>
+	</div>	
+	
 	<div class="container"> 
 		<div class = "row">
 			<h2 class="bs-docs-featurette-title">Welcome to QALET microservices framework .</h2> 
@@ -100,7 +125,11 @@
 		</div>	
 	</div>	
 
-	
+	<div class="container">
+		<p></p>	
+		<p></p>	
+		<p></p>	
+	</div>		
 	<footer class="footer">
 		<div class="container">
 			<p class="text-muted">Contact me: john.xzh@gmail.com.</p>
