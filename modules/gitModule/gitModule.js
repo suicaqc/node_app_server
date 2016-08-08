@@ -35,7 +35,7 @@
 			
 			var _f = {};
 			
-			_f['S_root'] = (function(i) {
+			_f['S_root'] = function(cbk) {
 				exec('git pull', function(err, out, code) {
 					var msg = '<hr><b>Updated root repository</b>:<br>' + out;
 					cbk(msg.replace("\n", '<br>'));
