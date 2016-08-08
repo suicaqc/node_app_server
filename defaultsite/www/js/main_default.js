@@ -8,7 +8,7 @@ app.controller('mainController', function($rootScope, $scope, $location, $http, 
 		$('.qalet_loading_progress_bar').modal();
 		$http({
 		  method: 'GET',
-		  url: '/_git/root'
+		  url: '/_git/'
 		}).then(function successCallback(response) {
 			$('.qalet_loading_progress_bar').modal('hide');
 			$scope.popup('on', {
