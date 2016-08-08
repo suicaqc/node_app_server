@@ -14,7 +14,7 @@ app.controller('mainController', function($rootScope, $scope, $location, $http, 
 	$scope.listServices = function() {
 		$scope.popup('on', {
 			title:'Services',
-			body: 'Under construction<img src="/images/Under-Construction.gif">'
+			body: 'Under construction<br/><img src="/images/Under-Construction.gif">'
 		});			
 		
 	}
@@ -22,7 +22,7 @@ app.controller('mainController', function($rootScope, $scope, $location, $http, 
 	$scope.report = function() {
 		$scope.popup('on', {
 			title:'Report',
-			body: 'Under construction'
+			body: 'Under construction<br/><img src="/images/Under-Construction.gif">'
 		});			
 		
 	}
