@@ -34,6 +34,14 @@
 			}
 			
 			var _f = {};
+			
+			_f['S_root'] = (function(i) {
+				exec('git pull', function(err, out, code) {
+					var msg = '<hr><b>Updated root repository</b>:<br>' + out;
+					cbk(msg.replace("\n", '<br>'));
+				});
+			}
+			
 			for (var i = 0; i < vhost.length; i++) {
 				if (!v || v == vhost[i].name) {
 					_f['S' + i] = (function(i) {
@@ -61,6 +69,9 @@
 				_f,
 				function(data) {
 					var s = '';
+					
+					s += ((data.results['S_root']) ? data.results['S_root'] : '')+'  ';
+					
 					for (var i = 0; i < vhost.length; i++) {
 						s += ((data.results['S'+i]) ? data.results['S'+i] : '')+'  ';
 					}	
