@@ -53,7 +53,7 @@
 			
 			var _f = {};
 			_f[0] = function(cbk) {
-				pkg.db.vhost.remove({ name: 'admin' }, function (err, docs) {
+				pkg.db.vhost.collection.remove({ name: 'admin' }, function (err, docs) {
 					cbk(false);
 				});	
 			};	
