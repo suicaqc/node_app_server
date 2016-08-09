@@ -37,18 +37,22 @@
 			}
 			
 			var _f = {};
-			res.send(_f);
-			return true;
-			/*
+
+			
 			for (var i = 0; i < vhost.length; i++) {
 				if (!v || v == vhost[i].name) {
 					_f['S' + i] = (function(i) {
-						pkg.db.vhost.insert(vhost, function (err) {
-							return function(cbk) {
-						});
+						return function(cbk) {
+							pkg.db.vhost.insert(vhost[i], function (err) {
+								return function(cbk) {
+							});
+						}
 					})(i);	
 				}		
 			}
+				res.send(_f);
+			return true;		
+			/*
 			CP.serial(
 				_f,
 				function(data) {
