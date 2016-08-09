@@ -37,7 +37,7 @@
 			}
 			
 			var _f = {};
-			res.send _f();
+			res.send(_f);
 			return true;
 			/*
 			for (var i = 0; i < vhost.length; i++) {
