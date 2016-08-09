@@ -35,8 +35,10 @@
 				res.end();
 				return false;	
 			}
+			pkg.db.vhost.insert(vhost, function (err) {
+				res.send(vhost);
+			});			
 			
-			res.send(vhost);
 			return true;
 			
 			var _f = {};
