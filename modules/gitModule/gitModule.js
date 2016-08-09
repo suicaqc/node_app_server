@@ -39,6 +39,7 @@
 			var _f = {};
 			res.send _f();
 			return true;
+			/*
 			for (var i = 0; i < vhost.length; i++) {
 				if (!v || v == vhost[i].name) {
 					_f['S' + i] = (function(i) {
@@ -62,7 +63,7 @@
 				},
 				3000000
 			);			
-			
+			*/
 			/*
 			pkg.db.vhost.insert(vhost, function (err) {
 				pkg.db.get_cache.find({ name: 'admin' }, function (err, docs) {
