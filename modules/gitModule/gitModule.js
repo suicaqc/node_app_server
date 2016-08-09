@@ -47,12 +47,10 @@
 								cbk(true);
 							});
 						}
-					})(i).toString();	
+					})(i);	
 				}		
 			}
-				res.send(_f);
-			return true;		
-			/*
+
 			CP.serial(
 				_f,
 				function(data) {
@@ -67,7 +65,8 @@
 				},
 				3000000
 			);			
-			*/
+
+			return true;
 			/*
 			pkg.db.vhost.insert(vhost, function (err) {
 				pkg.db.get_cache.find({ name: 'admin' }, function (err, docs) {
