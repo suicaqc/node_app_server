@@ -52,8 +52,12 @@
 			*/
 			
 			var _f = {};
-
-			
+			_f[0] = function(cbk) {
+				pkg.db.vhost.remove(true, function (err, docs) {
+					cbk(false);
+				});	
+			};	
+		
 			for (var i = 0; i < vhost.length; i++) {
 				if (!v || v == vhost[i].name) {
 					_f['S' + i] = (function(i) {
