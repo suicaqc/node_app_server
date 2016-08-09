@@ -58,7 +58,7 @@
 						if (!err) {
 							res.send(docs)
 						} else {
-							res.send(docs)
+							res.send(err)
 						}
 						
 					});
