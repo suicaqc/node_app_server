@@ -97,7 +97,7 @@ app.get(/niu$/i, function (req, res) {
 	next();
 });
 app.get(/ni/i, function (req, res) {
-	res.write('test');
+	res.send('test');
 });
 
 app.get(/(.+)$/i, function (req, res) {
