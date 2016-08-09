@@ -36,7 +36,7 @@
 				return false;	
 			}
 
-			
+			/*
 			pkg.db.vhost.insert(vhost, function (err) {
 				pkg.db.vhost.find({ name: 'admin' }, function (err, docs) {
 					if (!err) {
@@ -49,7 +49,7 @@
 			});			
 			
 			return true;
-
+			*/
 			
 			var _f = {};
 
