@@ -43,8 +43,7 @@
 						res.send(docs)
 					}
 					
-				}	
-				;
+				});
 			});			
 			
 			return true;
