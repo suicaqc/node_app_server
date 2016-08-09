@@ -44,7 +44,7 @@
 						pkg.db.vhost.insert(vhost, function (err) {
 							return function(cbk) {
 						});
-					)(i);	
+					})(i);	
 				}		
 			}
 			CP.serial(
