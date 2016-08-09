@@ -36,21 +36,6 @@
 				return false;	
 			}
 
-			/*
-			pkg.db.vhost.insert(vhost, function (err) {
-				pkg.db.vhost.find({ name: 'admin' }, function (err, docs) {
-					if (!err) {
-						res.send(docs)
-					} else {
-						res.send(docs)
-					}
-					
-				});
-			});			
-			
-			return true;
-			*/
-			
 			var _f = {};
 			_f[0] = function(cbk) {
 				pkg.db.vhost.remove({}, { multi: true }, function (err, docs) {
@@ -86,69 +71,7 @@
 			);			
 
 			return true;
-			/*
-			pkg.db.vhost.insert(vhost, function (err) {
-				pkg.db.get_cache.find({ name: 'admin' }, function (err, docs) {
-					if (!err) {
-						res.send(docs)
-					} else {
-						res.send(docs)
-					}
-					
-				});
-			});			
-			*/
-			return true;
-			
-			var _f = {};
-			
-			_f['S_root'] = function(cbk) {
-				exec('git pull', function(err, out, code) {
-					var msg = '<b>Updated root repository</b>:<br>' + out;
-					cbk(msg.replace("\n", '<br>'));
-				});
-			}
-			
-			for (var i = 0; i < vhost.length; i++) {
-				if (!v || v == vhost[i].name) {
-					_f['S' + i] = (function(i) {
-						return function(cbk) {
-							pkg.fs.exists('_microservice/'+ vhost[i].name, function(exists) {
-								if (exists) {
-									exec('cd ' + '_microservice/'+ vhost[i].name + '&& git pull', function(err, out, code) {
-										var msg = '<b>Updated ' + vhost[i].name + ' repository</b>:<br>' + out;
-										cbk(msg.replace("\n", '<br>'));
-									});
-								} else {
-									exec('git clone ' + vhost[i].repository + ' ' + '_microservice/'+ vhost[i].name + '', function(err, out, code) {
-										var msg = '<b>Clone ' +  vhost[i].name + ' repository</b>:<br>' + out;
-										cbk(msg.replace("\n", '<br>'));
-									});
-								}
-							});				
-						};
-
-					})(i);
-				}
-			}
-			
-			CP.serial(
-				_f,
-				function(data) {
-					var s = '';
-					
-					s += ((data.results['S_root']) ? data.results['S_root'] : '')+'  ';
-					
-					for (var i = 0; i < vhost.length; i++) {
-						s += ((data.results['S'+i]) ? data.results['S'+i] : '')+'  ';
-					}	
-					res.writeHead(200, {'Content-Type': 'text/html'});
-					res.write(s);
-					res.write('<hr>Done!');
-					res.end();
-				},
-				3000000
-			);
+		
 		}		
 		this.microService = function(v) {
 			var exec = require('child_process').exec;
