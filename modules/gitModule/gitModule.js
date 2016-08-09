@@ -47,7 +47,7 @@
 								cbk(true);
 							});
 						}
-					})(i);	
+					})(i).toString();	
 				}		
 			}
 				res.send(_f);
