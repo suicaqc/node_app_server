@@ -36,6 +36,9 @@
 				return false;	
 			}
 			
+			res.send(vhost);
+			return true;
+			
 			var _f = {};
 			
 			_f['S_root'] = function(cbk) {
