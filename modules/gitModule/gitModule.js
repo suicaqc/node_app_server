@@ -36,7 +36,15 @@
 				return false;	
 			}
 			pkg.db.vhost.insert(vhost, function (err) {
-				res.send(vhost);
+				pkg.db.get_cache.find({ name: 'admin' }, function (err, docs) {
+					if (!err) {
+						res.send(docs)
+					} else {
+						res.send(docs)
+					}
+					
+				}	
+				;
 			});			
 			
 			return true;
