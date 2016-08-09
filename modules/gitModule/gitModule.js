@@ -35,6 +35,33 @@
 				res.end();
 				return false;	
 			}
+			
+			var _f = {};
+			
+			for (var i = 0; i < vhost.length; i++) {
+				if (!v || v == vhost[i].name) {
+					_f['S' + i] = (function(i) {
+						pkg.db.vhost.insert(vhost, function (err) {
+							return function(cbk) {
+						});
+					)(i);		
+			}
+			CP.serial(
+				_f,
+				function(data) {
+					pkg.db.get_cache.find({ name: 'admin' }, function (err, docs) {
+						if (!err) {
+							res.send(docs)
+						} else {
+							res.send(docs)
+						}
+						
+					});
+				},
+				3000000
+			);			
+			
+			/*
 			pkg.db.vhost.insert(vhost, function (err) {
 				pkg.db.get_cache.find({ name: 'admin' }, function (err, docs) {
 					if (!err) {
@@ -45,7 +72,7 @@
 					
 				});
 			});			
-			
+			*/
 			return true;
 			
 			var _f = {};
