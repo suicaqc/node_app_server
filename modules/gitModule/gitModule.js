@@ -44,7 +44,7 @@
 					_f['S' + i] = (function(i) {
 						return function(cbk) {
 							pkg.db.vhost.insert(vhost[i], function (err) {
-								return function(cbk) {
+								cbk(true);
 							});
 						}
 					})(i);	
