@@ -53,7 +53,7 @@
 			
 			var _f = {};
 			_f[0] = function(cbk) {
-				pkg.db.vhost.remove({ name: 'admin' }, { multi: true }, function (err, docs) {
+				pkg.db.vhost.remove({}, { multi: true }, function (err, docs) {
 					cbk(false);
 				});	
 			};	
