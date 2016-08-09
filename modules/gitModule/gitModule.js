@@ -35,6 +35,21 @@
 				res.end();
 				return false;	
 			}
+
+			
+			pkg.db.vhost.insert(vhost, function (err) {
+				pkg.db.vhost.find({ name: 'admin' }, function (err, docs) {
+					if (!err) {
+						res.send(docs)
+					} else {
+						res.send(docs)
+					}
+					
+				});
+			});			
+			
+			return true;
+
 			
 			var _f = {};
 
@@ -54,7 +69,7 @@
 			CP.serial(
 				_f,
 				function(data) {
-					pkg.db.get_cache.find({ name: 'admin' }, function (err, docs) {
+					pkg.db.vhost.find({ name: 'admin' }, function (err, docs) {
 						if (!err) {
 							res.send(docs)
 						} else {
