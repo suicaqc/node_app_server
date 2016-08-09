@@ -93,6 +93,13 @@ app.get(/microservice\/([0-9a-z\/\.\_]+)(\/|)$/i, function (req, res) {
 	})		
 });
 
+app.get(/niu$/i, function (req, res) {
+	next();
+});
+app.get(/ni$/i, function (req, res) {
+	res.write('test');
+});
+
 app.get(/(.+)$/i, function (req, res) {
 	delete require.cache[__dirname + '/modules/qaletRouter/qaletRouter.js'];
 	var router  = require(__dirname + '/modules/qaletRouter/qaletRouter.js');
