@@ -70,10 +70,9 @@
 									cbk(true);
 								});
 							} else if (
-								docs[0]['domain'] != vhost[i]['domain'] && docs[0]['repository'] != vhost[i]['repository'] &&
+								docs[0]['domain'] != vhost[i]['domain'] || docs[0]['repository'] != vhost[i]['repository'] ||
 								docs[0]['autopull'] != vhost[i]['autopull'] 
 							) {
-
 								pkg.db.vhost.remove({ "name": vhost[i]['name']}, { multi: true }, function (err) {
 									cbk(false);
 								});						  
@@ -88,38 +87,7 @@
 				
 
 			}
-			/*
-			_f[0] = function(cbk) {
 
-				
-				pkg.db.vhost.remove({}, { multi: true }, function (err, docs) {
-					cbk(false);
-				});	
-
-			};		
-			_f[1] = function(cbk) {
-				if (env.vhost_cnt > 100) {
-					pkg.db.vhost.persistence.persistCachedDatabase(function() {
-						cbk(false);
-					});	
-					env.vhost_cnt = 1;
-				} else {
-					env.vhost_cnt++;
-					cbk(false);
-				}
-			};		
-			for (var i = 0; i < vhost.length; i++) {
-				if (!v || v == vhost[i].name) {
-					_f['S' + i] = (function(i) {
-						return function(cbk) {
-							pkg.db.vhost.insert(vhost[i], function (err) {
-								cbk(true);
-							});
-						}
-					})(i);	
-				}		
-			}
-			*/
 			CP.serial(
 				_f,
 				function(data) {
