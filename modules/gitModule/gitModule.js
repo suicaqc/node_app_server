@@ -22,7 +22,7 @@
 			}			
 
 		};	
-		this.vhost = function(v) {
+		this.vhost = function(callback) {
 			var exec = require('child_process').exec;
 			var CP = new pkg.crowdProcess();
 
@@ -85,9 +85,9 @@
 				function(data) {
 					pkg.db.vhost.find({}, function (err, docs) {
 						if (!err) {
-							res.send(docs)
+							callback(docs)
 						} else {
-							res.send(err)
+							callback(err)
 						}
 						
 					});
