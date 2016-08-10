@@ -45,8 +45,6 @@
 				
 				_f['D' + i] = (function(i) {
 					return function(cbk){
-						cbk(true);
-						
 						pkg.db.vhost.find({ "name": vhost[i]['name']}, function (err, docs) {
 							if (!docs || !docs[0]) {
 								cbk(true);
