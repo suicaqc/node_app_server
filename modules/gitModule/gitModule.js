@@ -26,7 +26,7 @@
 			var exec = require('child_process').exec;
 			var CP = new pkg.crowdProcess();
 
-			if (!env.vhost_cnt)  env.vhost_cnt = 0;
+			if (!env.vhost_cnt)  env.vhost_cnt = 1;
 			
 			
 			try {
@@ -51,7 +51,7 @@
 					pkg.db.vhost.persistence.persistCachedDatabase(function() {
 						cbk(false);
 					});	
-					env.vhost_cnt = 0;
+					env.vhost_cnt = 1;
 				} else {
 					env.vhost_cnt++;
 				}
