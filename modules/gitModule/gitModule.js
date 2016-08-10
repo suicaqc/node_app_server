@@ -27,7 +27,7 @@
 			var CP = new pkg.crowdProcess();
 
 			if (!env.vhost_cnt)  env.vhost_cnt = 0;
-			env.vhost_cnt++;
+			
 			
 			try {
 				delete require.cache[env.root_path + '/microservice.config.json'];
@@ -47,12 +47,13 @@
 
 			};	
 			_f[1] = function(cbk) {
-				if (env.vhost_cnt < 100) {
+				if (env.vhost_cnt > 100) {
 					pkg.db.vhost.persistence.persistCachedDatabase(function() {
 						cbk(false);
-					});					
-				} else {
+					});	
 					env.vhost_cnt = 0;
+				} else {
+					env.vhost_cnt++;
 				}
 			};		
 			for (var i = 0; i < vhost.length; i++) {
