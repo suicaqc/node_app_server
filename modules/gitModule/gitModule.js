@@ -25,6 +25,9 @@
 		this.vhost = function(v) {
 			var exec = require('child_process').exec;
 			var CP = new pkg.crowdProcess();
+
+			if (!env.vhost_cnt)  env.vhost_cnt = 0;
+			env.vhost_cnt++;
 			
 			try {
 				delete require.cache[env.root_path + '/microservice.config.json'];
@@ -44,10 +47,13 @@
 
 			};	
 			_f[1] = function(cbk) {
-				pkg.db.vhost.persistence.persistCachedDatabase(function() {
-					cbk(false);
-				});
-				
+				if (env.vhost_cnt < 1000) {
+					pkg.db.vhost.persistence.persistCachedDatabase(function() {
+						cbk(false);
+					});					
+				} else {
+					env.vhost_cnt = 0;
+				}
 			};		
 			for (var i = 0; i < vhost.length; i++) {
 				if (!v || v == vhost[i].name) {
@@ -64,8 +70,6 @@
 			CP.serial(
 				_f,
 				function(data) {
-					if (!env.cnt)  env.cnt = 0;
-					env.cnt++;
 					res.send(env);
 					return true;
 					pkg.db.vhost.find({ name: 'admin' }, function (err, docs) {
