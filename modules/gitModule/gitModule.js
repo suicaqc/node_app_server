@@ -72,8 +72,6 @@
 			CP.serial(
 				_f,
 				function(data) {
-					res.send(env);
-					return true;
 					pkg.db.vhost.find({ name: 'admin' }, function (err, docs) {
 						if (!err) {
 							res.send(docs)
