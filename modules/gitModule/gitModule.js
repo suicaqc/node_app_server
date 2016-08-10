@@ -99,16 +99,17 @@
 		
 		}	
 		this.microService = function(v) {
-
-			this.vhost(
+			var me = this;
+			me.vhost(
 				function(data) {
-					res.send(data);
+					me.pull = function(vhost, v)
+				//	res.send(data);
 				}
 				
 			)
 			
 		}	
-		this.pull = function(v) {
+		this.pull = function(vhost, v) {
 			var exec = require('child_process').exec;
 			var CP = new pkg.crowdProcess();
 			
