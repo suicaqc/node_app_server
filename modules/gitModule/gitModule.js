@@ -46,9 +46,11 @@
 				_f['D' + i] = (function(i) {
 					return function(cbk){
 						cbk(true);
-						/*
+						
 						pkg.db.vhost.find({ "name": vhost[i]['name']}, function (err, docs) {
-							if (
+							if (!docs || !docs[0]) {
+								cbk(true);
+							} else if (
 								(docs) && (docs[0]) && 
 								docs[0]['domain'] != vhost[i]['domain'] && docs[0]['repository'] != vhost[i]['repository'] &&
 								docs[0]['autopull'] != vhost[i]['autopull'] 
@@ -61,13 +63,14 @@
 								cbk(true);
 							}
 						});	
-						*/	
+							
 					}
 					
 				})(i);
 				
 
 			}
+			/*
 			_f[0] = function(cbk) {
 
 				
@@ -98,13 +101,13 @@
 					})(i);	
 				}		
 			}
-
+			*/
 			CP.serial(
 				_f,
 				function(data) {
 					pkg.db.vhost.find({}, function (err, docs) {
 						if (!err) {
-							res.send(docs)
+							res.send(data)
 						} else {
 							res.send(err)
 						}
