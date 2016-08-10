@@ -40,7 +40,37 @@
 			}
 
 			var _f = {};
+			
+			for (var i = 0; i < vhost.length; i++) {
+				
+				_f['D' + i] = (function(i) {
+					return function(cbk){
+						pkg.db.vhost.find({ "name": vhost[i]['name']}, function (err, docs) {
+							if (
+								(docs) && (docs[0]) && 
+								docs[0]['domain'] != vhost[i]['domain'] && docs[0]['repository'] != vhost[i]['repository'] &&
+								docs[0]['autopull'] != vhost[i]['autopull'] 
+							) {
+
+								pkg.db.vhost.remove({ "name": vhost[i]['name']}, { multi: true }, function (err) {
+									cbk(false);
+								});						  
+							} else {
+								cbk(true);
+							}
+						});						
+					}
+					
+				}；	
+				
+
+			}
+							
+			
+			
 			_f[0] = function(cbk) {
+
+				
 				pkg.db.vhost.remove({}, { multi: true }, function (err, docs) {
 					cbk(false);
 				});	
