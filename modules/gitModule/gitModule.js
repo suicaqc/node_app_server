@@ -44,9 +44,8 @@
 
 			};	
 			_f[1] = function(cbk) {
-				pkg.db.vhost.persistence.compactDatafile(function (err, docs) {
-					cbk(false);
-				});
+				pkg.db.vhost.persistence.compactDatafile();
+				cbk(false);
 			};		
 			for (var i = 0; i < vhost.length; i++) {
 				if (!v || v == vhost[i].name) {
