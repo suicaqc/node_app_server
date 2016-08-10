@@ -125,7 +125,7 @@
 				function(data) {
 					pkg.db.vhost.find({}, function (err, docs) {
 						if (!err) {
-							res.send(data)
+							res.send(docs)
 						} else {
 							res.send(err)
 						}
