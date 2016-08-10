@@ -97,8 +97,11 @@
 
 			return true;
 		
-		}		
+		}	
 		this.microService = function(v) {
+			res.send(this.vhost());
+		}	
+		this.pull = function(v) {
 			var exec = require('child_process').exec;
 			var CP = new pkg.crowdProcess();
 			
