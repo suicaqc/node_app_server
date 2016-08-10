@@ -102,14 +102,14 @@
 			var me = this;
 			me.vhost(
 				function(data) {
-					me.pull = function(vhost, v)
+					me.gitPull(vhost, v)
 				//	res.send(data);
 				}
 				
 			)
 			
 		}	
-		this.pull = function(vhost, v) {
+		this.gitPull = function(vhost, v) {
 			var exec = require('child_process').exec;
 			var CP = new pkg.crowdProcess();
 			
