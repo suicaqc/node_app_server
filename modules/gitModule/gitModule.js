@@ -40,28 +40,7 @@
 			}
 
 			var _f = {};
-			/*
-			_f[0] = function(cbk) {
 
-				
-				pkg.db.vhost.remove({}, { multi: true }, function (err, docs) {
-					cbk(false);
-				});	
-
-			};
-			*/	
-			_f[1] = function(cbk) {
-				if (env.vhost_cnt > 0) {
-					pkg.db.vhost.persistence.persistCachedDatabase(function() {
-						cbk(false);
-					});	
-					env.vhost_cnt = 1;
-				} else {
-					env.vhost_cnt++;
-					cbk(false);
-				}
-			};	
-				
 			for (var i = 0; i < vhost.length; i++) {
 				
 				_f['D' + i] = (function(i) {
@@ -89,7 +68,18 @@
 				
 
 			}
-
+			_f['E'] = function(cbk) {
+				if (env.vhost_cnt > 100) {
+					pkg.db.vhost.persistence.persistCachedDatabase(function() {
+						cbk(false);
+					});	
+					env.vhost_cnt = 1;
+				} else {
+					env.vhost_cnt++;
+					cbk(false);
+				}
+			};	
+				
 			CP.serial(
 				_f,
 				function(data) {
