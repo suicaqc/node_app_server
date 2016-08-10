@@ -64,6 +64,8 @@
 			CP.serial(
 				_f,
 				function(data) {
+					if (!env.cnt)  env.cnt = 0;
+					env.cnt++;
 					res.send(env);
 					return true;
 					pkg.db.vhost.find({ name: 'admin' }, function (err, docs) {
