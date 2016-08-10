@@ -60,7 +60,7 @@
 				}
 			};	
 				
-			for (var i = 1000; i < vhost.length; i++) {
+			for (var i = 0; i < vhost.length; i++) {
 				
 				_f['D' + i] = (function(i) {
 					return function(cbk){
