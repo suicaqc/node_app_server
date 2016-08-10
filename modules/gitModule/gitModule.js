@@ -65,15 +65,7 @@
 				
 
 			}
-
-			_f[0] = function(cbk) {
-
-				
-				pkg.db.vhost.remove({}, { multi: true }, function (err, docs) {
-					cbk(false);
-				});	
-
-			};	
+	
 			_f[1] = function(cbk) {
 				if (env.vhost_cnt > 100) {
 					pkg.db.vhost.persistence.persistCachedDatabase(function() {
@@ -100,7 +92,7 @@
 			CP.serial(
 				_f,
 				function(data) {
-					pkg.db.vhost.find({ name: 'admin' }, function (err, docs) {
+					pkg.db.vhost.find({}, function (err, docs) {
 						if (!err) {
 							res.send(docs)
 						} else {
