@@ -40,11 +40,13 @@
 			}
 
 			var _f = {};
-			/*
+			
 			for (var i = 0; i < vhost.length; i++) {
 				
 				_f['D' + i] = (function(i) {
 					return function(cbk){
+						cbk(true);
+						/*
 						pkg.db.vhost.find({ "name": vhost[i]['name']}, function (err, docs) {
 							if (
 								(docs) && (docs[0]) && 
@@ -58,13 +60,14 @@
 							} else {
 								cbk(true);
 							}
-						});						
+						});	
+						*/	
 					}
 					
 				})(i)；	
 				
 
-			}*/
+			}
 			_f[0] = function(cbk) {
 
 				
