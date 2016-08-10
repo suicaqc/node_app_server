@@ -40,6 +40,7 @@
 			}
 
 			var _f = {};
+			/*
 			_f[0] = function(cbk) {
 
 				
@@ -47,7 +48,8 @@
 					cbk(false);
 				});	
 
-			};		
+			};
+			*/	
 			_f[1] = function(cbk) {
 				if (env.vhost_cnt > 0) {
 					pkg.db.vhost.persistence.persistCachedDatabase(function() {
