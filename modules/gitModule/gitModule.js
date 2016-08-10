@@ -99,6 +99,8 @@
 		
 		}	
 		this.microService = function(v) {
+			res.send(v);
+			return false;
 			this.vhost(
 				function() {
 					res.send(v);
