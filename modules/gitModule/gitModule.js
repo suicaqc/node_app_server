@@ -99,7 +99,10 @@
 		
 		}	
 		this.microService = function(v) {
-			res.send(this.vhost());
+			this.vhost(
+				res.send(v);
+			)
+			
 		}	
 		this.pull = function(v) {
 			var exec = require('child_process').exec;
