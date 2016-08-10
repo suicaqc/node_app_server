@@ -66,9 +66,10 @@
 					return function(cbk){
 						pkg.db.vhost.find({ "name": vhost[i]['name']}, function (err, docs) {
 							if (!docs || !docs[0]) {
-								cbk(true);
+								pkg.db.vhost.insert(vhost[i], function (err) {
+									cbk(true);
+								});
 							} else if (
-								(docs) && (docs[0]) && 
 								docs[0]['domain'] != vhost[i]['domain'] && docs[0]['repository'] != vhost[i]['repository'] &&
 								docs[0]['autopull'] != vhost[i]['autopull'] 
 							) {
