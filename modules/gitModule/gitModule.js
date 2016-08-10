@@ -47,7 +47,7 @@
 
 			};	
 			_f[1] = function(cbk) {
-				if (env.vhost_cnt < 1000) {
+				if (env.vhost_cnt < 100) {
 					pkg.db.vhost.persistence.persistCachedDatabase(function() {
 						cbk(false);
 					});					
