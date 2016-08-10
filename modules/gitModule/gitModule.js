@@ -112,7 +112,7 @@
 		this.gitPull = function(vhost, v) {
 			var exec = require('child_process').exec;
 			var CP = new pkg.crowdProcess();
-			
+			/*
 			try {
 				delete require.cache[env.root_path + '/microservice.config.json'];
 				var vhost =  require(env.root_path + '/microservice.config.json');
@@ -122,7 +122,7 @@
 				res.end();
 				return false;	
 			}
-			
+			*/
 			var _f = {};
 			
 			_f['S_root'] = function(cbk) {
