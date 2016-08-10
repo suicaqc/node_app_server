@@ -54,6 +54,7 @@
 					env.vhost_cnt = 1;
 				} else {
 					env.vhost_cnt++;
+					cbk(false);
 				}
 			};		
 			for (var i = 0; i < vhost.length; i++) {
