@@ -59,7 +59,9 @@
 								docs[0]['autopull'] != vhost[i]['autopull'] 
 							) {
 								pkg.db.vhost.remove({ "name": vhost[i]['name']}, { multi: true }, function (err) {
-									cbk(false);
+									pkg.db.vhost.insert(vhost[i], function (err) {
+										cbk(true);
+									});
 								});						  
 							} else {
 								cbk(true);
