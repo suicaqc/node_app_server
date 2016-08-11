@@ -1,6 +1,7 @@
 (function () { 
 	var obj =  function (pkg, env, req, res) {
 		this.load = function(cmd, spacename) {
+			var me = this;
 			switch(cmd) {
 				case 'root':
 					this.root(false);
@@ -15,7 +16,8 @@
 					this.microService('');
 					break;				
 				default:
-					this.microService('');
+					me.send404(req.params[0]);
+				//	this.microService('');
 			}			
 
 		};	
