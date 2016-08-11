@@ -102,7 +102,7 @@ app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {
 	gm.load();
 });
 */
-			var gitP = req.params[0].match(/_git\/(\/||\/.+)$/i);
+			var gitP = req.params[0].match(/_git(\/||\/.+)$/i);
 			if (gitP) {
 				res.send(req.params[0]+'----');
 				return true;
