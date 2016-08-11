@@ -33,6 +33,7 @@
 		}	
 
 		this.showList = function() {
+			var me = this;
 			me.vhost(
 				function(vhost) {
 					res.send(vhost);
