@@ -10,7 +10,7 @@
 					this.root(true);
 					break;					
 				case 'reset':
-					this.reset();
+					this.reset((spacename)?spacename:'');
 					break;							
 				case '':
 					this.microService((spacename)?spacename:'');
@@ -165,7 +165,7 @@
 				3000000
 			);
 		}
-		this.reset = function() {
+		this.reset = function(v) {
 			var me = this;
 			var exec = require('child_process').exec;
 			exec('rm -fr _microservice', function(err, out, code) {
