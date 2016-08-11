@@ -16,11 +16,16 @@
 					this.microService('');
 					break;				
 				default:
-					me.send404(req.params[0]);
+					res.send404(req.params[0]);
 				//	this.microService('');
 			}			
 
 		};	
+		this.send404 = function(v) {
+			res.writeHead(404, {'Content-Type': 'text/html'});
+			res.write(v + ' does not exist');
+			res.end();		
+		}			
 		this.vhost = function(callback) {
 			var exec = require('child_process').exec;
 			var CP = new pkg.crowdProcess();
