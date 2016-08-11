@@ -1,7 +1,7 @@
 (function () { 
 	var obj =  function (pkg, env, req, res) {
 		this.load = function(cmd, spacename) {
-			switch(v) {
+			switch(cmd) {
 				case 'root':
 					this.root(false);
 					break;
@@ -15,7 +15,7 @@
 					this.microService('');
 					break;				
 				default:
-					this.microService(v);
+					this.microService('');
 			}			
 
 		};	
