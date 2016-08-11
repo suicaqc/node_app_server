@@ -101,7 +101,7 @@
 		this.microService = function(v) {
 			var me = this;
 			me.vhost(
-				function(data) {
+				function(vhost) {
 					me.gitPull(vhost, v)
 				//	res.send(data);
 				}
