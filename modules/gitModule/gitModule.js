@@ -14,7 +14,12 @@
 					break;							
 				case '':
 					this.microService((spacename)?spacename:'');
-					break;				
+					break;
+
+				case 'list':
+					this.showList();
+					break;	
+					
 				default:
 					me.send404(req.params[0]);
 				//	this.microService('');
@@ -25,7 +30,17 @@
 			res.writeHead(404, {'Content-Type': 'text/html'});
 			res.write(v + ' does not exist');
 			res.end();		
-		}			
+		}	
+
+		this.showList = function() {
+			me.vhost(
+				function(vhost) {
+					res.send(vhost);
+				}
+				
+			)	
+		}	
+		
 		this.vhost = function(callback) {
 			var exec = require('child_process').exec;
 			var CP = new pkg.crowdProcess();
