@@ -120,7 +120,8 @@
 					} 
 				});	
 			} else {
-
+				me.send404(req.params[0]);
+				return false;
 				pkg.fs.exists(env.root_path + '/defaultsite/www' + p, function(exists) {
 					if (exists) {
 						pkg.fs.stat(env.root_path + '/defaultsite/www' + p, function(err, stats) {
