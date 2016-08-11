@@ -94,7 +94,7 @@
 			var me = this;
 			var spacename = this.getSpacename();
 
-			vae exp = /_git(\/||\/.+)$/i;	
+			var exp = new RegExp('/_git');	
 /*
 app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {	
 	delete require.cache[__dirname + '/modules/gitModule/gitModule.js'];
@@ -103,12 +103,12 @@ app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {
 	gm.load();
 });
 */
-			/*
-			if (exp.test(req.params[0])) {
+			
+			if (exp.test(req.params[0]) {
 				res.send(req.params[0]+'----');
 				return true;
 			}
-			*/
+			
 			var tp = this.requestType();
 			if (tp !== false) {
 				this.runApi(tp);
