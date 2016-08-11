@@ -101,8 +101,9 @@ app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {
 	var gm = new gitModule(pkg, env, req, res);
 	gm.load();
 });
-*/
-			var gitP = req.params[0].match(/_git(\/||\/.+)$/i);
+*/			
+			var expR = new RegExp('/_git(\/||\/.+)$/i')
+			var gitP = req.params[0].match(expR);
 			if (gitP) {
 				res.send(req.params[0]+'----');
 				return true;
