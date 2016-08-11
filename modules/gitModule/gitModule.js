@@ -10,9 +10,6 @@
 					break;					
 				case 'reset':
 					this.reset();
-					break;	
-				case 'vhost':
-					this.vhost();
 					break;							
 				case '':
 					this.microService('');
