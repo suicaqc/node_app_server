@@ -104,7 +104,7 @@ app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {
 });
 */
 			
-			if (exp.test(req.params[0]){
+			if (exp.test(req.params[0])) {
 				res.send(req.params[0]+'----');
 				return true;
 			}
