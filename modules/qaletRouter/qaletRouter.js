@@ -94,7 +94,6 @@
 			var me = this;
 			var spacename = this.getSpacename();
 
-			var exp = new RegExp('/_git');	
 /*
 app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {	
 	delete require.cache[__dirname + '/modules/gitModule/gitModule.js'];
@@ -103,8 +102,8 @@ app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {
 	gm.load();
 });
 */
-			
-			if (exp.test(req.params[0])) {
+			var gitP = req.params[0].match(/_git\/(|[0-9a-z]+)$/i);
+			if (gitP) {
 				res.send(req.params[0]+'----');
 				return true;
 			}
