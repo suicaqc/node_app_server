@@ -1,6 +1,9 @@
 (function () { 
 	
 	var obj =  function (pkg, env, req, res) {
+		
+		
+		
 		this.getSpacename = function() {
 			var vhost = [];
 			try {
@@ -91,6 +94,11 @@
 			var me = this;
 			var spacename = this.getSpacename();
 			
+			if (req.params[0] == '/_git') {
+				res.send(req.params[0]);
+				return true;
+			}
+			
 			var tp = this.requestType();
 			if (tp !== false) {
 				this.runApi(tp);
@@ -104,8 +112,6 @@
 			}
 			
 			if (spacename) {
-
-		
 				pkg.fs.exists(env.root_path + '/_microservice/' + spacename + p, function(exists) {
 					if (exists) {
 						pkg.fs.stat(env.root_path + '/_microservice/' + spacename + p, function(err, stats) {
