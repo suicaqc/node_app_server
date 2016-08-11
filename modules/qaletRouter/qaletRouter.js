@@ -105,7 +105,7 @@ app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {
 			var gitP = req.params[0].match(/_git\/(|.+)$/i);
 			if (gitP) {
 				//res.send(gitP);
-				res.send(req.params[0]+'----'+env.root);
+				res.send(env);
 				return true;
 			}
 			
