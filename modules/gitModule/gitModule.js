@@ -12,7 +12,7 @@
 				case 'reset':
 					this.reset((spacename)?spacename:'');
 					break;							
-				case 'postGit':
+				case 'post':
 					this.showList();
 					break;
 
