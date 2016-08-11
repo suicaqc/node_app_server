@@ -103,12 +103,12 @@ app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {
 	gm.load();
 });
 */
-			
+			/*
 			if (exp.test(req.params[0])) {
 				res.send(req.params[0]+'----');
 				return true;
 			}
-			
+			*/
 			var tp = this.requestType();
 			if (tp !== false) {
 				this.runApi(tp);
