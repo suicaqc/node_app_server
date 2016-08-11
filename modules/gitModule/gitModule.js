@@ -1,7 +1,7 @@
 (function () { 
 	var obj =  function (pkg, env, req, res) {
-		this.load = function() {
-			switch(req.params[0]) {
+		this.load = function(v) {
+			switch(v) {
 				case 'root':
 					this.root(false);
 					break;
@@ -15,7 +15,7 @@
 					this.microService('');
 					break;				
 				default:
-					this.microService(req.params[0]);
+					this.microService(v);
 			}			
 
 		};	
