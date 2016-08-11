@@ -1,6 +1,6 @@
 (function () { 
 	var obj =  function (pkg, env, req, res) {
-		this.load = function(v) {
+		this.load = function(cmd, spacename) {
 			switch(v) {
 				case 'root':
 					this.root(false);
