@@ -105,7 +105,11 @@ app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {
 			var gitP = req.params[0].match(/_git\/(|.+)$/i);
 			if (gitP) {
 				//res.send(gitP);
-				res.send(env);
+			//	res.send(env.root_path);
+				delete require.cache[env.root_path + '/modules/gitModule/gitModule.js'];
+				var gitModule  = require(env.root_path + '/modules/gitModule/gitModule.js');
+				var gm = new gitModule(pkg, env, req, res);
+				gm.load();				
 				return true;
 			}
 			
