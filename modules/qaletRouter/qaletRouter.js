@@ -93,6 +93,15 @@
 		this.load = function() {
 			var me = this;
 			var spacename = this.getSpacename();
+
+/*
+app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {	
+	delete require.cache[__dirname + '/modules/gitModule/gitModule.js'];
+	var gitModule  = require(__dirname + '/modules/gitModule/gitModule.js');
+	var gm = new gitModule(pkg, env, req, res);
+	gm.load();
+});
+*/
 			
 			if (req.params[0] == '/_git') {
 				res.send(req.params[0]);

@@ -67,14 +67,14 @@ app.get(/cache(|[0-9]+)\/(\S+)$/i, function (req, res) {
 	return true;
 
 });
-
+/*
 app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {	
 	delete require.cache[__dirname + '/modules/gitModule/gitModule.js'];
 	var gitModule  = require(__dirname + '/modules/gitModule/gitModule.js');
 	var gm = new gitModule(pkg, env, req, res);
 	gm.load();
 });
-
+*/
 app.post(/microRouter(\/|)$/i, function (req, res) {
 	delete require.cache[__dirname + '/modules/microRouter/microRouter.js'];
 	var microrouter  = require(__dirname + '/modules/microRouter/microRouter.js');
