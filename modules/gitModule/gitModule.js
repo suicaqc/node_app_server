@@ -14,7 +14,7 @@
 					this.reset();
 					break;							
 				case '':
-					this.microService('');
+					this.microService((spacename)?spacename:'');
 					break;				
 				default:
 					me.send404(req.params[0]);
