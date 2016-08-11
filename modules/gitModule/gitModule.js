@@ -2,7 +2,7 @@
 	var obj =  function (pkg, env, req, res) {
 		this.load = function(cmd, spacename) {
 			var me = this;
-			me.send(spacename)
+			res.send(spacename)
 			switch(cmd) {
 				case 'root':
 					this.root(false);
