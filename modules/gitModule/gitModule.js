@@ -12,8 +12,8 @@
 				case 'reset':
 					this.reset((spacename)?spacename:'');
 					break;							
-				case '':
-					this.microService((spacename)?spacename:'');
+				case 'postGit':
+					this.showList();
 					break;
 
 				case 'list':
