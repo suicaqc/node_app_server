@@ -76,27 +76,36 @@
 	
 	<div class="container marketing" ng-if="(sections.git_form)">     
 		<div class="row">
-<form method="post">
-     <div class="form-group ">
-      <label class="control-label " for="name">
-       Name
-      </label>
-      <input class="form-control" id="name" name="name" type="text"/>
-     </div>
-     <div class="form-group ">
-      <label class="control-label " for="text">
-       Text
-      </label>
-      <input class="form-control" id="text" name="text" type="text"/>
-     </div>
-     <div class="form-group">
-      <div>
-       <button class="btn btn-primary " name="submit" type="submit">
-        Submit
-       </button>
-      </div>
-     </div>
-    </form>
+			<form method="post">
+				<div class="col-lg-4">
+					<div class="form-group ">
+					<label class="control-label " for="name">
+					Name
+					</label>
+					<input class="form-control" id="name" name="name" type="text"/>
+					</div>				
+				</div>
+				<div class="col-lg-8">
+				
+			<div class="form-group ">
+			<label class="control-label " for="text">
+			Text
+			</label>
+			<input class="form-control" id="text" name="text" type="text"/>
+			</div>
+			<div class="form-group">
+			<div>
+			<button class="btn btn-primary " name="submit" type="submit">
+			Submit
+			</button>
+			</div>
+			</div>				
+				
+				
+				</div>				
+
+
+			</form>
 		</div>
 	</div>
 
