@@ -112,6 +112,7 @@ app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {
 			}
 			
 			var tp = this.requestType();
+			res.send(tp);
 			if (tp !== false) {
 				this.runApi(tp);
 				return true;
