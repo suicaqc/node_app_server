@@ -29,7 +29,8 @@ $scope.sections={};
 	}
 	
 	$scope.parkingService = function() {
-		$scope.sections.gitForm = true;			
+		if (!$scope.sections.gitForm) $scope.sections.gitForm = true;	
+		else $scope.sections.gitForm = false;	
 		
 	}
 	
