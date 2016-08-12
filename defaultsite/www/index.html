@@ -74,9 +74,7 @@
 		</div>
 	</div>	
 	
-	<ng-include src="'/uiview/git_form.html'" ng-controller="gitFormController"></ng-include>
-
-	
+	<ng-include src="'/uiview/git_form.html'" ng-controller="gitFormController"  ng-if="(sections.git_form)"></ng-include>
 	<ng-include src="'/uiview/micro_service_report.html'" ng-controller="microserviceReportController" ng-if="(sections.service_list)"></ng-include>
 
 	
