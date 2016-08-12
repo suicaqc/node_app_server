@@ -19,7 +19,9 @@
 				case 'list':
 					this.showList();
 					break;	
-					
+				case '':
+					this.microService('');
+					break;					
 				default:
 					me.send404(req.params[0]);
 				//	this.microService('');
