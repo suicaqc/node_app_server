@@ -59,3 +59,5 @@ $scope.sections={};
 	
 });	
 
+app.controller('gitFormController', function($rootScope, $scope, $location, $http, $cookies, $timeout, $sce){ 
+});	
