@@ -77,10 +77,10 @@
 	<ng-include src="'/uiview/git_form.html'" ng-controller="gitFormController"  ng-if="(sections.git_form)"></ng-include>
 	<ng-include src="'/uiview/micro_service_report.html'" ng-controller="microserviceReportController" ng-if="(sections.service_list)"></ng-include>
 	<ng-include src="'/uiview/qalet_document.html'"></ng-include>
-	<ng-include src="'/uiview/qalet_footer.html'"></ng-include>
+	
 	
 	<ng-view></ng-view>
-
+	<ng-include src="'/uiview/qalet_footer.html'"></ng-include>
 	
 	<div class="modal fade qalet_loading_progress_bar" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" 
 			style="max-width:1024px; padding-top:80px;margin:0 auto;">
