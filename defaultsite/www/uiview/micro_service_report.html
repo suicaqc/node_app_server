@@ -10,7 +10,7 @@
     <tbody>
       <tr ng-repeat="(key, value) in microservice_list">
         <td>{{value.name}}</td>
-        <td>{{value.repository.replace(/\/\/([^\:]+)([^\@]+)/i, '====')}}</td>
+        <td>{{value.repository}}</td>
         <td>{{value.status}}</td>
       </tr>
     </tbody>
