@@ -29,14 +29,14 @@ $scope.sections={};
 	}
 	
 	$scope.parkingService = function() {
-		if (!$scope.sections.gitForm) $scope.sections.gitForm = true;	
-		else $scope.sections.gitForm = false;	
+		if (!$scope.sections.git_form) $scope.sections.git_form = true;	
+		else $scope.sections.git_form = false;	
 		
 	}
 	
 	$scope.listService = function() {
-		if (!$scope.sections.gitForm) $scope.sections.gitForm = true;	
-		else $scope.sections.gitForm = false;	
+		if (!$scope.sections.service_list) $scope.sections.service_list = true;	
+		else $scope.sections.service_list = false;	
 		
 	}	
 	
