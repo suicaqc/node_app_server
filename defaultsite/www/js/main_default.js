@@ -62,5 +62,5 @@ $scope.sections={};
 app.controller('gitFormController', function($rootScope, $scope, $location, $http, $cookies, $timeout, $sce){ 
 });	
 
-app.controller('gitReportController', function($rootScope, $scope, $location, $http, $cookies, $timeout, $sce){ 
+app.controller('microserviceReportController', function($rootScope, $scope, $location, $http, $cookies, $timeout, $sce){ 
 });	
