@@ -28,11 +28,8 @@ $scope.sections={gitForm:1};
 		
 	}
 	
-	$scope.listServices = function() {
-		$scope.popup('on', {
-			title:'Services',
-			body: $sce.trustAsHtml('Under construction<br/><img src="/images/Under-Construction.gif">&hellip;')
-		});			
+	$scope.parkingService = function() {
+		$scope.sections.gitForm = true;			
 		
 	}
 	
