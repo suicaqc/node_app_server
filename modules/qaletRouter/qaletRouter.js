@@ -44,6 +44,7 @@
 			res.end();			
 		}			
 		this.runApi = function(v) {
+			res.send(v);
 			var me = this;
 			var spacename = this.getSpacename();
 			var space_dir = env.root_path + '/_microservice/' + spacename + '/';
@@ -112,7 +113,6 @@ app.get(/_git\/(|[0-9a-z]+)$/i, function (req, res) {
 			}
 			
 			var tp = this.requestType();
-			res.send(tp);
 			if (tp !== false) {
 				this.runApi(tp);
 				return true;
