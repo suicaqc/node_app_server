@@ -68,13 +68,11 @@ app.controller('microserviceReportController', function($rootScope, $scope, $loc
 $('.qalet_loading_progress_bar').modal();
 	$http({
 	  method: 'GET',
-	  url: '/_git/'
+	  url: '/_git/list'
 	}).then(function successCallback(response) {
-		$('.qalet_loading_progress_bar').modal('hide');
-		$scope.popup('on', {
-			title:'Success done git update',
-			body: $sce.trustAsHtml(response.data)
-		});				
+		console.log(response);
+		
+		$('.qalet_loading_progress_bar').modal('hide');			
 	  }, function errorCallback(response) {
 			$('.qalet_loading_progress_bar').modal('hide');
 			$scope.popup('on', {
