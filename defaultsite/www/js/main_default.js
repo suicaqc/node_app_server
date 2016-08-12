@@ -34,6 +34,12 @@ $scope.sections={};
 		
 	}
 	
+	$scope.listService = function() {
+		if (!$scope.sections.gitForm) $scope.sections.gitForm = true;	
+		else $scope.sections.gitForm = false;	
+		
+	}	
+	
 	$scope.report = function() {
 		$scope.popup('on', {
 			title:'Report',
