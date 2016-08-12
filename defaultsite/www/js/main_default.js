@@ -71,7 +71,7 @@ $('.qalet_loading_progress_bar').modal();
 	}).then(function successCallback(response) {
 		var data = response.data;
 		for (var i = 0; i < data.length; i++) {
-			data[i]['repository'] = data[i]['repository'].replace(/\/\/([^\:]+):([^\@]+)/i, '//(username/password)');
+			data[i]['repository'] = $sce.trustAsHtml(data[i]['repository'].replace(/\/\/([^\:]+):([^\@]+)/i, '//<b>(username/password)</b>'));
 		}
 		
 		$scope.microservice_list = data;
