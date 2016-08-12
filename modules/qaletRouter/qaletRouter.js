@@ -47,8 +47,8 @@
 			
 			var me = this;
 			var spacename = this.getSpacename();
-			var space_dir = env.root_path + '/_microservice/' + spacename + '/api/';
-			var p = space_dir + v;
+			var space_dir = env.root_path + '/_microservice/' + spacename;
+			var p = space_dir + '/api/' + v;
 
 			pkg.fs.exists(p, function(exists) {
 				if (exists) {
