@@ -70,8 +70,7 @@ $('.qalet_loading_progress_bar').modal();
 	  method: 'GET',
 	  url: '/_git/list'
 	}).then(function successCallback(response) {
-		console.log(response);
-		
+		$scope.microservice_list = response.data;
 		$('.qalet_loading_progress_bar').modal('hide');			
 	  }, function errorCallback(response) {
 			$('.qalet_loading_progress_bar').modal('hide');
