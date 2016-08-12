@@ -64,14 +64,17 @@ app.controller('gitFormController', function($rootScope, $scope, $location, $htt
 
 app.controller('microserviceReportController', function($rootScope, $scope, $location, $http, $cookies, $timeout, $sce){ 
 
-	var vv = 'https://visualoncloud:Montreal107#@bitbucket.org/visualoncloud/visualoncloud.git';
-
 $('.qalet_loading_progress_bar').modal();
 	$http({
 	  method: 'GET',
 	  url: '/_git/list'
 	}).then(function successCallback(response) {
-		$scope.microservice_list = response.data;
+		var data = response.data;
+		for (var i = 0; i < data.length; i++) {
+			data[i]['repository'] = data[i]['repository'].replace(/\/\/([^\:]+)([^\@]+)/i, '//(username/password)@');
+		}
+		
+		$scope.microservice_list = data;
 		$('.qalet_loading_progress_bar').modal('hide');			
 	  }, function errorCallback(response) {
 			$('.qalet_loading_progress_bar').modal('hide');
@@ -80,8 +83,6 @@ $('.qalet_loading_progress_bar').modal();
 				body: $sce.trustAsHtml(response)
 			});						
 		});	
-
-	console.log(vv.replace(/\/\/([^\:]+)([^\@]+)/i, '===='));
 
 });	
 
