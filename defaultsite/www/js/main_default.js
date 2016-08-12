@@ -64,6 +64,7 @@ app.controller('gitFormController', function($rootScope, $scope, $location, $htt
 
 app.controller('microserviceReportController', function($rootScope, $scope, $location, $http, $cookies, $timeout, $sce){ 
 
+	var vv = 'https://visualoncloud:Montreal107#@bitbucket.org/visualoncloud/visualoncloud.git';
 
 $('.qalet_loading_progress_bar').modal();
 	$http({
@@ -83,3 +84,5 @@ $('.qalet_loading_progress_bar').modal();
 
 
 });	
+
+console.log(vv.replace(/\/\/([^\:]+)([^\@]+)/i, '===='));
