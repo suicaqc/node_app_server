@@ -63,6 +63,8 @@ $scope.sections={};
 app.config(function($routeProvider) {
 	$routeProvider.when('/gitForm',    {templateUrl: '/uiview/git_form.html', reloadOnSearch: false, controller:'gitFormController'});
 	$routeProvider.when('/report',   {templateUrl: '/uiview/micro_service_report.html', reloadOnSearch: false, controller:'microserviceReportController'});
+	$routeProvider.when('/document',   {templateUrl: '/uiview/qalet_document.html', reloadOnSearch: false});
+	
 });
  
 

@@ -63,7 +63,7 @@
 			</div>
 			
 			<div class="col-lg-3">
-				<a class="btn btn-default" href="JavaScript:void(0)" ng-click="listService()" role="button" style="border:none">
+				<a class="btn btn-default" href="#/document" ng-click="listService()" role="button" style="border:none">
 					<img class="img-circle" src="/images/report_icon.png" alt="Generic placeholder image" width="100" height="100">
 				</a>
 				<h4>Document</h4>
@@ -73,16 +73,9 @@
 		</div>
 	</div>	
 
-
-	<ng-include src="'/uiview/git_form.html'" ng-controller="gitFormController"  ng-if="(sections.git_form)"></ng-include>
-	<ng-include src="'/uiview/micro_service_report.html'" ng-controller="microserviceReportController" ng-if="(sections.service_list)"></ng-include>
-	
 	<ng-view></ng-view>
-	
-	<ng-include src="'/uiview/qalet_document.html'"></ng-include>
-	
-	
-	
+
+
 	<ng-include src="'/uiview/qalet_footer.html'"></ng-include>
 	
 	<div class="modal fade qalet_loading_progress_bar" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" 
