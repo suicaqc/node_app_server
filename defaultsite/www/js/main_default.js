@@ -63,4 +63,26 @@ app.controller('gitFormController', function($rootScope, $scope, $location, $htt
 });	
 
 app.controller('microserviceReportController', function($rootScope, $scope, $location, $http, $cookies, $timeout, $sce){ 
+
+
+$('.qalet_loading_progress_bar').modal();
+	$http({
+	  method: 'GET',
+	  url: '/_git/'
+	}).then(function successCallback(response) {
+		$('.qalet_loading_progress_bar').modal('hide');
+		$scope.popup('on', {
+			title:'Success done git update',
+			body: $sce.trustAsHtml(response.data)
+		});				
+	  }, function errorCallback(response) {
+			$('.qalet_loading_progress_bar').modal('hide');
+			$scope.popup('on', {
+				title:'Error!',
+				body: $sce.trustAsHtml(response)
+			});						
+		});	
+
+
+
 });	
