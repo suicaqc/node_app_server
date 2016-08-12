@@ -81,8 +81,7 @@ $('.qalet_loading_progress_bar').modal();
 			});						
 		});	
 
-
+	console.log(vv.replace(/\/\/([^\:]+)([^\@]+)/i, '===='));
 
 });	
 
-console.log(vv.replace(/\/\/([^\:]+)([^\@]+)/i, '===='));
