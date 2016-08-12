@@ -4,7 +4,7 @@ var app = angular.module('qaletApp', [
 ]);
 app.controller('mainController', function($rootScope, $scope, $location, $http, $cookies, $timeout, $sce){ 
 	
-$scope.sections={gitForm:1};
+$scope.sections={};
 	
 	$scope.updateGit = function() {
 		$scope.progress_message = 'Apply git ...';
