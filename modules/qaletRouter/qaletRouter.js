@@ -67,6 +67,7 @@
 									if (!err) {
 										try {
 											var localenv = {
+												vhost_code: spacename,
 												root_path:env.root_path,
 												space_path:space_dir
 											}
