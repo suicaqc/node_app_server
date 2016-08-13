@@ -22,6 +22,14 @@ body {
   background-color: #e0e0e0;
 }
 
+.footer_label {
+  color:#4F8228
+}
+.footer_link {
+  color:#F06321
+}
+
+
 .inline {
   float: left;
 }
