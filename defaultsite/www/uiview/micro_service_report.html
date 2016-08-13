@@ -1,19 +1,31 @@
-<div class="container marketing">     
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>GIT url</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="(key, value) in microservice_list">
-        <td>{{value.name}}</td>
-        <td>{{value.repository}}</td>
-        <td>{{value.status}}</td>
-      </tr>
-    </tbody>
-  </table>	
-	
+
+<div class="container">
+	<div class = "row">
+		<div class="bs-callout bs-callout-warning highlight" id="callout-overview-dependencies"> 
+
+			<div class="container marketing">  
+			   
+			  <table class="table">
+				<thead>
+				  <tr>
+					<th>Name</th>
+					<th>GIT url</th>
+					<th>Status</th>
+				  </tr>
+				</thead>
+				<tbody>
+				  <tr ng-repeat="(key, value) in microservice_list">
+					<td>{{value.name}}</td>
+					<td>{{value.repository}}</td>
+					<td>{{value.status}}</td>
+				  </tr>
+				</tbody>
+			  </table>	
+				
+			</div>	
+			
+		</div>
+	</div>	
 </div>	
+
+
