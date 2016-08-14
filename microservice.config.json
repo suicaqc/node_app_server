@@ -5,6 +5,8 @@
 	{"name":"jiaoyou", "repository":"https://github.com/b2blosangeles/microservice_jiaoyou.git"},
 	{"name":"visualoncloud", "domain":"^(www.|)visualoncloud.com$", "repository":"https://visualoncloud:Montreal107#@bitbucket.org/visualoncloud/visualoncloud.git"},
 	{"name":"admin", "domain":"^admin.qalet.com$", "repository":"https://github.com/b2blosangeles/qalet_admin.git", "autopull": true},
-	{"name":"admindev", "domain":"^dev.qalet.com$", "repository":"https://github.com/b2blosangeles/testimg.git", "autopull": true}
+	{"name":"admindev", "domain":"^dev.qalet.com$", "repository":"https://github.com/b2blosangeles/testimg.git", "autopull": true},
+	{"name":"node_app", "domain":"^shusiou.com$", "repository":"https://github.com/suicaqc/node_app", "autopull": true}
+	
 	
 ]
